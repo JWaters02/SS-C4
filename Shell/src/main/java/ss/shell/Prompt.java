@@ -53,7 +53,7 @@ public class Prompt {
      * Produce the prompt.
      */
     private static String prompt() {
-        String username = System.getProperty("user.name");
+        String username = System.getProperty("user.name"); // TODO: Change to currently logged in user
         String cwd = System.getProperty("user.dir");
         return ConsoleColours.GREEN + username + ": " + ConsoleColours.BLUE + cwd + ConsoleColours.RESET + "$ ";
     }
@@ -63,7 +63,7 @@ public class Prompt {
      * @param command The command to check.
      */
     private static boolean isBuiltInCommand(String command) {
-        return BuiltIns.isBuiltIn(command);
+        return BuiltIns.isBuiltIn(command.toLowerCase());
     }
 
     /**
