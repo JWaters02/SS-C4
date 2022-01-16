@@ -1,4 +1,4 @@
-package ss.shell;
+package ss.shell.client;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

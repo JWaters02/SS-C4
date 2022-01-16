@@ -25,49 +25,39 @@ public class BuiltInProcess {
      */
     public void execute() {
         switch (command[0].toLowerCase()) {
-            case BuiltIns.SUPER:
+            case BuiltIns.SUPER -> {
                 if (command.length == 1) {
                     Logs.printLine("Please specify a command.");
                     return;
                 }
                 switch (command[1].toLowerCase()) {
-                    case BuiltIns.ADDUSER:
-                        addUser();
-                        break;
-                    case BuiltIns.CHPASS:
-                        chPass();
-                        break;
-                    default:
+                    case BuiltIns.ADDUSER -> addUser();
+                    case BuiltIns.CHPASS -> chPass();
+                    default -> {
                         Logs.printLine("Cannot execute command as super: " + command[1]);
-                        return;
+                    }
                 }
-                break;
-            case BuiltIns.WHOAMI:
-                whoami();
-                break;
-            case BuiltIns.MOVE:
+            }
+            case BuiltIns.WHOAMI -> whoami();
+            case BuiltIns.MOVE -> {
                 if (command.length != 3) {
                     Logs.printLine("Please provide only two arguments!");
                     return;
                 }
                 move();
-                break;
-            case BuiltIns.COPY:
+            }
+            case BuiltIns.COPY -> {
                 if (command.length != 3) {
                     Logs.printLine("Please provide only two arguments!");
                     return;
                 }
                 copy();
-                break;
-            case BuiltIns.LOGOUT:
-                logout();
-                break;
-            case BuiltIns.HELP:
-                help();
-                break;
-            default:
+            }
+            case BuiltIns.LOGOUT -> logout();
+            case BuiltIns.HELP -> help();
+            default -> {
                 Logs.printLine("Unknown command: " + command[0]);
-                return;
+            }
         }
     }
 

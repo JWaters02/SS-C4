@@ -1,8 +1,7 @@
-package ss.shell;
+package ss.shell.server;
 
 import java.io.IOException;
 import java.net.*;
-import java.io.*;
 
 public class ShellServer {
     /*

@@ -1,4 +1,4 @@
-package ss.shell;
+package ss.shell.client;
 
 import javafx.application.Application;
 import javafx.scene.layout.VBox;

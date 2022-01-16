@@ -1,23 +1,16 @@
 package ss.shell;
 
-import java.util.Scanner;
-
 import ss.shell.utils.BuiltIns;
 import ss.shell.utils.ConsoleColours;
 import ss.shell.utils.ShellUtils;
+
+import java.util.Scanner;
 
 public class Prompt {
     /**
      * Create the event loop that produces a prompt for user input.
      * The prompt should be the current working directory followed by a '$ '.
      * E.g. /home/user/dir$
-     * The prompt should be printed to the console.
-     * The user input should be read from the console.
-     * The user input should be parsed into a command and arguments.
-     * The command will be executed using ProcessBuilder.
-     * The command output should be printed to the console.
-     * The command error output should be printed to the console.
-     * The command should be executed in the current working directory.
      */
     public static void main(String[] args) {
         // Main event loop
@@ -34,16 +27,13 @@ public class Prompt {
                 continue;
             }
 
+            // If the command is not a built-in command, run it
             if (isBuiltInCommand(command[0])) {
-                // Execute built-in command
                 BuiltInProcess bip = new BuiltInProcess(command, prompt());
                 bip.execute();
             } else {
-                // Execute command
                 ShellProcess process = new ShellProcess();
                 String output = process.execute(command);
-
-                // Print command output
                 System.out.println(prompt() + "\n" + output);
             }
         }
@@ -86,13 +76,11 @@ public class Prompt {
 
     /**
      * Check if the command is to do with exiting the shell.
+     * List of exit commands:
+     * exit, quit, bye
+     * @param command The command to check.
      */
     private static boolean isExit(String[] command) {
-        /**
-         * List of exit commands:
-         * exit, quit, bye
-         */
         return command[0].equals("exit") || command[0].equals("quit") || command[0].equals("bye");
     }
-
 }
