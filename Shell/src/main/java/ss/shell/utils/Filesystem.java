@@ -12,7 +12,6 @@ public class Filesystem {
     private final String username;
     private String password;
     private BuiltIns.UserTypes type;
-    private final String HOME_PATH = System.getProperty("user.home");
 
     /**
      * Constructor for the Filesystem class.
@@ -69,7 +68,7 @@ public class Filesystem {
                     file.delete();
                 }
                 userDir.delete();
-                File userInfo = new File(HOME_PATH + this.username + ".txt");
+                File userInfo = new File(BuiltIns.HOME_PATH + this.username + ".txt");
                 userInfo.delete();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -140,7 +139,7 @@ public class Filesystem {
      */
     private void createUserDir() {
         Logs.printLine("Creating directory for " + this.username, Logs.LogLevel.INFO);
-        new File(HOME_PATH + "/" + this.username).mkdir();
+        new File(BuiltIns.HOME_PATH + this.username).mkdir();
     }
 
     /**
@@ -148,7 +147,7 @@ public class Filesystem {
      * @return the path of the user's directory.
      */
     private String getUserDirPath() {
-        return HOME_PATH + "/" + this.username + "/";
+        return BuiltIns.HOME_PATH + this.username + "/";
     }
 
     /**
@@ -158,12 +157,12 @@ public class Filesystem {
      */
     private void writeUserDetails() {
         try {
-            FileWriter writer = new FileWriter(HOME_PATH + this.username + ".txt");
+            FileWriter writer = new FileWriter(BuiltIns.HOME_PATH + this.username + ".txt");
             writer.write(this.username + "\n");
             writer.write(this.password + "\n");
             writer.write(this.type.toString());
             writer.close();
-            Logs.printLine("Wrote user details to " + HOME_PATH + this.username + ".txt", Logs.LogLevel.INFO);
+            Logs.printLine("Wrote user details to " + BuiltIns.HOME_PATH + this.username + ".txt", Logs.LogLevel.INFO);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -184,7 +183,7 @@ public class Filesystem {
     private String getUserInfo() {
         StringBuilder userInfo = new StringBuilder();
         try {
-            FileReader file = new FileReader(HOME_PATH + this.username + ".txt");
+            FileReader file = new FileReader(BuiltIns.HOME_PATH + this.username + ".txt");
             Scanner reader = new Scanner(file);
             while (reader.hasNextLine()) {
                 userInfo.append(reader.nextLine()).append("\n");

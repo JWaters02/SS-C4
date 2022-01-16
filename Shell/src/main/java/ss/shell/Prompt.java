@@ -21,6 +21,10 @@ public class Prompt {
             // Read user input
             Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
+            if (input.length() == 0) {
+                Logs.printLine("No command entered.", Logs.LogLevel.ERROR);
+                continue;
+            }
 
             // Parse user input
             String[] command = input.split(" ");

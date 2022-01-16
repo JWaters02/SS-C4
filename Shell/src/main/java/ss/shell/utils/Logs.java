@@ -2,6 +2,7 @@ package ss.shell.utils;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.io.IOException;
 
@@ -46,12 +47,13 @@ public class Logs {
      * @param text Input text.
      */
     private static void logToFile(String text) {
+        final String fileName = BuiltIns.HOME_PATH + LocalDate.now() + " log.txt";
         try {
             // We want logs file to be stored in the home directory
-            File logsFile = new File(System.getProperty("user.home") + File.separator + "logs.txt");
+            File logsFile = new File(fileName);
             FileWriter fileWriter = new FileWriter(logsFile, true);
             // Write [date] [time]: [text]
-            fileWriter.write("[" + LocalDateTime.now().toString() + "]: " + text);
+            fileWriter.write("[" + LocalDateTime.now().toString() + "]: " + text + "\n");
             fileWriter.close();
         } catch (IOException e) {
             e.printStackTrace();

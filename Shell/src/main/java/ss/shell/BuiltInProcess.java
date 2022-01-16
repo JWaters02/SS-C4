@@ -45,6 +45,9 @@ public class BuiltInProcess {
                     default -> Logs.printLine("Cannot execute command as super: " + command[1], Logs.LogLevel.ERROR);
                 }
             }
+            case BuiltIns.ADDUSER, BuiltIns.CHUSERTYPE, BuiltIns.CHPASS, BuiltIns.DELUSER -> {
+                Logs.printLine("You must execute this command as super.", Logs.LogLevel.ERROR);
+            }
             case BuiltIns.LOGIN -> login();
             case BuiltIns.LOGOUT -> {
                 if (this.username == null) {
@@ -62,14 +65,14 @@ public class BuiltInProcess {
             }
             case BuiltIns.MOVE -> {
                 if (command.length != 3) {
-                    Logs.printLine("Please provide only two arguments!", Logs.LogLevel.ERROR);
+                    Logs.printLine("Please provide two arguments!", Logs.LogLevel.ERROR);
                     return;
                 }
                 move();
             }
             case BuiltIns.COPY -> {
                 if (command.length != 3) {
-                    Logs.printLine("Please provide only two arguments!", Logs.LogLevel.ERROR);
+                    Logs.printLine("Please provide two arguments!", Logs.LogLevel.ERROR);
                     return;
                 }
                 copy();
@@ -192,7 +195,9 @@ public class BuiltInProcess {
             Logs.printLine("Welcome " + username);
             this.username = username;
             this.userType = fs.getUserType();
-        };
+        } else {
+            Logs.printLine("Invalid username or password!", Logs.LogLevel.ERROR);
+        }
     }
 
     /**
@@ -225,6 +230,7 @@ public class BuiltInProcess {
      * command[2] is destination
      */
     private void move() {
+        // TODO: Need more outputs for edge cases
         String source = command[1];
         String destination = command[2];
 
@@ -252,6 +258,7 @@ public class BuiltInProcess {
      * command[2] is destination
      */
     private void copy() {
+        // TODO: Need more outputs for edge cases
         String source = command[1];
         String destination = command[2];
 

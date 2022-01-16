@@ -20,6 +20,8 @@ public class BuiltIns {
         SUPERUSER
     }
 
+    public static final String HOME_PATH = "/home/bobby/SS/";
+
     public static boolean isBuiltIn(String command) {
         for (String builtIn : COMMANDS) {
             if (builtIn.equals(command)) {
