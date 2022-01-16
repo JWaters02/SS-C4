@@ -3,6 +3,7 @@ package ss.shell;
 import ss.shell.utils.BuiltIns;
 import ss.shell.utils.ConsoleColours;
 import ss.shell.utils.ShellUtils;
+import ss.shell.utils.Logs;
 
 import java.util.Scanner;
 
@@ -29,7 +30,7 @@ public class Prompt {
 
             // If the command is not a built-in command, run it
             if (isBuiltInCommand(command[0])) {
-                BuiltInProcess bip = new BuiltInProcess(command, prompt());
+                BuiltInProcess bip = new BuiltInProcess(command);
                 bip.execute();
             } else {
                 ShellProcess process = new ShellProcess();
@@ -63,11 +64,11 @@ public class Prompt {
      */
     private static boolean notShellCommand(String[] command) {
         if (command.length == 0) {
-            System.out.println("No command entered.");
+            Logs.printLine("No command entered.", Logs.LogLevel.ERROR);
             return true;
         }
         if (isExit(command)) {
-            System.out.println("Exiting shell...");
+            Logs.printLine("Exiting shell...");
             ShellUtils.wait(1);
             System.exit(0);
         }

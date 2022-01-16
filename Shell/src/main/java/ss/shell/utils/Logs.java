@@ -6,12 +6,29 @@ import java.time.LocalDateTime;
 import java.io.IOException;
 
 public class Logs {
+    public enum LogLevel {
+        INFO,
+        WARNING,
+        ERROR
+    }
+
     /**
-     * Prints a line of text and stores output in the logs file.
+     * Prints a line (with \n) of text and stores output in the logs file.
      * @param text Input text.
      */
     public static void printLine(String text) {
         System.out.println(text);
+        logToFile(text);
+    }
+
+    public static void printLine(String text, LogLevel level) {
+        if (level == LogLevel.ERROR) {
+            System.out.println(ConsoleColours.RED + "Error: " + text + ConsoleColours.RESET);
+        } else if (level == LogLevel.WARNING) {
+            System.out.println(ConsoleColours.YELLOW + "Warning: " + text + ConsoleColours.RESET);
+        } else if (level == LogLevel.INFO) {
+            System.out.println(ConsoleColours.CYAN + "Info: " + text + ConsoleColours.RESET);
+        }
         logToFile(text);
     }
 
@@ -30,7 +47,7 @@ public class Logs {
      */
     private static void logToFile(String text) {
         try {
-            // We want logs file to be stored in the home directory (Pedro)
+            // We want logs file to be stored in the home directory
             File logsFile = new File(System.getProperty("user.home") + File.separator + "logs.txt");
             FileWriter fileWriter = new FileWriter(logsFile, true);
             // Write [date] [time]: [text]
