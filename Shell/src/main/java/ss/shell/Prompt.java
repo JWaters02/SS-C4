@@ -14,6 +14,8 @@ public class Prompt {
      * E.g. /home/user/dir$
      */
     public static void main(String[] args) {
+        BuiltInProcess bip = new BuiltInProcess();
+
         // Main event loop
         while (true) {
             System.out.print(prompt());
@@ -34,9 +36,9 @@ public class Prompt {
 
             // If the command is not a built-in command, run it
             if (isBuiltInCommand(command[0])) {
-                BuiltInProcess bip = new BuiltInProcess(command);
-                bip.execute();
+                bip.execute(command);
             } else {
+                // TODO: Prevent running of commands not in table
                 ShellProcess process = new ShellProcess();
                 String output = process.execute(command);
                 System.out.println(prompt() + "\n" + output);

@@ -47,7 +47,7 @@ public class Logs {
      * @param text Input text.
      */
     private static void logToFile(String text) {
-        final String fileName = BuiltIns.HOME_PATH + LocalDate.now() + " log.txt";
+        final String fileName = BuiltIns.HOME_PATH + LocalDate.now() + "_log.txt";
         try {
             // We want logs file to be stored in the home directory
             File logsFile = new File(fileName);

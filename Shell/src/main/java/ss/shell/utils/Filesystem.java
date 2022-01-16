@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Filesystem {
@@ -36,8 +37,10 @@ public class Filesystem {
             if (this.checkPassword()) {
                 success = true;
             } else {
-                Logs.printLine(" Invalid password.", Logs.LogLevel.ERROR);
+                Logs.printLine("Invalid password.", Logs.LogLevel.ERROR);
             }
+        } else {
+            Logs.printLine("User " + this.username + " does not exist!", Logs.LogLevel.ERROR);
         }
         return success;
     }
@@ -50,6 +53,8 @@ public class Filesystem {
             Logs.printLine("User " + this.username + " does not have a directory, creating user directory.", Logs.LogLevel.INFO);
             this.createUserDir();
             this.writeUserDetails();
+        } else {
+            Logs.printLine("User " + this.username + " already exists!", Logs.LogLevel.WARNING);
         }
     }
 
@@ -84,7 +89,13 @@ public class Filesystem {
      */
     public String getPassword() {
         String userInfo = this.getUserInfo();
-        return userInfo.split("\n")[1];
+        String ret = "";
+        try {
+            ret = userInfo.split("\n")[1];
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ret;
     }
 
     /**
@@ -93,36 +104,49 @@ public class Filesystem {
      */
     public BuiltIns.UserTypes getUserType() {
         String userInfo = this.getUserInfo();
-        if (userInfo.split("\n")[2] == "standard") {
-            return BuiltIns.UserTypes.STANDARD;
-        };
-        return BuiltIns.UserTypes.SUPERUSER;
+        BuiltIns.UserTypes ret = null;
+        try {
+            if (userInfo.split("\n")[2].equals("superuser")) {
+                ret = BuiltIns.UserTypes.SUPERUSER;
+            } else {
+                ret = BuiltIns.UserTypes.STANDARD;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ret;
     }
 
     /**
      * Change the password for the user.
      * @param newPassword the new password for the user.
      */
-    public void changePassword(String newPassword) {
+    public boolean changePassword(String newPassword) {
+        boolean success = false;
         if (this.hasDirectory()) {
+            success = true;
             this.password = newPassword;
             this.writeUserDetails();
         } else {
             Logs.printLine("User " + this.username + " does not exist!", Logs.LogLevel.ERROR);
         }
+        return success;
     }
 
     /**
      * Change the group type for the user.
      * @param newType the new group type for the user.
      */
-    public void changeUserType(BuiltIns.UserTypes newType) {
+    public boolean changeUserType(BuiltIns.UserTypes newType) {
+        boolean success = false;
         if (this.hasDirectory()) {
+            success = true;
             this.type = newType;
             this.writeUserDetails();
         } else {
             Logs.printLine("User " + this.username + " does not exist!", Logs.LogLevel.ERROR);
         }
+        return success;
     }
 
     /**
@@ -130,7 +154,7 @@ public class Filesystem {
      * @return true if the user has a directory.
      */
     public boolean hasDirectory() {
-        return new File(this.username).exists();
+        return new File(BuiltIns.HOME_PATH + this.username).exists();
     }
 
     /**
@@ -160,7 +184,9 @@ public class Filesystem {
             FileWriter writer = new FileWriter(BuiltIns.HOME_PATH + this.username + ".txt");
             writer.write(this.username + "\n");
             writer.write(this.password + "\n");
-            writer.write(this.type.toString());
+            if (this.type != null) {
+                writer.write(this.type.toString());
+            }
             writer.close();
             Logs.printLine("Wrote user details to " + BuiltIns.HOME_PATH + this.username + ".txt", Logs.LogLevel.INFO);
         } catch (IOException e) {

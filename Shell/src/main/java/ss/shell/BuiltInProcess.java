@@ -11,14 +11,11 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class BuiltInProcess {
-    // TODO: Check if users have the permissions to run the command
-
-    private final String[] command;
     private BuiltIns.UserTypes userType;
     private String username;
+    private String[] command;
 
-    public BuiltInProcess(String[] command) {
-        this.command = command;
+    public BuiltInProcess() {
         this.userType = BuiltIns.UserTypes.STANDARD; // We assume that the user is a standard user until they log in
         this.username = null; // We don't know the username until they log in
     }
@@ -26,7 +23,8 @@ public class BuiltInProcess {
     /**
      * Execute the correct command based on command
      */
-    public void execute() {
+    public void execute(String[] command) {
+        this.command = command;
         switch (command[0].toLowerCase()) {
             case BuiltIns.SUPER -> {
                 if (command.length == 1) {
@@ -103,12 +101,13 @@ public class BuiltInProcess {
 
         Logs.print("Enter user type: ");
         String userType = scanner.nextLine();
-        if (!(userType.equalsIgnoreCase("super") || userType.equalsIgnoreCase("standard"))) {
+        if (!(userType.equalsIgnoreCase("superuser") || userType.equalsIgnoreCase("standard"))) {
             Logs.printLine("Invalid user type!", Logs.LogLevel.ERROR);
             return;
         }
 
-        Filesystem fs = new Filesystem(username, String.valueOf(password1), BuiltIns.UserTypes.valueOf(userType.toUpperCase()));
+        Filesystem fs = new Filesystem(username, String.valueOf(password1),
+                BuiltIns.UserTypes.valueOf(userType.toUpperCase()));
         fs.createUser();
     }
 
@@ -121,6 +120,13 @@ public class BuiltInProcess {
         Logs.print("Enter username: ");
         Scanner scanner = new Scanner(System.in);
         String username = scanner.nextLine();
+
+        // Don't allow deletion of current user
+        if (Objects.equals(username, this.username)) {
+            Logs.printLine("You cannot delete yourself!", Logs.LogLevel.ERROR);
+            return;
+        }
+
         Filesystem fs = new Filesystem(username, null, null);
         fs.deleteUser();
     }
@@ -148,7 +154,10 @@ public class BuiltInProcess {
         }
         Logs.print("Enter new password: ");
         int newPassword = scanner.nextLine().hashCode();
-        fs.changePassword(String.valueOf(newPassword));
+        Filesystem fs2 = new Filesystem(username, fs.getPassword(), fs.getUserType());
+        if (fs2.changePassword(String.valueOf(newPassword))) {
+            Logs.printLine("Password changed successfully!", Logs.LogLevel.INFO);
+        }
     }
 
     /**
@@ -161,6 +170,12 @@ public class BuiltInProcess {
         Scanner scanner = new Scanner(System.in);
         String username = scanner.nextLine();
 
+        // Don't allow changing of current user
+        if (Objects.equals(username, this.username)) {
+            Logs.printLine("You cannot change your own user type!", Logs.LogLevel.WARNING);
+            return;
+        }
+
         Filesystem fs = new Filesystem(username, null, null);
         if (!fs.hasDirectory()) {
             Logs.printLine("User does not exist!", Logs.LogLevel.ERROR);
@@ -168,14 +183,19 @@ public class BuiltInProcess {
         }
 
         Logs.printLine("Current user type: " + fs.getUserType(), Logs.LogLevel.INFO);
-        Logs.printLine("Available user types:", Logs.LogLevel.INFO);
+        // TODO: Maybe everything that isn't current
+        Logs.printLine("Available user types: standard, superuser", Logs.LogLevel.INFO);
         Logs.print("Enter new user type: ");
         String userType = scanner.nextLine();
-        if (!(userType.equalsIgnoreCase("super") || userType.equalsIgnoreCase("standard"))) {
+        if (!(userType.equalsIgnoreCase("superuser") || userType.equalsIgnoreCase("standard"))) {
             Logs.printLine("Invalid user type!", Logs.LogLevel.ERROR);
             return;
         }
-        fs.changeUserType(BuiltIns.UserTypes.valueOf(userType.toUpperCase()));
+        Filesystem fs2 = new Filesystem(username, fs.getPassword(), fs.getUserType());
+        if (fs2.changeUserType(BuiltIns.UserTypes.valueOf(userType.toUpperCase()))) {
+            this.userType = fs2.getUserType();
+            Logs.printLine("User type changed!", Logs.LogLevel.INFO);
+        }
     }
 
     /**
@@ -183,6 +203,12 @@ public class BuiltInProcess {
      * command[0] is login
      */
     private void login() {
+        // If already logged in, ignore
+        if (this.username != null) {
+            Logs.printLine("Already logged in!", Logs.LogLevel.WARNING);
+            return;
+        }
+
         Logs.print("Login$ ");
         Scanner scanner = new Scanner(System.in);
         String username = scanner.nextLine();
@@ -195,8 +221,6 @@ public class BuiltInProcess {
             Logs.printLine("Welcome " + username);
             this.username = username;
             this.userType = fs.getUserType();
-        } else {
-            Logs.printLine("Invalid username or password!", Logs.LogLevel.ERROR);
         }
     }
 
@@ -205,7 +229,7 @@ public class BuiltInProcess {
      * command[0] is logout
      */
     private void logout() {
-        Logs.printLine("logout" + this.username);
+        Logs.printLine("logout " + this.username);
         this.username = null;
         this.userType = BuiltIns.UserTypes.STANDARD;
     }
