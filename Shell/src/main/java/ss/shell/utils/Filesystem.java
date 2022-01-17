@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Filesystem {
@@ -120,6 +119,7 @@ public class Filesystem {
     /**
      * Change the password for the user.
      * @param newPassword the new password for the user.
+     * @return true if the password was changed successfully.
      */
     public boolean changePassword(String newPassword) {
         boolean success = false;
@@ -136,6 +136,7 @@ public class Filesystem {
     /**
      * Change the group type for the user.
      * @param newType the new group type for the user.
+     * @return true if the change was successful.
      */
     public boolean changeUserType(BuiltIns.UserTypes newType) {
         boolean success = false;

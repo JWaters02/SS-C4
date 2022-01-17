@@ -13,6 +13,11 @@ public class Logs {
         ERROR
     }
 
+    public enum Store {
+        YES,
+        NO
+    }
+
     /**
      * Prints a line (with \n) of text and stores output in the logs file.
      * @param text Input text.
@@ -22,6 +27,11 @@ public class Logs {
         logToFile(text);
     }
 
+    /**
+     * Prints a line (with \n) of text and stores output in the logs file.
+     * @param text Input text.
+     * @param level Log level.
+     */
     public static void printLine(String text, LogLevel level) {
         if (level == LogLevel.ERROR) {
             System.out.println(ConsoleColours.RED + "Error: " + text + ConsoleColours.RESET);
@@ -31,6 +41,26 @@ public class Logs {
             System.out.println(ConsoleColours.CYAN + "Info: " + text + ConsoleColours.RESET);
         }
         logToFile(text);
+    }
+
+    /**
+     * Prints a line (with \n) of text and stores output in the logs file.
+     * @param text Input text.
+     * @param level Log level.
+     * @param store Store output in logs file.
+     */
+    public static void printLine(String text, LogLevel level, Store store) {
+        if (level == LogLevel.ERROR) {
+            System.out.println(ConsoleColours.RED + "Error: " + text + ConsoleColours.RESET);
+        } else if (level == LogLevel.WARNING) {
+            System.out.println(ConsoleColours.YELLOW + "Warning: " + text + ConsoleColours.RESET);
+        } else if (level == LogLevel.INFO) {
+            System.out.println(ConsoleColours.CYAN + "Info: " + text + ConsoleColours.RESET);
+        }
+
+        if (store == Store.YES) {
+            logToFile(text);
+        }
     }
 
     /**

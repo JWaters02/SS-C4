@@ -21,6 +21,12 @@ public class BuiltInProcess {
     }
 
     /**
+     * Gets the username of the current user.
+     * @return username of the current user.
+     */
+    public String getUsername() {  return this.username; }
+
+    /**
      * Execute the correct command based on command
      */
     public void execute(String[] command) {
