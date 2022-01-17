@@ -1,7 +1,9 @@
 package ss.shell;
 
 import ss.shell.utils.BuiltIns;
+import ss.shell.utils.ConsoleColours;
 import ss.shell.utils.Logs;
+import ss.shell.utils.Logs.*;
 import ss.shell.utils.Filesystem;
 
 import java.io.File;
@@ -34,11 +36,11 @@ public class BuiltInProcess {
         switch (command[0].toLowerCase()) {
             case BuiltIns.SUPER -> {
                 if (command.length == 1) {
-                    Logs.printLine("Please specify a command.", Logs.LogLevel.ERROR);
+                    Logs.printLine("Please specify a command.", LogLevel.ERROR);
                     return;
                 }
                 if (!Objects.equals(this.userType, BuiltIns.UserTypes.SUPERUSER)) {
-                    Logs.printLine("You are not a super user!", Logs.LogLevel.ERROR);
+                    Logs.printLine("You are not a super user!", LogLevel.ERROR);
                     return;
                 }
                 switch (command[1].toLowerCase()) {
@@ -46,43 +48,43 @@ public class BuiltInProcess {
                     case BuiltIns.DELUSER -> deleteUser();
                     case BuiltIns.CHPASS -> chPass();
                     case BuiltIns.CHUSERTYPE -> chUserType();
-                    default -> Logs.printLine("Cannot execute command as super: " + command[1], Logs.LogLevel.ERROR);
+                    default -> Logs.printLine("Cannot execute command as super: " + command[1], LogLevel.ERROR);
                 }
             }
             case BuiltIns.ADDUSER, BuiltIns.CHUSERTYPE, BuiltIns.CHPASS, BuiltIns.DELUSER -> {
-                Logs.printLine("You must execute this command as super.", Logs.LogLevel.ERROR);
+                Logs.printLine("You must execute this command as super.", LogLevel.ERROR);
             }
             case BuiltIns.LOGIN -> login();
             case BuiltIns.LOGOUT -> {
                 if (this.username == null) {
-                    Logs.printLine("You are not logged in!", Logs.LogLevel.ERROR);
+                    Logs.printLine("You are not logged in!", LogLevel.ERROR);
                     return;
                 }
                 logout();
             }
             case BuiltIns.WHOAMI -> {
                 if (this.username == null) {
-                    Logs.printLine("You are not logged in!", Logs.LogLevel.ERROR);
+                    Logs.printLine("You are not logged in!", LogLevel.ERROR);
                     return;
                 }
                 whoami();
             }
             case BuiltIns.MOVE -> {
                 if (command.length != 3) {
-                    Logs.printLine("Please provide two arguments!", Logs.LogLevel.ERROR);
+                    Logs.printLine("Please provide two arguments!", LogLevel.ERROR);
                     return;
                 }
                 move();
             }
             case BuiltIns.COPY -> {
                 if (command.length != 3) {
-                    Logs.printLine("Please provide two arguments!", Logs.LogLevel.ERROR);
+                    Logs.printLine("Please provide two arguments!", LogLevel.ERROR);
                     return;
                 }
                 copy();
             }
             case BuiltIns.HELP -> help();
-            default -> Logs.printLine("Unknown command: " + command[0], Logs.LogLevel.ERROR);
+            default -> Logs.printLine("Unknown command: " + command[0], LogLevel.ERROR);
         }
     }
 
@@ -92,23 +94,23 @@ public class BuiltInProcess {
      * command[1] is adduser
      */
     private void addUser() {
-        Logs.print("Enter username: ");
+        Logs.print("Enter username: ", Store.NO);
         Scanner scanner = new Scanner(System.in);
         String username = scanner.nextLine();
 
-        Logs.print("Enter password: ");
+        Logs.print("Enter password: ", Store.NO);
         int password1 = scanner.nextLine().hashCode(); // TODO: Mask password input (wait until we have JavaFX UI)
-        Logs.print("Retype password: ");
+        Logs.print("Retype password: ", Store.NO);
         int password2 = scanner.nextLine().hashCode();
         if (password1 != password2) {
-            Logs.printLine("Passwords do not match!", Logs.LogLevel.ERROR);
+            Logs.printLine("Passwords do not match!", LogLevel.ERROR);
             return;
         }
 
-        Logs.print("Enter user type: ");
+        Logs.print("Enter user type: ", Store.NO);
         String userType = scanner.nextLine();
         if (!(userType.equalsIgnoreCase("superuser") || userType.equalsIgnoreCase("standard"))) {
-            Logs.printLine("Invalid user type!", Logs.LogLevel.ERROR);
+            Logs.printLine("Invalid user type!", LogLevel.ERROR);
             return;
         }
 
@@ -123,13 +125,13 @@ public class BuiltInProcess {
      * command[1] is deluser
      */
     private void deleteUser() {
-        Logs.print("Enter username: ");
+        Logs.print("Enter username: ", Store.NO);
         Scanner scanner = new Scanner(System.in);
         String username = scanner.nextLine();
 
         // Don't allow deletion of current user
         if (Objects.equals(username, this.username)) {
-            Logs.printLine("You cannot delete yourself!", Logs.LogLevel.ERROR);
+            Logs.printLine("You cannot delete yourself!", LogLevel.ERROR);
             return;
         }
 
@@ -143,26 +145,26 @@ public class BuiltInProcess {
      * command[1] is chpass
      */
     private void chPass() {
-        Logs.print("Enter username: ");
+        Logs.print("Enter username: ", Store.NO);
         Scanner scanner = new Scanner(System.in);
         String username = scanner.nextLine();
         Filesystem fs = new Filesystem(username, null, null);
         if (!fs.hasDirectory()) {
-            Logs.printLine("User does not exist!", Logs.LogLevel.ERROR);
+            Logs.printLine("User does not exist!", LogLevel.ERROR);
             return;
         }
 
-        Logs.print("Enter old password: ");
+        Logs.print("Enter old password: ", Store.NO);
         int oldPassword = scanner.nextLine().hashCode(); // TODO: Mask password input (wait until we have JavaFX UI)
         if (oldPassword != Integer.parseInt(fs.getPassword())) {
-            Logs.printLine("Password incorrect!", Logs.LogLevel.ERROR);
+            Logs.printLine("Password incorrect!", LogLevel.ERROR);
             return;
         }
-        Logs.print("Enter new password: ");
+        Logs.print("Enter new password: ", Store.NO);
         int newPassword = scanner.nextLine().hashCode();
         Filesystem fs2 = new Filesystem(username, fs.getPassword(), fs.getUserType());
         if (fs2.changePassword(String.valueOf(newPassword))) {
-            Logs.printLine("Password changed successfully!", Logs.LogLevel.INFO);
+            Logs.printLine("Password changed successfully!", LogLevel.INFO);
         }
     }
 
@@ -172,35 +174,35 @@ public class BuiltInProcess {
      * command[1] is chusertype
      */
     private void chUserType() {
-        Logs.print("Enter username: ");
+        Logs.print("Enter username: ", Store.NO);
         Scanner scanner = new Scanner(System.in);
         String username = scanner.nextLine();
 
         // Don't allow changing of current user
         if (Objects.equals(username, this.username)) {
-            Logs.printLine("You cannot change your own user type!", Logs.LogLevel.WARNING);
+            Logs.printLine("You cannot change your own user type!", LogLevel.WARNING);
             return;
         }
 
         Filesystem fs = new Filesystem(username, null, null);
         if (!fs.hasDirectory()) {
-            Logs.printLine("User does not exist!", Logs.LogLevel.ERROR);
+            Logs.printLine("User does not exist!", LogLevel.ERROR);
             return;
         }
 
-        Logs.printLine("Current user type: " + fs.getUserType(), Logs.LogLevel.INFO);
+        Logs.printLine("Current user type: " + fs.getUserType(), LogLevel.INFO);
         // TODO: Maybe everything that isn't current
-        Logs.printLine("Available user types: standard, superuser", Logs.LogLevel.INFO);
-        Logs.print("Enter new user type: ");
+        Logs.printLine("Available user types: standard, superuser", LogLevel.INFO);
+        Logs.print("Enter new user type: ", Store.NO);
         String userType = scanner.nextLine();
         if (!(userType.equalsIgnoreCase("superuser") || userType.equalsIgnoreCase("standard"))) {
-            Logs.printLine("Invalid user type!", Logs.LogLevel.ERROR);
+            Logs.printLine("Invalid user type!", LogLevel.ERROR);
             return;
         }
         Filesystem fs2 = new Filesystem(username, fs.getPassword(), fs.getUserType());
         if (fs2.changeUserType(BuiltIns.UserTypes.valueOf(userType.toUpperCase()))) {
             this.userType = fs2.getUserType();
-            Logs.printLine("User type changed!", Logs.LogLevel.INFO);
+            Logs.printLine("User type changed!", LogLevel.INFO);
         }
     }
 
@@ -211,15 +213,15 @@ public class BuiltInProcess {
     private void login() {
         // If already logged in, ignore
         if (this.username != null) {
-            Logs.printLine("Already logged in!", Logs.LogLevel.WARNING);
+            Logs.printLine("Already logged in!", LogLevel.WARNING);
             return;
         }
 
-        Logs.print("Login$ ");
+        Logs.print("Login$ ", Store.NO);
         Scanner scanner = new Scanner(System.in);
         String username = scanner.nextLine();
 
-        Logs.print("Password$ ");
+        Logs.print("Password$ ", Store.NO);
         int password = scanner.nextLine().hashCode(); // TODO: Mask password input (wait until we have JavaFX UI)
 
         Filesystem fs = new Filesystem(username, String.valueOf(password), null);
@@ -247,7 +249,7 @@ public class BuiltInProcess {
     private void whoami() {
         // If user is not logged in
         if (this.username == null) {
-            Logs.printLine("Not logged in!", Logs.LogLevel.ERROR);
+            Logs.printLine("Not logged in!", LogLevel.ERROR);
             return;
         }
         Logs.printLine("Username: " + this.username + "\nUser type: " + this.userType);
@@ -270,7 +272,7 @@ public class BuiltInProcess {
             if (f.exists()) {
                 // Check if destination name does not contain any illegal characters (i.e. any punctuation)
                 if (!destination.matches("[a-zA-Z0-9]+")) {
-                    Logs.printLine("Invalid destination name!", Logs.LogLevel.ERROR);
+                    Logs.printLine("Invalid destination name!", LogLevel.ERROR);
                 }
 
                 // Move file to destination
@@ -298,7 +300,7 @@ public class BuiltInProcess {
             if (f.exists()) {
                 // Check if destination name does not contain any illegal characters (i.e. any punctuation)
                 if (!destination.matches("[a-zA-Z0-9]+")) {
-                    Logs.printLine("Invalid destination name!", Logs.LogLevel.ERROR);
+                    Logs.printLine("Invalid destination name!", LogLevel.ERROR);
                 }
 
                 // Copy source file to destination
@@ -314,6 +316,15 @@ public class BuiltInProcess {
      * command[0] is help
      */
     private void help() {
-        Logs.printLine("Help");
+        Logs.printLine(ConsoleColours.WHITE_BOLD + "Process builder commands:" + ConsoleColours.RESET, Store.NO);
+        for (int i = 0; i < BuiltIns.PB_DESCS.length; i++) {
+            Logs.printLine(BuiltIns.PB_COMMANDS[i] + ": " + BuiltIns.PB_DESCS[i], Store.NO);
+        }
+        Logs.printLine("", Store.NO);
+
+        Logs.printLine(ConsoleColours.WHITE_BOLD + "Built-in commands:" + ConsoleColours.RESET, Store.NO);
+        for (int i = 0; i < BuiltIns.DESCS.length; i++) {
+            Logs.printLine(BuiltIns.COMMANDS[i] + ": " + BuiltIns.DESCS[i], Store.NO);
+        }
     }
 }

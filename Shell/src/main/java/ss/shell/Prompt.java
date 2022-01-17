@@ -4,6 +4,7 @@ import ss.shell.utils.BuiltIns;
 import ss.shell.utils.ConsoleColours;
 import ss.shell.utils.ShellUtils;
 import ss.shell.utils.Logs;
+import ss.shell.utils.Logs.*;
 
 import java.util.Scanner;
 
@@ -17,13 +18,13 @@ public class Prompt {
 
         // Main event loop
         while (true) {
-            System.out.print(prompt(bip.getUsername()));
+            Logs.print(prompt(bip.getUsername()), Store.NO);
 
             // Read user input
             Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
             if (input.length() == 0) {
-                Logs.printLine("No command entered.", Logs.LogLevel.ERROR);
+                Logs.printLine("No command entered.", LogLevel.ERROR);
                 continue;
             }
 
@@ -35,14 +36,17 @@ public class Prompt {
 
             // If the command is not a built-in command, run it
             if (isBuiltInCommand(command[0])) {
+                Logs.logToFile(command);
                 bip.execute(command);
             } else {
                 if (isAllowedCommand(command[0])) {
+                    Logs.logToFile(command);
                     ShellProcess process = new ShellProcess();
                     String output = process.execute(command);
-                    Logs.printLine(prompt(bip.getUsername()) + "\n" + output);
+                    // TODO: Might want to store output depending on if it is error or not
+                    Logs.printLine(prompt(bip.getUsername()) + "\n" + output, Store.NO);
                 } else {
-                    Logs.printLine("Command not allowed.", Logs.LogLevel.WARNING);
+                    Logs.printLine("Command does not exist or is not allowed.", LogLevel.WARNING);
                 }
             }
         }
@@ -90,7 +94,7 @@ public class Prompt {
      */
     private static boolean notShellCommand(String[] command) {
         if (command.length == 0) {
-            Logs.printLine("No command entered.", Logs.LogLevel.ERROR);
+            Logs.printLine("No command entered.", LogLevel.ERROR);
             return true;
         }
         if (isExit(command)) {
