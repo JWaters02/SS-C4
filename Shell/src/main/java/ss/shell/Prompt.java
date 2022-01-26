@@ -105,6 +105,10 @@ public class Prompt {
         return false;
     }
 
+    public static boolean somecode(String[] command) {
+        return command[0].equals("exit");
+    }
+
     /**
      * Check if the command is to do with exiting the shell.
      * List of exit commands:
