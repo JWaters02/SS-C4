@@ -154,6 +154,12 @@ public class BuiltInProcess {
             return;
         }
 
+        // Don't allow change password of current user
+        if (Objects.equals(username, this.username)) {
+            Logs.printLine("You cannot change your own password!", LogLevel.ERROR);
+            return;
+        }
+
         Logs.print("Enter old password: ", Store.NO);
         int oldPassword = scanner.nextLine().hashCode(); // TODO: Mask password input (wait until we have JavaFX UI)
         if (oldPassword != Integer.parseInt(fs.getPassword())) {
