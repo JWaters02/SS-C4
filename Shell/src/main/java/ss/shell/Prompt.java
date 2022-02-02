@@ -44,7 +44,7 @@ public class Prompt {
                     ShellProcess process = new ShellProcess();
                     String output = process.execute(command);
                     // TODO: Might want to store output depending on if it is error or not
-                    Logs.printLine(prompt(bip.getUsername()) + "\n" + output, Store.NO);
+                    Logs.printLine(output, Store.NO);
                 } else {
                     Logs.printLine("Command does not exist or is not allowed.", LogLevel.WARNING);
                 }

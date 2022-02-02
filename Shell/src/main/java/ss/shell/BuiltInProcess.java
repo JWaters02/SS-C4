@@ -268,7 +268,8 @@ public class BuiltInProcess {
      * command[2] is destination
      */
     private void move() {
-        // TODO: Need more outputs for edge cases
+        // TODO: Need more outputs for edge cases (such as trying to move files outside of their user directory)
+        // TODO: Fix
         String source = command[1];
         String destination = command[2];
 
@@ -296,7 +297,8 @@ public class BuiltInProcess {
      * command[2] is destination
      */
     private void copy() {
-        // TODO: Need more outputs for edge cases
+        // TODO: Need more outputs for edge cases (such as trying to copy files outside of their user directory)
+        // TODO: Fix
         String source = command[1];
         String destination = command[2];
 

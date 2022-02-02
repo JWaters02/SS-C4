@@ -34,6 +34,7 @@ public class BuiltIns {
      * Process builder allowed commands
      */
     private static final String PB_LS = "ls"; // List files in the current directory.
+    private static final String PB_CD = "cd"; // Change the current directory.
     private static final String PB_CP = "cp"; // Copy a file from source to target destination.
     private static final String PB_MV = "mv"; // Move a file from source to target destination.
     private static final String PB_MKDIR = "mkdir"; // Create a new directory.
@@ -42,9 +43,10 @@ public class BuiltIns {
     private static final String PB_PWD = "pwd"; // Print the current working directory.
     private static final String PB_PS = "ps"; // List all running processes.
     private static final String PB_WHICH = "which"; // Print the full path of a command.
-    public static final String[] PB_COMMANDS = {PB_LS, PB_CP, PB_MV, PB_MKDIR, PB_RMDIR, PB_HELP, PB_PWD, PB_PS, PB_WHICH};
+    public static final String[] PB_COMMANDS = {PB_LS, PB_CD, PB_CP, PB_MV, PB_MKDIR, PB_RMDIR, PB_HELP, PB_PWD, PB_PS, PB_WHICH};
 
     private static final String PB_LS_DESC = "List files in the current directory.";
+    private static final String PB_CD_DESC = "Change the current directory.";
     private static final String PB_CP_DESC = "Copy a file from source to target destination.";
     private static final String PB_MV_DESC = "Move a file from source to target destination.";
     private static final String PB_MKDIR_DESC = "Create a new directory.";
@@ -53,7 +55,7 @@ public class BuiltIns {
     private static final String PB_PWD_DESC = "Print the current working directory.";
     private static final String PB_PS_DESC = "List all running processes.";
     private static final String PB_WHICH_DESC = "Print the full path of a command.";
-    public static final String[] PB_DESCS = {PB_LS_DESC, PB_CP_DESC, PB_MV_DESC, PB_MKDIR_DESC, PB_RMDIR_DESC, PB_HELP_DESC, PB_PWD_DESC, PB_PS_DESC, PB_WHICH_DESC};
+    public static final String[] PB_DESCS = {PB_LS_DESC, PB_CD_DESC, PB_CP_DESC, PB_MV_DESC, PB_MKDIR_DESC, PB_RMDIR_DESC, PB_HELP_DESC, PB_PWD_DESC, PB_PS_DESC, PB_WHICH_DESC};
 
     /**
      * The different types of user groups.
@@ -63,8 +65,8 @@ public class BuiltIns {
         SUPERUSER
     }
 
-//    public static final String HOME_PATH = "/home/bobby/SS/";
-    public static final String HOME_PATH = "D:\\University\\Year 2\\SS\\";
+    public static final String HOME_PATH = "/home/bobby/SS/";
+//    public static final String HOME_PATH = "D:\\University\\Year 2\\SS\\";
 
     /**
      * Check if a command is a built-in command.
