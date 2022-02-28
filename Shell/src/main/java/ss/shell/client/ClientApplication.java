@@ -14,7 +14,7 @@ public class ClientApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ClientApplication.class.getResource("hello-view.fxml"));
         WebView webView = new WebView();
-        webView.getEngine().load(/*"https://localhost:9091/*/"https://google.com/");
+        webView.getEngine().load("localhost:2222");
         VBox vBox = new VBox(webView);
         Scene scene = new Scene(vBox, 1920, 1080);
         stage.setTitle("Hello!");

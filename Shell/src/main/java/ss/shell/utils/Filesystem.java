@@ -14,6 +14,7 @@ public class Filesystem {
     private final String username;
     private String password;
     private BuiltIns.UserTypes type;
+    private String cwd;
 
     /**
      * Constructor for the Filesystem class.
@@ -25,6 +26,15 @@ public class Filesystem {
         this.username = username;
         this.password = password;
         this.type = type;
+    }
+
+    /**
+     * Override constructor for the Filesystem class.
+     * @param cwd The current working directory of the user.
+     */
+    public Filesystem(String cwd) {
+        this.username = null;
+        this.cwd = cwd;
     }
 
     /**
@@ -158,6 +168,11 @@ public class Filesystem {
      */
     public boolean hasDirectory() {
         return new File(BuiltIns.HOME_PATH + this.username).exists();
+    }
+
+    public String[] getDirsInUserDir() {
+        File path = new File(this.cwd);
+        return path.list();
     }
 
     /**

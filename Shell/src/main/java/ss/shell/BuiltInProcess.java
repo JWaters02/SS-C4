@@ -16,10 +16,12 @@ public class BuiltInProcess {
     private BuiltIns.UserTypes userType;
     private String username;
     private String[] command;
+    private String cwd;
 
     public BuiltInProcess() {
         this.userType = BuiltIns.UserTypes.STANDARD; // We assume that the user is a standard user until they log in
         this.username = null; // We don't know the username until they log in
+        this.cwd = BuiltIns.HOME_PATH; // Original home path for guests
     }
 
     /**
@@ -27,6 +29,12 @@ public class BuiltInProcess {
      * @return username of the current user.
      */
     public String getUsername() {  return this.username; }
+
+    /**
+     * Gets the cwd of the current user.
+     * @return cwd of the current user.
+     */
+    public String getCWD() {return this.cwd; }
 
     /**
      * Execute the correct command based on command
@@ -83,6 +91,18 @@ public class BuiltInProcess {
                 }
                 copy();
             }
+            case BuiltIns.CD -> {
+                if (this.username == null) {
+                    Logs.printLine("You are not logged in!", LogLevel.ERROR);
+                    return;
+                }
+                if (command.length != 2) {
+                    Logs.printLine("Please provide a path!", LogLevel.ERROR);
+                    return;
+                }
+                cd(command[1]);
+            }
+            case BuiltIns.SHOWDIR -> showDir();
             case BuiltIns.HELP -> help();
             default -> Logs.printLine("Unknown command: " + command[0], LogLevel.ERROR);
         }
@@ -114,6 +134,7 @@ public class BuiltInProcess {
             return;
         }
 
+        // TODO: Fix type user inputted "superuser" actually creating user with type STANDARD
         Filesystem fs = new Filesystem(username, String.valueOf(password1),
                 BuiltIns.UserTypes.valueOf(userType.toUpperCase()));
         fs.createUser();
@@ -235,6 +256,7 @@ public class BuiltInProcess {
             Logs.printLine("Welcome " + username);
             this.username = username;
             this.userType = fs.getUserType();
+            this.cwd = BuiltIns.HOME_PATH + this.username;
         }
     }
 
@@ -317,6 +339,43 @@ public class BuiltInProcess {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Execute cd command.
+     * command[0] is cd
+     * command[1] is the new path
+     * @param newPath New path
+     */
+    private void cd(String newPath) {
+        // Must not go outside the user's directory
+        Logs.printLine(newPath);
+        if (!newPath.startsWith(this.cwd) || !newPath.startsWith("./")) {
+            // Get all dirs inside of user dir
+            Filesystem fs = new Filesystem(this.cwd);
+            String[] dirs = fs.getDirsInUserDir();
+            boolean dirExists = false;
+            for (String dir : dirs) {
+                if (Objects.equals(dir, newPath)) {
+                    dirExists = true;
+                    break;
+                }
+            }
+            if (!dirExists) {
+                Logs.printLine("Please enter a valid path! You cannot exit your local area!", LogLevel.ERROR);
+                return;
+            }
+        }
+
+        if (newPath.endsWith("/")) this.cwd += "/" + newPath;
+        else this.cwd += "/" + newPath + "/";
+        Logs.printLine(this.cwd);
+    }
+
+    private void showDir() {
+        // Don't show the home path, just the user's area
+        String ret = this.cwd.replace(BuiltIns.HOME_PATH, "/");
+        Logs.printLine(ret);
     }
 
     /**

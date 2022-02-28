@@ -18,7 +18,8 @@ public class Prompt {
 
         // Main event loop
         while (true) {
-            Logs.print(prompt(bip.getUsername()), Store.NO);
+            // TODO: Fix bug where changing directory does not update on this getCWD() function
+            Logs.print(prompt(bip.getUsername(), bip.getCWD()), Store.NO);
 
             // Read user input
             Scanner scanner = new Scanner(System.in);
@@ -41,7 +42,7 @@ public class Prompt {
             } else {
                 if (isAllowedCommand(command[0])) {
                     Logs.logToFile(command);
-                    ShellProcess process = new ShellProcess();
+                    ShellProcess process = new ShellProcess(bip.getCWD());
                     String output = process.execute(command);
                     // TODO: Might want to store output depending on if it is error or not
                     Logs.printLine(output, Store.NO);
@@ -57,8 +58,7 @@ public class Prompt {
      * @param username The username of the currently logged-in user. If no user logged in, use 'guest'.
      * @return The prompt text.
      */
-    private static String prompt(String username) {
-        String cwd;
+    private static String prompt(String username, String cwd) {
         if (username == null) {
             username = "guest";
             cwd = BuiltIns.HOME_PATH.substring(0, BuiltIns.HOME_PATH.length() - 1);

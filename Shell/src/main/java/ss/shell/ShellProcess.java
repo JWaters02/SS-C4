@@ -5,6 +5,12 @@ import ss.shell.utils.BuiltIns;
 import java.io.File;
 
 public class ShellProcess {
+    private String cwd;
+
+    public ShellProcess(String cwd) {
+        this.cwd = cwd;
+    }
+
     /**
      * Use ProcessBuilder to simulate a shell process.
      * @param commandTokens The command to execute with any flags and arguments.
@@ -14,7 +20,7 @@ public class ShellProcess {
         String output;
         try {
             ProcessBuilder pb = new ProcessBuilder(commandTokens);
-            pb.directory(new File(BuiltIns.HOME_PATH));
+            pb.directory(new File(this.cwd));
             pb.redirectErrorStream(true);
             Process p = pb.start();
             output = getOutput(p);
