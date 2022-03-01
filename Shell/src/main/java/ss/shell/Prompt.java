@@ -9,6 +9,16 @@ import ss.shell.utils.Logs.*;
 import java.util.Scanner;
 
 public class Prompt {
+    private static BuiltIns.UserTypes userType;
+    private static String username;
+    private static String cwd;
+
+    public Prompt() {
+        username = "guest";
+        userType = BuiltIns.UserTypes.STANDARD;
+        cwd = BuiltIns.HOME_PATH;
+    }
+
     /**
      * Create the event loop that produces a prompt for user input.
      * The prompt should be the current working directory followed by a '$ '.
@@ -18,8 +28,9 @@ public class Prompt {
 
         // Main event loop
         while (true) {
-            // TODO: Fix bug where changing directory does not update on this getCWD() function
-            Logs.print(prompt(bip.getUsername(), bip.getCWD()), Store.NO);
+            username = bip.getUsername();
+            cwd = bip.getCWD();
+            Logs.print(prompt(username, cwd), Store.NO);
 
             // Read user input
             Scanner scanner = new Scanner(System.in);
@@ -51,6 +62,14 @@ public class Prompt {
                 }
             }
         }
+    }
+
+    public String[] getFullPrompt() {
+        String[] ret = new String[3];
+        ret[0] = username;
+        ret[1] = cwd;
+        ret[2] = "$";
+        return ret;
     }
 
     /**

@@ -1,5 +1,6 @@
 package ss.shell.server;
 
+import ss.shell.Prompt;
 import ss.shell.utils.BuiltIns;
 
 import java.io.BufferedReader;
@@ -31,6 +32,7 @@ public class ShellServer extends Thread {
             ServerSocket server = new ServerSocket(PORT);
             System.out.println("Echo Server listening port: " + PORT);
             boolean shutdown = false;
+            Prompt promptObj = new Prompt();
             while (!shutdown) {
                 Socket socket = server.accept();
                 InputStream is = socket.getInputStream();
@@ -64,14 +66,31 @@ public class ShellServer extends Thread {
                     index = userInputSanitised.toString().indexOf('+');
                 }
 
-                // Call the appropriate Prompt function here
-                // String[] prompt = Prompt.getPrompt;
+                try {
+                    // If user has inputted something, add it to the end of the html
+                    if (!userInputSanitised.isEmpty()) {
+                        addInputToHTML(userInputSanitised.toString());
+                    }
 
+                    // Call the appropriate Prompt function here
+                    // If user input requires short next prompt
+                    for (String command : BuiltIns.SHORTS) {
+                        if (userInputSanitised.toString().contains(command)) {
+
+                        };
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                String[] prompt = promptObj.getFullPrompt();
+
+                ArrayList<String> outputs = buildHTML(prompt, "blah", BuiltIns.PromptType.FULL);
                 // Output the HTML onto the page
-//                ArrayList<String> outputs = buildHTML();
-//                for (String output : outputs) {
-//                    out.println(output);
-//                }
+                for (String output : outputs) {
+                    out.println(output);
+                }
+
 
                 //if your get parameter contains shutdown it will shutdown
                 if (auxLine.contains("?shutdown")) {
@@ -86,10 +105,10 @@ public class ShellServer extends Thread {
         }
     }
 
-    public static ArrayList<String> buildHTML(String[] prompt, String[] extraData,
+    public static ArrayList<String> buildHTML(String[] prompt, String output,
                                               BuiltIns.PromptType promptType) {
         // Top is HTTP header, title, input form
-        ArrayList<String> top = new ArrayList<>();
+        ArrayList<String> top = new ArrayList<String>();
         top.add("HTTP/1.0 200 OK");
         top.add("Content-Type: text/html; charset=utf-8");
         top.add("Server: MINISERVER");
@@ -103,22 +122,42 @@ public class ShellServer extends Thread {
         top.add("<p>");
 
         // Out is the history plus the new stuff
-        ArrayList<String> out = new ArrayList<>(history);
+        ArrayList<String> out = new ArrayList<String>(history);
+        out.add("   <p></p>");
         if (promptType == BuiltIns.PromptType.FULL) {
-
+            out.add("<span style=\"color:green;margin-left:5px\">");
+            out.add(prompt[0]); // Username
+            out.add(": </span>");
+            out.add("<span style=\"color:blue\"></span><span style=\"color:black\">");
+            out.add(prompt[1]); // Path
+            out.add("</span><span style=\"color:black\">");
+            out.add(prompt[2]); // Bling
+            out.add("</span>");
+        } else if (promptType == BuiltIns.PromptType.OUTPUT) {
+            out.add("");
+        } else if (promptType == BuiltIns.PromptType.SHORT) {
+            out.add("");
         }
 
-        // Append out to history
-        history.addAll(out);
+        // History is (history + out) = out
+        history = out;
 
         // Add the closing paragraph tag
         out.add("</p>");
 
         // Return the top and out
-        ArrayList<String> ret = new ArrayList<>();
+        ArrayList<String> ret = new ArrayList<String>();
         ret.addAll(top);
         ret.addAll(out);
         return ret;
+    }
+
+    private static void addInputToHTML(String input) {
+        ArrayList<String> out = new ArrayList<String>(history);
+        out.add("<span style=\"color:black\">");
+        out.add(input);
+        out.add("</span>");
+        history.addAll(out);
     }
 
     private static String buildShortPrompt(String[] promptDetails) {

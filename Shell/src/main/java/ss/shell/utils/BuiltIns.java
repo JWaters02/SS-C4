@@ -34,6 +34,8 @@ public class BuiltIns {
     private static final String HELP_DESC = "Print a list of all available commands.";
     public static final String[] DESCS = {SUPER_DESC, ADDUSER_DESC, DELUSER_DESC, CHPASS_DESC, CHUSERTYPE_DESC, LOGIN_DESC, LOGOUT_DESC, WHOAMI_DESC, MOVE_DESC, COPY_DESC, CD_DESC, SHOWDIR_DESC, HELP_DESC};
 
+    public static final String[] SHORTS = {ADDUSER, CHPASS, CHUSERTYPE, LOGIN}; // The types of built-in commands that require extra user input under the prompt line
+
     /**
      * Process builder allowed commands
      */
