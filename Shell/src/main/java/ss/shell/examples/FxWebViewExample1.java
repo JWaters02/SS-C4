@@ -1,4 +1,4 @@
-package ss.shell.labs;
+package ss.shell.examples;
 
 import javafx.beans.value.ChangeListener;
 import javafx.application.Application;

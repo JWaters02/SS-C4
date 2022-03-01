@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Systems Software - Remote Shell</h1>
+    <h2>VERSION 1</h2>
+    <!-- The full prompt code with user input at the end-->
+    <form style="margin-left:5px" name="input" action="imback" method="post">
+        <span style="color:green">guest: </span>
+        <span style="color:blue">/home/ntu-admin/Documents/SS/Files</span><span style="color:black">$</span>
+        <input type="text" name="user">
+        <input type="submit" value="Submit">
+    </form>
+
+    <!-- The returned message with no user input -->
+    <p>
+        <span style="color:red;margin-left:5px">Error! Command 'ddd' does not exist!</span>
+    </p>
+
+    <!-- The full prompt code with user input at the end-->
+    <form style="margin-left:5px" name="input" action="imback" method="post">
+        <span style="color:green">guest: </span>
+        <span style="color:blue">/home/ntu-admin/Documents/SS/Files</span><span style="color:black">$</span>
+        <input type="text" name="user">
+        <input type="submit" value="Submit">
+    </form>
+
+    <!-- Built-in commands output that requires user input -->
+    <form style="margin-left:5px" name="input" action="imback" method="post">
+        <span style="color:black">Username$</span>
+        <input type="text" name="user">
+        <input type="submit" value="Submit">
+    </form>
+    <form style="margin-left:5px" name="input" action="imback" method="post">
+        <span style="color:black">Password$</span>
+        <input type="text" name="user">
+        <input type="submit" value="Submit">
+    </form>
+    <p>
+        <span style="color:black;margin-left:5px">Welcome admin</span>
+    </p>
+    <form style="margin-left:5px" name="input" action="imback" method="post">
+        <span style="color:green">admin: </span>
+        <span style="color:blue">/home/ntu-admin/Documents/SS/Files</span><span style="color:black">$</span>
+        <input type="text" name="user">
+        <input type="submit" value="Submit">
+    </form>
+
+    <h2>VERSION 2</h2>
+    <form style="margin-left:5px" name="input" action="imback" method="post">
+        <span style="color:black">Input:</span>
+        <input type="text" name="user">
+        <input type="submit" value="Submit">
+    </form>
+
+    <p>
+        <!-- Prompt -->
+        <span style="color:green;margin-left:5px">guest: </span>
+        <span style="color:blue">/home/ntu-admin/Documents/SS/Files</span><span style="color:black">$</span>
+        <!-- Fill in the inputted command after the prompt to show what the user inputted -->
+        <span style="color:black">ddd</span>
+        <!-- Break because <br> doesn't work for some reason, put this on the one after -->
+        <p></p>
+        <!-- Output -->
+        <span style="color:red;margin-left:5px">Error! Command 'ddd' does not exist!</span>
+        <p></p>
+        <!-- Prompt -->
+        <span style="color:green;margin-left:5px">guest: </span>
+        <span style="color:blue">/home/ntu-admin/Documents/SS/Files</span><span style="color:black">$</span>
+        <!-- Fill in the inputted command after the prompt to show what the user inputted -->
+        <span style="color:black">login</span>
+        <p></p>
+        <!-- Non-full prompt -->
+        <span style="color:black;margin-left:5px">Username$</span>
+        <!-- Fill in the inputted command after the prompt to show what the user inputted -->
+        <span style="color:black">admin</span>
+        <p></p>
+        <span style="color:black;margin-left:5px">Password$</span>
+        <!-- Fill in the inputted command after the prompt to show what the user inputted -->
+        <span style="color:black">*********</span>
+        <p></p>
+        <span style="color:black;margin-left:5px">Welcome admin</span>
+        <p></p>
+        <!-- Prompt -->
+        <span style="color:green;margin-left:5px">admin: </span>
+        <span style="color:blue">/home/ntu-admin/Documents/SS/Files</span><span style="color:black">$</span>
+    </p>
+</body>
+</html>

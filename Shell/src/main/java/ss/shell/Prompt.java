@@ -56,14 +56,13 @@ public class Prompt {
     /**
      * Produce the prompt.
      * @param username The username of the currently logged-in user. If no user logged in, use 'guest'.
+     * @param cwd The current working directory.
      * @return The prompt text.
      */
     private static String prompt(String username, String cwd) {
         if (username == null) {
             username = "guest";
             cwd = BuiltIns.HOME_PATH.substring(0, BuiltIns.HOME_PATH.length() - 1);
-        } else {
-            cwd = BuiltIns.HOME_PATH + username;
         }
         return ConsoleColours.GREEN + username + ": " + ConsoleColours.BLUE + cwd + ConsoleColours.RESET + "$ ";
     }

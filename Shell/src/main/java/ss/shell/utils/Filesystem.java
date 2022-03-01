@@ -117,7 +117,7 @@ public class Filesystem {
         String userInfo = this.getUserInfo();
         BuiltIns.UserTypes ret = null;
         try {
-            if (userInfo.split("\n")[2].equals("superuser")) {
+            if (userInfo.split("\n")[2].equals("SUPERUSER")) {
                 ret = BuiltIns.UserTypes.SUPERUSER;
             } else {
                 ret = BuiltIns.UserTypes.STANDARD;
@@ -170,6 +170,10 @@ public class Filesystem {
         return new File(BuiltIns.HOME_PATH + this.username).exists();
     }
 
+    /**
+     * Gets the directories in the user's directory.
+     * @return list of directory names.
+     */
     public String[] getDirsInUserDir() {
         File path = new File(this.cwd);
         return path.list();

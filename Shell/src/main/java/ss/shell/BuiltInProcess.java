@@ -134,7 +134,6 @@ public class BuiltInProcess {
             return;
         }
 
-        // TODO: Fix type user inputted "superuser" actually creating user with type STANDARD
         Filesystem fs = new Filesystem(username, String.valueOf(password1),
                 BuiltIns.UserTypes.valueOf(userType.toUpperCase()));
         fs.createUser();
@@ -251,6 +250,7 @@ public class BuiltInProcess {
         Logs.print("Password$ ", Store.NO);
         int password = scanner.nextLine().hashCode(); // TODO: Mask password input (wait until we have JavaFX UI)
 
+        // TODO: Fix bug where inputting empty login and password causes stack trace
         Filesystem fs = new Filesystem(username, String.valueOf(password), null);
         if (fs.login()) {
             Logs.printLine("Welcome " + username);
@@ -349,7 +349,6 @@ public class BuiltInProcess {
      */
     private void cd(String newPath) {
         // Must not go outside the user's directory
-        Logs.printLine(newPath);
         if (!newPath.startsWith(this.cwd) || !newPath.startsWith("./")) {
             // Get all dirs inside of user dir
             Filesystem fs = new Filesystem(this.cwd);
@@ -366,10 +365,7 @@ public class BuiltInProcess {
                 return;
             }
         }
-
-        if (newPath.endsWith("/")) this.cwd += "/" + newPath;
-        else this.cwd += "/" + newPath + "/";
-        Logs.printLine(this.cwd);
+        this.cwd += "/" + newPath;
     }
 
     private void showDir() {
