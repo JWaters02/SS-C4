@@ -14,6 +14,14 @@ public class Shell {
     private String cwd;
     private UserTypes type;
 
+    /**
+     * Constructor for the class.
+     * @param input The user input from the form.
+     * @param username The current username. "guest" is default.
+     * @param cwd The current working directory. Home path is default.
+     * @param type The current type of the user. "standard" is default.
+     * @param isLoggedIn If the user is logged in or not.
+     */
     public Shell(String input, String username, String cwd, UserTypes type, boolean isLoggedIn) {
         this.input = input;
         this.username = username;
@@ -24,6 +32,9 @@ public class Shell {
         prompt();
     }
 
+    /**
+     * Constructor method for the class. Handles all the logic to do with picking the command type.
+     */
     public void prompt() {
         // Initialise the correct process
         BuiltInProcess bip;
@@ -52,9 +63,6 @@ public class Shell {
                     this.type = bip.getUserType();
                     this.isLoggedIn = bip.getIsLoggedIn();
                     this.logs.addToOutputTotal(bip.getLogsOutput());
-
-                    // Add the new prompt to the output
-                    this.logs.outputPrompt(this.cwd, Store.YES);
                 } else {
                     // If it's a process builder command
                     if (isAllowedCommand(command[0])) {
@@ -64,9 +72,6 @@ public class Shell {
                             ShellProcess process = new ShellProcess(bip.getCWD());
                             String output = process.execute(command);
                             this.logs.outputShort(output, Store.NO);
-
-                            // Add the new prompt to the output
-                            this.logs.outputPrompt(this.cwd, Store.YES);
                         } else {
                             this.logs.outputInfo("Invalid process builder command!", Store.NO, LogLevel.ERROR);
                         }
@@ -74,6 +79,8 @@ public class Shell {
                         this.logs.outputInfo("Command does not exist or is not allowed.", Store.NO, LogLevel.WARNING);
                     }
                 }
+                // Add the new prompt to the output
+                this.logs.outputPrompt(this.cwd, Store.YES);
             }
         }
     }
@@ -149,6 +156,11 @@ public class Shell {
         return command[0].equals("exit") || command[0].equals("quit") || command[0].equals("bye");
     }
 
+    /**
+     * Validates the process builder commands before they get passed through.
+     * @param command Process builder command.
+     * @return True if the command is valid.
+     */
     private boolean validatePBCommand(String[] command) {
         // TODO: Implement
         return true;

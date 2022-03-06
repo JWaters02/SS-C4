@@ -22,6 +22,13 @@ public class BuiltInProcess {
     private final ShellType shellType;
     private boolean isLoggedIn;
 
+    /**
+     * Constructor for the class.
+     * @param username The current username. "guest" is default.
+     * @param cwd The current working directory. Home path is default.
+     * @param type The current type of the user. "standard" is default.
+     * @param shellType The type of shell being run. "remote" or "local".
+     */
     public BuiltInProcess(String username, String cwd, UserTypes type, ShellType shellType) {
         this.username = username;
         this.cwd = cwd;
@@ -30,6 +37,14 @@ public class BuiltInProcess {
         this.isLoggedIn = true;
     }
 
+    /**
+     * Override constructor for the class.
+     * @param username The current username. "guest" is default.
+     * @param cwd The current working directory. Home path is default.
+     * @param type The current type of the user. "standard" is default.
+     * @param isLoggedIn If the user is logged in or not.
+     * @param shellType The type of shell being run. "remote" or "local".
+     */
     public BuiltInProcess(String username, String cwd, UserTypes type, boolean isLoggedIn, ShellType shellType) {
         this.username = username;
         this.cwd = cwd;
@@ -598,6 +613,10 @@ public class BuiltInProcess {
         this.cwd += "/" + newPath;
     }
 
+    /**
+     * Executes the show directory command. Only shows the path relative to the user's area.
+     * command[0] is showdir
+     */
     private void showDir() {
         // Don't show the home path, just the user's area
         String ret = this.cwd.replace(BuiltIns.HOME_PATH, "/");
@@ -634,6 +653,11 @@ public class BuiltInProcess {
         }
     }
 
+    /**
+     * Runs the print for either remote or local shell types.
+     * @param output The string to print.
+     * @param level The log level to print at.
+     */
     private void print(String output, LogLevel level) {
         if (this.shellType == ShellType.LOCAL) Logs.printLine(output, level);
         else this.logs.outputInfo(output, Store.YES, level);

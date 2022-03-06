@@ -1,18 +1,16 @@
 package ss.shell.server;
 
-import ss.shell.Prompt;
 import ss.shell.Shell;
 import ss.shell.utils.BuiltIns;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
  * @author pedro
+ * @author Joshua
  */
 public class ShellServer extends Thread {
     private static final int PORT = 2222;
@@ -26,6 +24,9 @@ public class ShellServer extends Thread {
         }
     }
 
+    /**
+     * Start the server.
+     */
     public void start() {
         try {
             ServerSocket server = new ServerSocket(PORT);
@@ -73,6 +74,7 @@ public class ShellServer extends Thread {
                     index = userInputSanitised.toString().indexOf('+');
                 }
 
+                // If it's the first time loading the shell, only output the prompt
                 if (!hasLoaded) {
                     output = "<div class=\"terminal_prompt\">\n" +
                             "<span class=\"terminal_prompt-path\">" + cwd + "</span>\n" +
@@ -81,6 +83,8 @@ public class ShellServer extends Thread {
                 } else {
                     // Get the output based on the user's command
                     shell = new Shell(userInputSanitised.toString(), username, cwd, userType, isLoggedIn);
+
+                    // Update all the params
                     shutdown = shell.getDoExit();
                     isLoggedIn = shell.getIsLoggedIn();
                     username = shell.getUsername();

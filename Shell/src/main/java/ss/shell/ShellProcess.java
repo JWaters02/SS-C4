@@ -1,18 +1,18 @@
 package ss.shell;
 
-import ss.shell.utils.BuiltIns;
-
 import java.io.File;
 
-public class ShellProcess {
-    private String cwd;
-
-    public ShellProcess(String cwd) {
-        this.cwd = cwd;
+public record ShellProcess(String cwd) {
+    /**
+     * Constructor for this record.
+     * @param cwd The current working directory.
+     */
+    public ShellProcess {
     }
 
     /**
      * Use ProcessBuilder to simulate a shell process.
+     *
      * @param commandTokens The command to execute with any flags and arguments.
      * @return the output of the command
      */
@@ -30,11 +30,17 @@ public class ShellProcess {
         return output;
     }
 
+    /**
+     * Get the output of the process builder command.
+     *
+     * @param p Process to get output from.
+     * @return The output string.
+     */
     private String getOutput(Process p) throws Exception {
         StringBuilder sb = new StringBuilder();
         int c;
         while ((c = p.getInputStream().read()) != -1) {
-            sb.append((char)c);
+            sb.append((char) c);
         }
         return sb.toString();
     }

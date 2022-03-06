@@ -22,7 +22,6 @@ public class BuiltIns {
     // TODO: Implement
     public static final String HISTORY = "history"; // Prints the logs.
     public static final String[] COMMANDS = {SUPER, ADDUSER, DELUSER, LISTUSERS, CHPASS, CHUSERTYPE, LOGIN, LOGOUT, WHOAMI, MOVE, COPY, CD, SHOWDIR, HELP, HISTORY};
-    public static final String[] SHORTS = {ADDUSER, CHPASS, CHUSERTYPE, DELUSER, LOGIN}; // The types of built-in commands that require extra user input under the prompt line
 
     private static final String SUPER_DESC = "Equivalent to sudo. Only valid for \"super\" users. A standard user cannot use this command.";
     private static final String ADDUSER_DESC = "Add a new user to the system. Requires \"super\" privileges to run. Usage: super adduser <username> <password> <confirm password> <type>";

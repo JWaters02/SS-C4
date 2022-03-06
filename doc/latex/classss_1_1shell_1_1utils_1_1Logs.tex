@@ -1,0 +1,207 @@
+\doxysection{ss.\+shell.\+utils.\+Logs Class Reference}
+\label{classss_1_1shell_1_1utils_1_1Logs}\index{ss.shell.utils.Logs@{ss.shell.utils.Logs}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+enum \textbf{ Log\+Level}
+\begin{DoxyCompactList}\small\item\em The severity level of the logs. \end{DoxyCompactList}\item 
+enum \textbf{ Store}
+\begin{DoxyCompactList}\small\item\em Whether to store the logged output to the logs file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ output\+Prompt} (String prompt, \textbf{ Store} store)
+\begin{DoxyCompactList}\small\item\em Add the H\+T\+ML prompt to the total output. \end{DoxyCompactList}\item 
+void \textbf{ output\+Short} (String output, \textbf{ Store} store)
+\begin{DoxyCompactList}\small\item\em Add the H\+T\+ML short to the total output. \end{DoxyCompactList}\item 
+void \textbf{ output\+Info} (String output, \textbf{ Store} store, \textbf{ Log\+Level} level)
+\begin{DoxyCompactList}\small\item\em Add the H\+T\+ML info to the total output. \end{DoxyCompactList}\item 
+String \textbf{ get\+Output\+Total} ()
+\begin{DoxyCompactList}\small\item\em Get the total output H\+T\+ML. \end{DoxyCompactList}\item 
+void \textbf{ add\+To\+Output\+Total} (String output)
+\begin{DoxyCompactList}\small\item\em Directly add extra text to the total output string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \textbf{ print\+Line} (String text, \textbf{ Store} store)
+\begin{DoxyCompactList}\small\item\em Prints a line (with ~\newline
+) of text and stores output in the logs file. \end{DoxyCompactList}\item 
+static void \textbf{ print\+Line} (String text, \textbf{ Log\+Level} level)
+\begin{DoxyCompactList}\small\item\em Prints a line (with ~\newline
+) of text and stores output in the logs file. \end{DoxyCompactList}\item 
+static void \textbf{ print} (String text, \textbf{ Store} store)
+\begin{DoxyCompactList}\small\item\em Prints a line of text and stores output in the logs file. \end{DoxyCompactList}\item 
+static void \textbf{ log\+To\+File} (String text)
+\begin{DoxyCompactList}\small\item\em Stores text in the logs file with a date and time stamp. \end{DoxyCompactList}\item 
+static void \textbf{ log\+To\+File} (String[$\,$] text)
+\begin{DoxyCompactList}\small\item\em Stores text in the logs file with a date and time stamp. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{classss_1_1shell_1_1utils_1_1Logs_aa5b5b2620f1dbc8adb9a45768e9023c3}} 
+\index{ss.shell.utils.Logs@{ss.shell.utils.Logs}!addToOutputTotal@{addToOutputTotal}}
+\index{addToOutputTotal@{addToOutputTotal}!ss.shell.utils.Logs@{ss.shell.utils.Logs}}
+\doxysubsubsection{addToOutputTotal()}
+{\footnotesize\ttfamily void ss.\+shell.\+utils.\+Logs.\+add\+To\+Output\+Total (\begin{DoxyParamCaption}\item[{String}]{output }\end{DoxyParamCaption})}
+
+
+
+Directly add extra text to the total output string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em output} & Text to add. \\
+\hline
+\end{DoxyParams}
+\mbox{\label{classss_1_1shell_1_1utils_1_1Logs_a5f03bcf733fd79953669c98bafcd7b01}} 
+\index{ss.shell.utils.Logs@{ss.shell.utils.Logs}!getOutputTotal@{getOutputTotal}}
+\index{getOutputTotal@{getOutputTotal}!ss.shell.utils.Logs@{ss.shell.utils.Logs}}
+\doxysubsubsection{getOutputTotal()}
+{\footnotesize\ttfamily String ss.\+shell.\+utils.\+Logs.\+get\+Output\+Total (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the total output H\+T\+ML. 
+
+\begin{DoxyReturn}{Returns}
+The whole H\+T\+ML string to output. 
+\end{DoxyReturn}
+\mbox{\label{classss_1_1shell_1_1utils_1_1Logs_aa1c73a5febc5c0c768f3a37d48d0a5e1}} 
+\index{ss.shell.utils.Logs@{ss.shell.utils.Logs}!logToFile@{logToFile}}
+\index{logToFile@{logToFile}!ss.shell.utils.Logs@{ss.shell.utils.Logs}}
+\doxysubsubsection{logToFile()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily static void ss.\+shell.\+utils.\+Logs.\+log\+To\+File (\begin{DoxyParamCaption}\item[{String}]{text }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Stores text in the logs file with a date and time stamp. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & Input text. \\
+\hline
+\end{DoxyParams}
+\mbox{\label{classss_1_1shell_1_1utils_1_1Logs_a085329a03bbd4d6cabb066ae053ef965}} 
+\index{ss.shell.utils.Logs@{ss.shell.utils.Logs}!logToFile@{logToFile}}
+\index{logToFile@{logToFile}!ss.shell.utils.Logs@{ss.shell.utils.Logs}}
+\doxysubsubsection{logToFile()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily static void ss.\+shell.\+utils.\+Logs.\+log\+To\+File (\begin{DoxyParamCaption}\item[{String[$\,$]}]{text }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Stores text in the logs file with a date and time stamp. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & Input text. \\
+\hline
+\end{DoxyParams}
+\mbox{\label{classss_1_1shell_1_1utils_1_1Logs_a5767f939a010c848c19fc918c734b4c4}} 
+\index{ss.shell.utils.Logs@{ss.shell.utils.Logs}!outputInfo@{outputInfo}}
+\index{outputInfo@{outputInfo}!ss.shell.utils.Logs@{ss.shell.utils.Logs}}
+\doxysubsubsection{outputInfo()}
+{\footnotesize\ttfamily void ss.\+shell.\+utils.\+Logs.\+output\+Info (\begin{DoxyParamCaption}\item[{String}]{output,  }\item[{\textbf{ Store}}]{store,  }\item[{\textbf{ Log\+Level}}]{level }\end{DoxyParamCaption})}
+
+
+
+Add the H\+T\+ML info to the total output. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em output} & Output. \\
+\hline
+{\em store} & Whether to store the output to logs. \\
+\hline
+\end{DoxyParams}
+\mbox{\label{classss_1_1shell_1_1utils_1_1Logs_ac091de105da7c7289e7ad4b707bac101}} 
+\index{ss.shell.utils.Logs@{ss.shell.utils.Logs}!outputPrompt@{outputPrompt}}
+\index{outputPrompt@{outputPrompt}!ss.shell.utils.Logs@{ss.shell.utils.Logs}}
+\doxysubsubsection{outputPrompt()}
+{\footnotesize\ttfamily void ss.\+shell.\+utils.\+Logs.\+output\+Prompt (\begin{DoxyParamCaption}\item[{String}]{prompt,  }\item[{\textbf{ Store}}]{store }\end{DoxyParamCaption})}
+
+
+
+Add the H\+T\+ML prompt to the total output. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prompt} & Prompt to output. \\
+\hline
+{\em store} & Whether to store the output to logs. \\
+\hline
+\end{DoxyParams}
+\mbox{\label{classss_1_1shell_1_1utils_1_1Logs_a4cd3ba8be222e7a8127eec7606bbf511}} 
+\index{ss.shell.utils.Logs@{ss.shell.utils.Logs}!outputShort@{outputShort}}
+\index{outputShort@{outputShort}!ss.shell.utils.Logs@{ss.shell.utils.Logs}}
+\doxysubsubsection{outputShort()}
+{\footnotesize\ttfamily void ss.\+shell.\+utils.\+Logs.\+output\+Short (\begin{DoxyParamCaption}\item[{String}]{output,  }\item[{\textbf{ Store}}]{store }\end{DoxyParamCaption})}
+
+
+
+Add the H\+T\+ML short to the total output. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em output} & Output. \\
+\hline
+{\em store} & Whether to store the output to logs. \\
+\hline
+\end{DoxyParams}
+\mbox{\label{classss_1_1shell_1_1utils_1_1Logs_ad21860453ec896dd16ae601e2dd76be9}} 
+\index{ss.shell.utils.Logs@{ss.shell.utils.Logs}!print@{print}}
+\index{print@{print}!ss.shell.utils.Logs@{ss.shell.utils.Logs}}
+\doxysubsubsection{print()}
+{\footnotesize\ttfamily static void ss.\+shell.\+utils.\+Logs.\+print (\begin{DoxyParamCaption}\item[{String}]{text,  }\item[{\textbf{ Store}}]{store }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Prints a line of text and stores output in the logs file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & Input text. \\
+\hline
+{\em store} & \doxyref{Store}{p.}{enumss_1_1shell_1_1utils_1_1Logs_1_1Store} output in logs file. \\
+\hline
+\end{DoxyParams}
+\mbox{\label{classss_1_1shell_1_1utils_1_1Logs_a27e3ddd565f48f0d8bb4d0f51dabe932}} 
+\index{ss.shell.utils.Logs@{ss.shell.utils.Logs}!printLine@{printLine}}
+\index{printLine@{printLine}!ss.shell.utils.Logs@{ss.shell.utils.Logs}}
+\doxysubsubsection{printLine()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily static void ss.\+shell.\+utils.\+Logs.\+print\+Line (\begin{DoxyParamCaption}\item[{String}]{text,  }\item[{\textbf{ Log\+Level}}]{level }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Prints a line (with ~\newline
+) of text and stores output in the logs file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & Input text. \\
+\hline
+{\em level} & Log level. \\
+\hline
+\end{DoxyParams}
+\mbox{\label{classss_1_1shell_1_1utils_1_1Logs_a4d995a29a54285d8c36a105deaa8ecc7}} 
+\index{ss.shell.utils.Logs@{ss.shell.utils.Logs}!printLine@{printLine}}
+\index{printLine@{printLine}!ss.shell.utils.Logs@{ss.shell.utils.Logs}}
+\doxysubsubsection{printLine()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily static void ss.\+shell.\+utils.\+Logs.\+print\+Line (\begin{DoxyParamCaption}\item[{String}]{text,  }\item[{\textbf{ Store}}]{store }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Prints a line (with ~\newline
+) of text and stores output in the logs file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & Input text. \\
+\hline
+{\em store} & Tell it not to store output in logs file. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Shell/src/main/java/ss/shell/utils/Logs.\+java\end{DoxyCompactItemize}

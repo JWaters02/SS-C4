@@ -21,9 +21,10 @@ public class Filesystem {
 
     /**
      * Constructor for the Filesystem class.
-     * @param username the username of the user.
-     * @param password the password of the user (hashed).
-     * @param type the group type of the user.
+     * @param username The username of the user.
+     * @param password The password of the user (hashed).
+     * @param type The group type of the user.
+     * @param shellType The type of shell being run for.
      */
     public Filesystem(String username, String password, UserTypes type, ShellType shellType) {
         this.username = username;
@@ -247,6 +248,11 @@ public class Filesystem {
         return userInfo.toString();
     }
 
+    /**
+     * Runs the print for either remote or local shell types.
+     * @param output The string to print.
+     * @param level The log level to print at.
+     */
     private void print(String output, LogLevel level) {
         if (this.shellType == ShellType.LOCAL) Logs.printLine(output, level);
         else this.logs.outputInfo(output, Store.YES, level);

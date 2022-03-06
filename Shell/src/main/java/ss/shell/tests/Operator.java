@@ -1,4 +1,4 @@
-package ss.shell.examples;
+package ss.shell.tests;
 
 public class Operator {
     public int sum(int a, int b){

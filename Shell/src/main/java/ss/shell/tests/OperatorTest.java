@@ -1,4 +1,4 @@
-package ss.shell.examples;
+package ss.shell.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 

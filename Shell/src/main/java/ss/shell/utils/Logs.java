@@ -8,17 +8,28 @@ import java.io.IOException;
 public class Logs {
     private String outputTotal = "";
 
+    /**
+     * The severity level of the logs.
+     */
     public enum LogLevel {
         INFO,
         WARNING,
         ERROR;
     }
 
+    /**
+     * Whether to store the logged output to the logs file.
+     */
     public enum Store {
         YES,
         NO
     }
 
+    /**
+     * Add the HTML prompt to the total output.
+     * @param prompt Prompt to output.
+     * @param store Whether to store the output to logs.
+     */
     public void outputPrompt(String prompt, Store store) {
         if (store == Store.YES) {
             logToFile(prompt);
@@ -29,6 +40,11 @@ public class Logs {
         this.outputTotal += getOuterBottom();
     }
 
+    /**
+     * Add the HTML short to the total output.
+     * @param output Output.
+     * @param store Whether to store the output to logs.
+     */
     public void outputShort(String output, Store store) {
         if (store == Store.YES) {
             logToFile(output);
@@ -42,6 +58,11 @@ public class Logs {
         }
     }
 
+    /**
+     * Add the HTML info to the total output.
+     * @param output Output.
+     * @param store Whether to store the output to logs.
+     */
     public void outputInfo(String output, Store store, LogLevel level) {
         if (store == Store.YES) {
             logToFile(output);
@@ -57,16 +78,32 @@ public class Logs {
         this.outputTotal += getOuterBottom();
     }
 
+    /**
+     * Get the top of the HTML string.
+     * @return The top of the HTML string.
+     */
     private String getOuterTop() {
         return "<div class=\"terminal_prompt\">\n";
     }
 
+    /**
+     * Get the bottom of the HTML string.
+     * @return The bottom of the HTML string.
+     */
     private String getOuterBottom() {
         return "\n</div>";
     }
 
+    /**
+     * Get the total output HTML.
+     * @return The whole HTML string to output.
+     */
     public String getOutputTotal() { return this.outputTotal; }
 
+    /**
+     * Directly add extra text to the total output string.
+     * @param output Text to add.
+     */
     public void addToOutputTotal(String output) {
         this.outputTotal += output;
     }
@@ -103,6 +140,11 @@ public class Logs {
         }
     }
 
+    /**
+     * Print the line of text according to the level severity.
+     * @param text Input text.
+     * @param level Severity of output (by colour).
+     */
     private static void levelPrints(String text, LogLevel level) {
         if (level == LogLevel.ERROR) {
             System.out.println(ConsoleColours.RED + "Error: " + text + ConsoleColours.RESET);

@@ -17,7 +17,7 @@ public class ClientApplication extends Application {
         webView.getEngine().load("localhost:2222");
         VBox vBox = new VBox(webView);
         Scene scene = new Scene(vBox, 1920, 1080);
-        stage.setTitle("Hello!");
+        stage.setTitle("Remote Shell");
         stage.setScene(scene);
         stage.show();
     }
