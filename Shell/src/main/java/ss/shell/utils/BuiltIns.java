@@ -20,7 +20,7 @@ public class BuiltIns {
     public static final String SHOWDIR = "showdir"; // Show current working directory.
     public static final String HELP = "help"; // Print a list of all available commands.
     // TODO: Implement
-    public static final String HISTORY = "history"; // Prints the logs
+    public static final String HISTORY = "history"; // Prints the logs.
     public static final String[] COMMANDS = {SUPER, ADDUSER, DELUSER, LISTUSERS, CHPASS, CHUSERTYPE, LOGIN, LOGOUT, WHOAMI, MOVE, COPY, CD, SHOWDIR, HELP, HISTORY};
     public static final String[] SHORTS = {ADDUSER, CHPASS, CHUSERTYPE, DELUSER, LOGIN}; // The types of built-in commands that require extra user input under the prompt line
 
@@ -38,7 +38,7 @@ public class BuiltIns {
     private static final String CD_DESC = "Change the current directory. Usage: cd <path> No preceding path will return to the home path.";
     private static final String SHOWDIR_DESC = "Show current working directory.";
     private static final String HELP_DESC = "Print a list of all available commands.";
-    private static final String HISTORY_DESC = "Prints the logs";
+    private static final String HISTORY_DESC = "Prints the logs.";
     public static final String[] DESCS = {SUPER_DESC, ADDUSER_DESC, DELUSER_DESC, LISTUSERS_DESC, CHPASS_DESC, CHUSERTYPE_DESC, LOGIN_DESC, LOGOUT_DESC, WHOAMI_DESC, MOVE_DESC, COPY_DESC, CD_DESC, SHOWDIR_DESC, HELP_DESC, HISTORY_DESC};
 
     /**
@@ -72,15 +72,6 @@ public class BuiltIns {
     public enum UserTypes {
         STANDARD,
         SUPERUSER
-    }
-
-    /**
-     * The different types of prompts
-     */
-    public enum PromptType {
-        PROMPT,
-        SHORT,
-        INFO
     }
 
     /**

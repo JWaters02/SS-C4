@@ -18,34 +18,24 @@ public class BuiltInProcess {
     private String username;
     private String[] command;
     private String cwd;
-    private Logs logs;
+    private final Logs logs = new Logs();
     private final ShellType shellType;
     private boolean isLoggedIn;
 
-    public BuiltInProcess(ShellType shellType) {
-        this.userType = UserTypes.STANDARD; // We assume that the user is a standard user until they log in
-        this.username = null; // We don't know the username until they log in
-        this.cwd = BuiltIns.HOME_PATH; // Original home path for guests
-        this.shellType = shellType;
-        this.isLoggedIn = false;
-    }
-
-    public BuiltInProcess(ShellType shellType, Logs logs) {
-        this.userType = UserTypes.STANDARD; // We assume that the user is a standard user until they log in
-        this.username = null; // We don't know the username until they log in
-        this.cwd = BuiltIns.HOME_PATH; // Original home path for guests
-        this.shellType = shellType;
-        this.isLoggedIn = false;
-        this.logs = logs;
-    }
-
-    public BuiltInProcess(String username, String cwd, UserTypes type, Logs logs, ShellType shellType) {
+    public BuiltInProcess(String username, String cwd, UserTypes type, ShellType shellType) {
         this.username = username;
         this.cwd = cwd;
         this.userType = type;
-        this.logs = logs;
         this.shellType = shellType;
         this.isLoggedIn = true;
+    }
+
+    public BuiltInProcess(String username, String cwd, UserTypes type, boolean isLoggedIn, ShellType shellType) {
+        this.username = username;
+        this.cwd = cwd;
+        this.userType = type;
+        this.shellType = shellType;
+        this.isLoggedIn = isLoggedIn;
     }
 
     /**
@@ -86,13 +76,11 @@ public class BuiltInProcess {
         switch (command[0].toLowerCase()) {
             case BuiltIns.SUPER -> {
                 if (command.length == 1) {
-                    if (shellType == ShellType.LOCAL) Logs.printLine("Please specify a command.", LogLevel.ERROR);
-                    else this.logs.outputInfo("Please specify a command.", Store.YES, LogLevel.ERROR);
+                    print("Please specify a command.", LogLevel.ERROR);
                     return;
                 }
                 if (!Objects.equals(this.userType, BuiltIns.UserTypes.SUPERUSER)) {
-                    if (shellType == ShellType.LOCAL) Logs.printLine("You are not a super user!", LogLevel.ERROR);
-                    else this.logs.outputInfo("You are not a super user!", Store.YES, LogLevel.ERROR);
+                    print("You are not a super user!", LogLevel.ERROR);
                     return;
                 }
                 if (shellType == ShellType.LOCAL) {
@@ -115,65 +103,54 @@ public class BuiltInProcess {
                 }
             }
             case BuiltIns.ADDUSER, BuiltIns.CHUSERTYPE, BuiltIns.CHPASS, BuiltIns.DELUSER -> {
-                if (shellType == ShellType.LOCAL) Logs.printLine("You must execute this command as super.",
-                        LogLevel.ERROR);
-                else this.logs.outputInfo("You must execute this command as super.", Store.YES, LogLevel.ERROR);
+                print("You must execute this command as super.", LogLevel.ERROR);
             }
             case BuiltIns.LOGIN -> {
                 if (shellType == ShellType.LOCAL) login();
                 else login(command);
             }
             case BuiltIns.LOGOUT -> {
-                if (this.username == null) {
-                    if (shellType == ShellType.LOCAL) Logs.printLine("You are not logged in!", LogLevel.ERROR);
-                    else this.logs.outputInfo("You are not logged in!", Store.YES, LogLevel.ERROR);
+                if (Objects.equals(this.username, "guest")) {
+                    print("You are not logged in!", LogLevel.ERROR);
                     return;
                 }
                 logout();
             }
             case BuiltIns.WHOAMI -> {
-                if (this.username == null) {
-                    if (shellType == ShellType.LOCAL) Logs.printLine("You are not logged in!", LogLevel.ERROR);
-                    else this.logs.outputInfo("You are not logged in!", Store.YES, LogLevel.ERROR);
+                if (Objects.equals(this.username, "guest")) {
+                    print("You are not logged in!", LogLevel.ERROR);
                     return;
                 }
                 whoami();
             }
             case BuiltIns.MOVE -> {
                 if (command.length != 3) {
-                    if (shellType == ShellType.LOCAL) Logs.printLine("Please provide two arguments!", LogLevel.ERROR);
-                    else this.logs.outputInfo("Please provide two arguments!", Store.YES, LogLevel.ERROR);
+                    print("Please provide two arguments!", LogLevel.ERROR);
                     return;
                 }
                 move();
             }
             case BuiltIns.COPY -> {
                 if (command.length != 3) {
-                    if (shellType == ShellType.LOCAL) Logs.printLine("Please provide two arguments!", LogLevel.ERROR);
-                    else this.logs.outputInfo("Please provide two arguments!", Store.YES, LogLevel.ERROR);
+                    print("Please provide two arguments!", LogLevel.ERROR);
                     return;
                 }
                 copy();
             }
             case BuiltIns.CD -> {
                 if (this.username == null) {
-                    if (shellType == ShellType.LOCAL) Logs.printLine("You are not logged in!", LogLevel.ERROR);
-                    else this.logs.outputInfo("You are not logged in!", Store.YES, LogLevel.ERROR);
+                    print("You are not logged in!", LogLevel.ERROR);
                     return;
                 }
                 if (command.length != 2) {
-                    if (shellType == ShellType.LOCAL) Logs.printLine("Please provide a path!", LogLevel.ERROR);
-                    else this.logs.outputInfo("Please provide a path!", Store.YES, LogLevel.ERROR);
+                    print("Please provide a path!", LogLevel.ERROR);
                     return;
                 }
                 cd(command[1]);
             }
             case BuiltIns.SHOWDIR -> showDir();
             case BuiltIns.HELP -> help();
-            default -> {
-                if (shellType == ShellType.LOCAL) Logs.printLine("Unknown command: " + command[0], LogLevel.ERROR);
-                else this.logs.outputInfo("Unknown command: " + command[0], Store.YES, LogLevel.ERROR);
-            }
+            default -> print("Unknown command: " + command[0], LogLevel.ERROR);
         }
     }
 
@@ -204,7 +181,7 @@ public class BuiltInProcess {
         }
 
         Filesystem fs = new Filesystem(username, String.valueOf(password1),
-                BuiltIns.UserTypes.valueOf(userType.toUpperCase()));
+                BuiltIns.UserTypes.valueOf(userType.toUpperCase()), shellType);
         fs.createUser();
     }
 
@@ -239,7 +216,7 @@ public class BuiltInProcess {
         }
 
         Filesystem fs = new Filesystem(username, String.valueOf(pass1),
-                BuiltIns.UserTypes.valueOf(type.toUpperCase()));
+                BuiltIns.UserTypes.valueOf(type.toUpperCase()), shellType);
         fs.createUser();
     }
 
@@ -259,7 +236,7 @@ public class BuiltInProcess {
             return;
         }
 
-        Filesystem fs = new Filesystem(username, null, null);
+        Filesystem fs = new Filesystem(username, null, null, shellType);
         fs.deleteUser();
     }
 
@@ -282,7 +259,7 @@ public class BuiltInProcess {
             return;
         }
 
-        Filesystem fs = new Filesystem(command[2], null, null);
+        Filesystem fs = new Filesystem(command[2], null, null, shellType);
         fs.deleteUser();
     }
 
@@ -295,7 +272,7 @@ public class BuiltInProcess {
         Logs.print("Enter username: ", Store.NO);
         Scanner scanner = new Scanner(System.in);
         String username = scanner.nextLine();
-        Filesystem fs = new Filesystem(username, null, null);
+        Filesystem fs = new Filesystem(username, null, null, shellType);
         if (!fs.hasDirectory()) {
             Logs.printLine("User does not exist!", LogLevel.ERROR);
             return;
@@ -308,14 +285,14 @@ public class BuiltInProcess {
         }
 
         Logs.print("Enter old password: ", Store.NO);
-        int oldPassword = scanner.nextLine().hashCode(); // TODO: Mask password input (wait until we have JavaFX UI)
+        int oldPassword = scanner.nextLine().hashCode();
         if (oldPassword != Integer.parseInt(fs.getPassword())) {
             Logs.printLine("Password incorrect!", LogLevel.ERROR);
             return;
         }
         Logs.print("Enter new password: ", Store.NO);
         int newPassword = scanner.nextLine().hashCode();
-        Filesystem fs2 = new Filesystem(username, fs.getPassword(), fs.getUserType());
+        Filesystem fs2 = new Filesystem(username, fs.getPassword(), fs.getUserType(), shellType);
         if (fs2.changePassword(String.valueOf(newPassword))) {
             Logs.printLine("Password changed successfully!", LogLevel.INFO);
         }
@@ -340,13 +317,14 @@ public class BuiltInProcess {
         int oldPassword = command[3].hashCode();
         int newPassword = command[4].hashCode();
 
-        Filesystem fs = new Filesystem(username, null, null);
+        Filesystem fs = new Filesystem(username, null, null, shellType);
         if (!fs.hasDirectory()) {
             this.logs.outputInfo("User does not exist!", Store.YES, LogLevel.ERROR);
             return;
         }
 
         // Don't allow change password of current user
+        // TODO: Maybe remove?
         if (Objects.equals(username, this.username)) {
             this.logs.outputInfo("You cannot change your own password!", Store.YES, LogLevel.ERROR);
             return;
@@ -357,7 +335,7 @@ public class BuiltInProcess {
             return;
         }
 
-        Filesystem fs2 = new Filesystem(username, fs.getPassword(), fs.getUserType());
+        Filesystem fs2 = new Filesystem(username, fs.getPassword(), fs.getUserType(), shellType);
         if (fs2.changePassword(String.valueOf(newPassword))) {
             this.logs.outputInfo("Password changed successfully!", Store.YES, LogLevel.INFO);
         }
@@ -379,14 +357,13 @@ public class BuiltInProcess {
             return;
         }
 
-        Filesystem fs = new Filesystem(username, null, null);
+        Filesystem fs = new Filesystem(username, null, null, shellType);
         if (!fs.hasDirectory()) {
             Logs.printLine("User does not exist!", LogLevel.ERROR);
             return;
         }
 
         Logs.printLine("Current user type: " + fs.getUserType(), LogLevel.INFO);
-        // TODO: Maybe everything that isn't current
         Logs.printLine("Available user types: standard, superuser", LogLevel.INFO);
         Logs.print("Enter new user type: ", Store.NO);
         String userType = scanner.nextLine();
@@ -394,7 +371,7 @@ public class BuiltInProcess {
             Logs.printLine("Invalid user type!", LogLevel.ERROR);
             return;
         }
-        Filesystem fs2 = new Filesystem(username, fs.getPassword(), fs.getUserType());
+        Filesystem fs2 = new Filesystem(username, fs.getPassword(), fs.getUserType(), shellType);
         if (fs2.changeUserType(BuiltIns.UserTypes.valueOf(userType.toUpperCase()))) {
             this.userType = fs2.getUserType();
             Logs.printLine("User type changed!", LogLevel.INFO);
@@ -424,7 +401,7 @@ public class BuiltInProcess {
             return;
         }
 
-        Filesystem fs = new Filesystem(username, null, null);
+        Filesystem fs = new Filesystem(username, null, null, shellType);
         if (!fs.hasDirectory()) {
             this.logs.outputInfo("User does not exist!", Store.YES, LogLevel.ERROR);
             return;
@@ -437,7 +414,7 @@ public class BuiltInProcess {
             return;
         }
 
-        Filesystem fs2 = new Filesystem(username, fs.getPassword(), fs.getUserType());
+        Filesystem fs2 = new Filesystem(username, fs.getPassword(), fs.getUserType(), shellType);
         if (fs2.changeUserType(BuiltIns.UserTypes.valueOf(newType.toUpperCase()))) {
             this.userType = fs2.getUserType();
             this.logs.outputInfo("User type changed!", Store.YES, LogLevel.INFO);
@@ -460,10 +437,10 @@ public class BuiltInProcess {
         String username = scanner.nextLine();
 
         Logs.print("Password$ ", Store.NO);
-        int password = scanner.nextLine().hashCode(); // TODO: Mask password input (wait until we have JavaFX UI)
+        int password = scanner.nextLine().hashCode();
 
         // TODO: Fix bug where inputting empty login and password causes stack trace
-        Filesystem fs = new Filesystem(username, String.valueOf(password), null);
+        Filesystem fs = new Filesystem(username, String.valueOf(password), null, shellType);
         if (fs.login()) {
             Logs.printLine("Welcome " + username, Store.YES);
             this.username = username;
@@ -486,7 +463,7 @@ public class BuiltInProcess {
         }
 
         // If already logged in, ignore
-        if (this.username != null) {
+        if (!Objects.equals(this.username, "guest")) {
             this.logs.outputInfo("You are already logged in!", Store.YES, LogLevel.WARNING);
             return;
         }
@@ -495,7 +472,7 @@ public class BuiltInProcess {
         int password = command[2].hashCode();
 
         // TODO: Fix bug where inputting empty login and password causes stack trace
-        Filesystem fs = new Filesystem(username, String.valueOf(password), null);
+        Filesystem fs = new Filesystem(username, String.valueOf(password), null, shellType);
         if (fs.login()) {
             this.logs.outputInfo("Welcome " + username, Store.YES, LogLevel.INFO);
             this.username = username;
@@ -510,9 +487,10 @@ public class BuiltInProcess {
      * command[0] is logout
      */
     private void logout() {
-        Logs.printLine("logout " + this.username, Store.YES);
-        this.username = null;
+        print("Logged out " + this.username, LogLevel.INFO);
+        this.username = "guest";
         this.userType = BuiltIns.UserTypes.STANDARD;
+        this.cwd = BuiltIns.HOME_PATH;
         this.isLoggedIn = false;
     }
 
@@ -522,11 +500,16 @@ public class BuiltInProcess {
      */
     private void whoami() {
         // If user is not logged in
-        if (this.username == null) {
-            Logs.printLine("Not logged in!", LogLevel.ERROR);
+        if (Objects.equals(this.username, "guest")) {
+            print("You are not logged in!", LogLevel.ERROR);
             return;
         }
-        Logs.printLine("Username: " + this.username + "\nUser type: " + this.userType, Store.YES);
+        if (this.shellType == ShellType.LOCAL) {
+            Logs.printLine("Username: " + this.username + "\nUser type: " + this.userType, Store.YES);
+        } else {
+            this.logs.outputInfo("Username: " + this.username + "\nUser type: " + this.userType, Store.YES,
+                    LogLevel.INFO);
+        }
     }
 
     /**
@@ -547,7 +530,7 @@ public class BuiltInProcess {
             if (f.exists()) {
                 // Check if destination name does not contain any illegal characters (i.e. any punctuation)
                 if (!destination.matches("[a-zA-Z0-9]+")) {
-                    Logs.printLine("Invalid destination name!", LogLevel.ERROR);
+                    print("Invalid destination name!", LogLevel.ERROR);
                 }
 
                 // Move file to destination
@@ -576,7 +559,7 @@ public class BuiltInProcess {
             if (f.exists()) {
                 // Check if destination name does not contain any illegal characters (i.e. any punctuation)
                 if (!destination.matches("[a-zA-Z0-9]+")) {
-                    Logs.printLine("Invalid destination name!", LogLevel.ERROR);
+                    print("Invalid destination name!", LogLevel.ERROR);
                 }
 
                 // Copy source file to destination
@@ -608,7 +591,7 @@ public class BuiltInProcess {
                 }
             }
             if (!dirExists) {
-                Logs.printLine("Please enter a valid path! You cannot exit your local area!", LogLevel.ERROR);
+                print("Please enter a valid path! You cannot exit your local area!", LogLevel.ERROR);
                 return;
             }
         }
@@ -618,7 +601,7 @@ public class BuiltInProcess {
     private void showDir() {
         // Don't show the home path, just the user's area
         String ret = this.cwd.replace(BuiltIns.HOME_PATH, "/");
-        Logs.printLine(ret, Store.YES);
+        print(ret, LogLevel.INFO);
     }
 
     /**
@@ -649,5 +632,10 @@ public class BuiltInProcess {
                 this.logs.outputInfo(BuiltIns.COMMANDS[i] + ": " + BuiltIns.DESCS[i], Store.NO, LogLevel.INFO);
             }
         }
+    }
+
+    private void print(String output, LogLevel level) {
+        if (this.shellType == ShellType.LOCAL) Logs.printLine(output, level);
+        else this.logs.outputInfo(output, Store.YES, level);
     }
 }

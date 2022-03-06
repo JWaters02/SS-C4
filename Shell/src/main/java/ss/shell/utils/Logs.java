@@ -6,7 +6,7 @@ import java.time.*;
 import java.io.IOException;
 
 public class Logs {
-    private String outputTotal;
+    private String outputTotal = "";
 
     public enum LogLevel {
         INFO,
@@ -33,10 +33,13 @@ public class Logs {
         if (store == Store.YES) {
             logToFile(output);
         }
-        this.outputTotal += getOuterTop();
-        this.outputTotal += "<span class=\"terminal_prompt-short\">" + output + "</span>\n" +
-                            "<span class=\"terminal_prompt-end\">:~$</span>";
-        this.outputTotal += getOuterBottom();
+        String[] lines = output.split("\n");
+        for (String line : lines) {
+            this.outputTotal += "\n";
+            this.outputTotal += getOuterTop();
+            this.outputTotal += "<span class=\"terminal_prompt-short\">" + line + "</span>";
+            this.outputTotal += getOuterBottom();
+        }
     }
 
     public void outputInfo(String output, Store store, LogLevel level) {
@@ -86,16 +89,6 @@ public class Logs {
     public static void printLine(String text, LogLevel level) {
         levelPrints(text, level);
         logToFile(text);
-    }
-
-    /**
-     * Prints a line (with \n) of text and stores output in the logs file.
-     * @param text Input text.
-     * @param level Log level.
-     * @param store An override param to not store output in logs file.
-     */
-    public static void printLine(String text, LogLevel level, Store store) {
-        if (store == Store.NO) { levelPrints(text, level); }
     }
 
     /**

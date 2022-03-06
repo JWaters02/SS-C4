@@ -1,6 +1,7 @@
 package ss.shell.utils;
 
 import ss.shell.utils.Logs.*;
+import ss.shell.utils.BuiltIns.*;
 
 import java.io.File;
 import java.io.FileReader;
@@ -13,8 +14,10 @@ public class Filesystem {
 
     private final String username;
     private String password;
-    private BuiltIns.UserTypes type;
+    private UserTypes type;
     private String cwd;
+    private final Logs logs = new Logs();
+    private ShellType shellType;
 
     /**
      * Constructor for the Filesystem class.
@@ -22,10 +25,11 @@ public class Filesystem {
      * @param password the password of the user (hashed).
      * @param type the group type of the user.
      */
-    public Filesystem(String username, String password, BuiltIns.UserTypes type) {
+    public Filesystem(String username, String password, UserTypes type, ShellType shellType) {
         this.username = username;
         this.password = password;
         this.type = type;
+        this.shellType = shellType;
     }
 
     /**
@@ -48,10 +52,10 @@ public class Filesystem {
             if (this.checkPassword()) {
                 success = true;
             } else {
-                Logs.printLine("Invalid password.", LogLevel.ERROR);
+                print("Invalid password.", LogLevel.ERROR);
             }
         } else {
-            Logs.printLine("User " + this.username + " does not exist!", LogLevel.ERROR);
+            print("User " + this.username + " does not exist!", LogLevel.ERROR);
         }
         return success;
     }
@@ -61,11 +65,11 @@ public class Filesystem {
      */
     public void createUser() {
         if (!this.hasDirectory()) {
-            Logs.printLine("User " + this.username + " does not have a directory, creating user directory.", LogLevel.INFO);
+            print("User " + this.username + " does not have a directory, creating user directory.", LogLevel.INFO);
             this.createUserDir();
             this.writeUserDetails();
         } else {
-            Logs.printLine("User " + this.username + " already exists!", LogLevel.WARNING);
+            print("User " + this.username + " already exists!", LogLevel.WARNING);
         }
     }
 
@@ -75,7 +79,7 @@ public class Filesystem {
      */
     public void deleteUser() {
         if (this.hasDirectory()) {
-            Logs.printLine("Deleting user " + this.username, Store.YES);
+            print("Deleting user " + this.username, LogLevel.INFO);
             try {
                 File userDir = new File(this.getUserDirPath());
                 // Empty directory first
@@ -90,7 +94,7 @@ public class Filesystem {
                 e.printStackTrace();
             }
         } else {
-            Logs.printLine("User " + this.username + " does not exist!", LogLevel.ERROR);
+            print("User " + this.username + " does not exist!", LogLevel.ERROR);
         }
     }
 
@@ -140,7 +144,7 @@ public class Filesystem {
             this.password = newPassword;
             this.writeUserDetails();
         } else {
-            Logs.printLine("User " + this.username + " does not exist!", LogLevel.ERROR);
+            print("User " + this.username + " does not exist!", LogLevel.ERROR);
         }
         return success;
     }
@@ -157,7 +161,7 @@ public class Filesystem {
             this.type = newType;
             this.writeUserDetails();
         } else {
-            Logs.printLine("User " + this.username + " does not exist!", LogLevel.ERROR);
+            print("User " + this.username + " does not exist!", LogLevel.ERROR);
         }
         return success;
     }
@@ -184,7 +188,7 @@ public class Filesystem {
     * Then we can store all of their details in that directory.
      */
     private void createUserDir() {
-        Logs.printLine("Creating directory for " + this.username, LogLevel.INFO);
+        print("Creating directory for " + this.username, LogLevel.INFO);
         new File(BuiltIns.HOME_PATH + this.username).mkdir();
     }
 
@@ -210,7 +214,7 @@ public class Filesystem {
                 writer.write(this.type.toString());
             }
             writer.close();
-            Logs.printLine("Wrote user details to " + BuiltIns.HOME_PATH + this.username + ".txt", LogLevel.INFO);
+            print("Wrote user details to " + BuiltIns.HOME_PATH + this.username + ".txt", LogLevel.INFO);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -241,5 +245,10 @@ public class Filesystem {
             e.printStackTrace();
         }
         return userInfo.toString();
+    }
+
+    private void print(String output, LogLevel level) {
+        if (this.shellType == ShellType.LOCAL) Logs.printLine(output, level);
+        else this.logs.outputInfo(output, Store.YES, level);
     }
 }

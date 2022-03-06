@@ -7,6 +7,7 @@ import ss.shell.utils.BuiltIns;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -31,12 +32,13 @@ public class ShellServer extends Thread {
             System.out.println("Echo Server listening port: " + PORT);
 
             boolean shutdown = false;
+            boolean hasLoaded = false;
             boolean isLoggedIn = false;
             Shell shell;
             String username = "guest";
             String cwd = BuiltIns.HOME_PATH;
             BuiltIns.UserTypes userType = BuiltIns.UserTypes.STANDARD;
-            String output;
+            String output = "";
 
             while (!shutdown) {
                 Socket socket = server.accept();
@@ -45,7 +47,6 @@ public class ShellServer extends Thread {
                 BufferedReader in = new BufferedReader(new InputStreamReader(is));
                 String line;
                 line = in.readLine();
-                String auxLine = line;
 
                 // looks for user input post data
                 int userInput = -1;
@@ -72,16 +73,21 @@ public class ShellServer extends Thread {
                     index = userInputSanitised.toString().indexOf('+');
                 }
 
-                // Get the output based on the user's command
-                if (isLoggedIn) {
-                    shell = new Shell(userInputSanitised.toString(), username, cwd, userType, true);
+                if (!hasLoaded) {
+                    output = "<div class=\"terminal_prompt\">\n" +
+                            "<span class=\"terminal_prompt-path\">" + cwd + "</span>\n" +
+                            "<span class=\"terminal_prompt-end\">:~$</span>" +
+                            "\n</div>";
                 } else {
-                    shell = new Shell(userInputSanitised.toString());
+                    // Get the output based on the user's command
+                    shell = new Shell(userInputSanitised.toString(), username, cwd, userType, isLoggedIn);
+                    shutdown = shell.getDoExit();
+                    isLoggedIn = shell.getIsLoggedIn();
+                    username = shell.getUsername();
+                    output = shell.getOutput();
+                    userType = shell.getUserType();
+                    cwd = shell.getCWD();
                 }
-                username = shell.getUsername();
-                shutdown = shell.getDoExit();
-                isLoggedIn = shell.getIsLoggedIn();
-                output = shell.getOutput();
 
                 // Output the top html
                 out.println("HTTP/1.0 200 OK");
@@ -119,6 +125,8 @@ public class ShellServer extends Thread {
                     e.printStackTrace();
                 }
 
+                hasLoaded = true;
+
                 // Close the print writer and the socket
                 out.close();
                 socket.close();
@@ -128,6 +136,4 @@ public class ShellServer extends Thread {
             e.printStackTrace();
         }
     }
-
-
 }

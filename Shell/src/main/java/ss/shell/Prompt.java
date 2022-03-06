@@ -26,7 +26,7 @@ public class Prompt {
      * This is only used if the terminal is run locally for testing purposes.
      */
     public static void main(String[] args) {
-        BuiltInProcess bip = new BuiltInProcess(ShellType.LOCAL);
+        BuiltInProcess bip = new BuiltInProcess(username, cwd, userType, ShellType.LOCAL);
 
         // Main event loop
         while (true) {
@@ -41,8 +41,6 @@ public class Prompt {
                 Logs.printLine("No command entered.", LogLevel.ERROR);
                 continue;
             }
-
-            // TODO: Validate process builder commands before they get passed through, e.g. ls
 
             // Parse user input
             String[] command = input.split(" ");

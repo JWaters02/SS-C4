@@ -9,19 +9,10 @@ public class Shell {
     private final String input;
     private final Logs logs;
     private boolean doExit = false;
-    private boolean isLoggedIn = false;
+    private boolean isLoggedIn;
     private String username;
     private String cwd;
     private UserTypes type;
-
-    public Shell(String input) {
-        this.cwd = BuiltIns.HOME_PATH;
-        this.username = "guest";
-        this.type = UserTypes.STANDARD;
-        this.input = input;
-        this.logs = new Logs();
-        prompt();
-    }
 
     public Shell(String input, String username, String cwd, UserTypes type, boolean isLoggedIn) {
         this.input = input;
@@ -36,11 +27,7 @@ public class Shell {
     public void prompt() {
         // Initialise the correct process
         BuiltInProcess bip;
-        if (this.isLoggedIn) {
-            bip = new BuiltInProcess(ShellType.REMOTE, this.logs);
-        } else {
-            bip = new BuiltInProcess(this.username, this.cwd, this.type, this.logs, ShellType.REMOTE);
-        }
+        bip = new BuiltInProcess(this.username, this.cwd, this.type, this.isLoggedIn, ShellType.REMOTE);
 
         if (this.input.length() == 0) {
             this.logs.outputInfo("No command entered", Store.NO, LogLevel.ERROR);
@@ -77,6 +64,9 @@ public class Shell {
                             ShellProcess process = new ShellProcess(bip.getCWD());
                             String output = process.execute(command);
                             this.logs.outputShort(output, Store.NO);
+
+                            // Add the new prompt to the output
+                            this.logs.outputPrompt(this.cwd, Store.YES);
                         } else {
                             this.logs.outputInfo("Invalid process builder command!", Store.NO, LogLevel.ERROR);
                         }
