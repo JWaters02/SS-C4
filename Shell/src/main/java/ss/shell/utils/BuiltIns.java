@@ -7,7 +7,6 @@ public class BuiltIns {
     public static final String SUPER = "super"; // Equivalent to sudo. Only valid for "super" users. A standard user cannot use this command.
     public static final String ADDUSER = "adduser"; // Add a new user to the system. Requires "super" privileges to run.
     public static final String DELUSER = "deluser"; // Delete a user from the system. Requires "super" privileges to run.
-    // TODO: Implement
     public static final String LISTUSERS = "listusers"; // Lists all users on the system. Requires "super" privileges to run.
     public static final String CHPASS = "chpass"; // Change a user's password. Requires "super" privileges to run.
     public static final String CHUSERTYPE = "chusertype"; // Change a user's type. Requires "super" privileges to run.
@@ -19,8 +18,7 @@ public class BuiltIns {
     public static final String CD = "cd"; // Change the current directory.
     public static final String SHOWDIR = "showdir"; // Show current working directory.
     public static final String HELP = "help"; // Print a list of all available commands.
-    // TODO: Implement
-    public static final String HISTORY = "history"; // Prints the logs.
+    public static final String HISTORY = "history"; // Prints the logs based on a given date.
     public static final String[] COMMANDS = {SUPER, ADDUSER, DELUSER, LISTUSERS, CHPASS, CHUSERTYPE, LOGIN, LOGOUT, WHOAMI, MOVE, COPY, CD, SHOWDIR, HELP, HISTORY};
 
     private static final String SUPER_DESC = "Equivalent to sudo. Only valid for \"super\" users. A standard user cannot use this command.";
@@ -37,7 +35,7 @@ public class BuiltIns {
     private static final String CD_DESC = "Change the current directory. Usage: cd <path> No preceding path will return to the home path.";
     private static final String SHOWDIR_DESC = "Show current working directory.";
     private static final String HELP_DESC = "Print a list of all available commands.";
-    private static final String HISTORY_DESC = "Prints the logs.";
+    private static final String HISTORY_DESC = "Prints the logs based on a given date. Date format: YYYY-mm-dd e.g. 2022-03-06";
     public static final String[] DESCS = {SUPER_DESC, ADDUSER_DESC, DELUSER_DESC, LISTUSERS_DESC, CHPASS_DESC, CHUSERTYPE_DESC, LOGIN_DESC, LOGOUT_DESC, WHOAMI_DESC, MOVE_DESC, COPY_DESC, CD_DESC, SHOWDIR_DESC, HELP_DESC, HISTORY_DESC};
 
     /**

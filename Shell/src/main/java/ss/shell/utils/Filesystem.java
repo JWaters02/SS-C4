@@ -3,10 +3,7 @@ package ss.shell.utils;
 import ss.shell.utils.Logs.*;
 import ss.shell.utils.BuiltIns.*;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 
 public class Filesystem {
@@ -182,6 +179,56 @@ public class Filesystem {
     public String[] getDirsInUserDir() {
         File path = new File(this.cwd);
         return path.list();
+    }
+
+    /**
+     * Gets the log files in the home directory (where they are stored).
+     * @param filename the name of the log file to find.
+     * @return the log file if it exists.
+     */
+    public File[] getLogs(String filename) {
+        File homeDir = new File(BuiltIns.HOME_PATH);
+        FilenameFilter filter = (file, s) -> s.toLowerCase().endsWith(filename);
+        File[] files = homeDir.listFiles(filter);
+        return homeDir.listFiles(filter);
+    }
+
+    /**
+     * Returns the lines inside the log files provided.
+     * @param logFiles the log files to read.
+     * @return the lines inside the log files.
+     */
+    public String[] getLogOutput(File[] logFiles) {
+        String[] logOutput = new String[logFiles.length];
+        for (int i = 0; i < logFiles.length; i++) {
+            try {
+                BufferedReader br = new BufferedReader(new FileReader(logFiles[i]));
+                String line = br.readLine();
+                while (line != null) {
+                    logOutput[i] += line + "\n";
+                    line = br.readLine();
+                }
+                br.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return logOutput;
+    }
+
+    public File[] getUserFiles() {
+        File homeDir = new File(BuiltIns.HOME_PATH);
+        // Filter OUT the log files
+        FilenameFilter filter = (file, s) -> !s.toLowerCase().endsWith(".txt");
+        return homeDir.listFiles(filter);
+    }
+
+    public String[] listUsers(File[] userFiles) {
+        String[] users = new String[userFiles.length];
+        for (int i = 0; i < userFiles.length; i++) {
+            users[i] = userFiles[i].getName();
+        }
+        return users;
     }
 
     /**

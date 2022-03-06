@@ -10,15 +10,9 @@ import ss.shell.utils.Logs.*;
 import java.util.Scanner;
 
 public class Prompt {
-    private static BuiltIns.UserTypes userType;
-    private static String username;
-    private static String cwd;
-
-    public Prompt() {
-        username = "guest";
-        userType = BuiltIns.UserTypes.STANDARD;
-        cwd = BuiltIns.HOME_PATH;
-    }
+    private static BuiltIns.UserTypes userType = UserTypes.STANDARD;
+    private static String username = "guest";
+    private static String cwd = BuiltIns.HOME_PATH;
 
     /**
      * Create the event loop that produces a prompt for user input.

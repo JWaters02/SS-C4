@@ -69,11 +69,11 @@ public class Logs {
         }
         this.outputTotal += getOuterTop();
         if (level == LogLevel.ERROR) {
-            this.outputTotal += "<span class=\"terminal_prompt-error\">" + output + "</span>";
+            this.outputTotal += "<span class=\"terminal_prompt-error\"> Error: " + output + "</span>";
         } else if (level == LogLevel.WARNING) {
-            this.outputTotal += "<span class=\"terminal_prompt-warning\">" + output + "</span>";
+            this.outputTotal += "<span class=\"terminal_prompt-warning\"> Warning: " + output + "</span>";
         } else if (level == LogLevel.INFO) {
-            this.outputTotal += "<span class=\"terminal_prompt-info\">" + output + "</span>";
+            this.outputTotal += "<span class=\"terminal_prompt-info\"> Info: " + output + "</span>";
         }
         this.outputTotal += getOuterBottom();
     }

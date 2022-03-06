@@ -104,6 +104,7 @@ public class BuiltInProcess {
                         case BuiltIns.DELUSER -> deleteUser();
                         case BuiltIns.CHPASS -> chPass();
                         case BuiltIns.CHUSERTYPE -> chUserType();
+                        case BuiltIns.LISTUSERS -> listUsers();
                         default -> Logs.printLine("Cannot execute command as super: " + command[1], LogLevel.ERROR);
                     }
                 } else {
@@ -112,12 +113,13 @@ public class BuiltInProcess {
                         case BuiltIns.DELUSER -> deleteUser(command);
                         case BuiltIns.CHPASS -> chPass(command);
                         case BuiltIns.CHUSERTYPE -> chUserType(command);
+                        case BuiltIns.LISTUSERS -> listUsers();
                         default -> this.logs.outputInfo("Cannot execute command as super: " + command[1],
                                 Store.YES, LogLevel.ERROR);
                     }
                 }
             }
-            case BuiltIns.ADDUSER, BuiltIns.CHUSERTYPE, BuiltIns.CHPASS, BuiltIns.DELUSER -> {
+            case BuiltIns.ADDUSER, BuiltIns.CHUSERTYPE, BuiltIns.CHPASS, BuiltIns.DELUSER, BuiltIns.LISTUSERS -> {
                 print("You must execute this command as super.", LogLevel.ERROR);
             }
             case BuiltIns.LOGIN -> {
@@ -153,7 +155,7 @@ public class BuiltInProcess {
                 copy();
             }
             case BuiltIns.CD -> {
-                if (this.username == null) {
+                if (Objects.equals(this.username, "guest")) {
                     print("You are not logged in!", LogLevel.ERROR);
                     return;
                 }
@@ -165,6 +167,17 @@ public class BuiltInProcess {
             }
             case BuiltIns.SHOWDIR -> showDir();
             case BuiltIns.HELP -> help();
+            case BuiltIns.HISTORY -> {
+                if (!Objects.equals(this.userType, BuiltIns.UserTypes.SUPERUSER)) {
+                    print("You are not a super user!", LogLevel.ERROR);
+                    return;
+                }
+                if (command.length != 2) {
+                    print("Please provide a date in the format YYYY-mm-dd!", LogLevel.ERROR);
+                    return;
+                }
+                history(command[1]);
+            }
             default -> print("Unknown command: " + command[0], LogLevel.ERROR);
         }
     }
@@ -276,6 +289,33 @@ public class BuiltInProcess {
 
         Filesystem fs = new Filesystem(command[2], null, null, shellType);
         fs.deleteUser();
+    }
+
+    /**
+     * Lists the users in the system.
+     * command[0] is super
+     * command[1] is listusers
+     */
+    private void listUsers() {
+        Filesystem fs = new Filesystem(this.cwd);
+        File[] users = fs.getUserFiles();
+        if (users.length == 0) {
+            print("No users found!", LogLevel.WARNING);
+            return;
+        }
+
+        if (shellType == ShellType.LOCAL) {
+            Logs.printLine("Users:", LogLevel.INFO);
+            for (String user : fs.listUsers(users)) {
+                Logs.printLine(user, LogLevel.INFO);
+            }
+        } else {
+            this.logs.outputInfo("Users:", Store.NO, LogLevel.INFO);
+            for (String user : fs.listUsers(users)) {
+                this.logs.outputInfo("\n" + user, Store.NO, LogLevel.INFO);
+            }
+        }
+
     }
 
     /**
@@ -442,7 +482,7 @@ public class BuiltInProcess {
      */
     private void login() {
         // If already logged in, ignore
-        if (this.username != null) {
+        if (!Objects.equals(this.username, "guest")) {
             Logs.printLine("Already logged in!", LogLevel.WARNING);
             return;
         }
@@ -575,6 +615,7 @@ public class BuiltInProcess {
                 // Check if destination name does not contain any illegal characters (i.e. any punctuation)
                 if (!destination.matches("[a-zA-Z0-9]+")) {
                     print("Invalid destination name!", LogLevel.ERROR);
+                    return;
                 }
 
                 // Copy source file to destination
@@ -649,6 +690,40 @@ public class BuiltInProcess {
             this.logs.outputInfo("Built-in commands:", Store.NO, LogLevel.WARNING);
             for (int i = 0; i < BuiltIns.DESCS.length; i++) {
                 this.logs.outputInfo(BuiltIns.COMMANDS[i] + ": " + BuiltIns.DESCS[i], Store.NO, LogLevel.INFO);
+            }
+        }
+    }
+
+    /**
+     * Execute history command.
+     * command[0] is history
+     * command[1] is the date
+     * @param date date of logs to access the logs from.
+     */
+    private void history(String date) {
+        if (!date.matches("(\\d{4})-(\\d{2})-(\\d{2})")) {
+            print("Please input a valid date!", LogLevel.ERROR);
+            return;
+        }
+
+        Filesystem fs = new Filesystem(this.cwd);
+        File[] logFiles = fs.getLogs(date + "_log.txt");
+        if (logFiles == null || logFiles.length == 0) {
+            print("There are no log files with this date!", LogLevel.ERROR);
+            return;
+        }
+
+        String[] history = fs.getLogOutput(logFiles);
+        if (shellType == ShellType.LOCAL) {
+            print("History for " + date + ":", LogLevel.INFO);
+            for (String line : history) {
+                print(line, LogLevel.INFO);
+            }
+        } else {
+            this.logs.outputInfo("History for " + date + ":", Store.NO, LogLevel.INFO);
+            String[] lines = history[0].split("\n");
+            for (String line : lines) {
+                this.logs.outputInfo(line, Store.NO, LogLevel.INFO);
             }
         }
     }
