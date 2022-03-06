@@ -1,112 +1,163 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Remote Shell</title>
-<!--    <link rel="stylesheet" type="text/css" href="ServerStyles.css"/>-->
-</head>
 <body>
-<!--    <main id="container">-->
-<!--        <div id="terminal">-->
-<!--            &lt;!&ndash; Terminal Bar &ndash;&gt;-->
-<!--            <section id="terminal_bar">-->
-<!--                <p id="bar_user">admin</p>-->
-<!--            </section>-->
-<!--            &lt;!&ndash; Terminal Body &ndash;&gt;-->
-<!--            <section id="terminal_body">-->
-<!--                <div id="terminal_prompt">-->
-<!--                    <span id="terminal_prompt-user">admin: </span>-->
-<!--                    <span id="terminal_prompt-path"> /home/ntu-admin/Documents/SS/Files/admin</span>-->
-<!--                    <span id="terminal_prompt-end">$</span>-->
-<!--                    <form name="input" method="post">-->
-<!--                        <input id="terminal_input" type="text" name="user">-->
-<!--                    </form>-->
-<!--                </div>-->
-<!--            </section>-->
-<!--        </div>-->
-<!--    </main>-->
-<!--    <h1>Systems Software - Remote Shell</h1>-->
-<!--    <h2>VERSION 1</h2>-->
-<!--    &lt;!&ndash; The full prompt code with user input at the end&ndash;&gt;-->
-<!--    <form style="margin-left:5px" name="input" action="imback" method="post">-->
-<!--        <span style="color:green">guest: </span>-->
-<!--        <span style="color:blue">/home/ntu-admin/Documents/SS/Files</span><span style="color:black">$</span>-->
-<!--        <input type="text" name="user">-->
-<!--        <input type="submit" value="Submit">-->
-<!--    </form>-->
-
-<!--    &lt;!&ndash; The returned message with no user input &ndash;&gt;-->
-<!--    <p>-->
-<!--        <span style="color:red;margin-left:5px">Error! Command 'ddd' does not exist!</span>-->
-<!--    </p>-->
-
-<!--    &lt;!&ndash; The full prompt code with user input at the end&ndash;&gt;-->
-<!--    <form style="margin-left:5px" name="input" action="imback" method="post">-->
-<!--        <span style="color:green">guest: </span>-->
-<!--        <span style="color:blue">/home/ntu-admin/Documents/SS/Files</span><span style="color:black">$</span>-->
-<!--        <input type="text" name="user">-->
-<!--        <input type="submit" value="Submit">-->
-<!--    </form>-->
-
-<!--    &lt;!&ndash; Built-in commands output that requires user input &ndash;&gt;-->
-<!--    <form style="margin-left:5px" name="input" action="imback" method="post">-->
-<!--        <span style="color:black">Username$</span>-->
-<!--        <input type="text" name="user">-->
-<!--        <input type="submit" value="Submit">-->
-<!--    </form>-->
-<!--    <form style="margin-left:5px" name="input" action="imback" method="post">-->
-<!--        <span style="color:black">Password$</span>-->
-<!--        <input type="text" name="user">-->
-<!--        <input type="submit" value="Submit">-->
-<!--    </form>-->
-<!--    <p>-->
-<!--        <span style="color:black;margin-left:5px">Welcome admin</span>-->
-<!--    </p>-->
-<!--    <form style="margin-left:5px" name="input" action="imback" method="post">-->
-<!--        <span style="color:green">admin: </span>-->
-<!--        <span style="color:blue">/home/ntu-admin/Documents/SS/Files</span><span style="color:black">$</span>-->
-<!--        <input type="text" name="user">-->
-<!--        <input type="submit" value="Submit">-->
-<!--    </form>-->
-
-<!--    <h2>VERSION 2</h2>-->
-<!--    <form style="margin-left:5px" name="input" action="imback" method="post">-->
-<!--        <span style="color:black">Input:</span>-->
-<!--        <input type="text" name="user">-->
-<!--        <input type="submit" value="Submit">-->
-<!--    </form>-->
-
-    <p>
-        <!-- Prompt -->
-        <span style="color:green;margin-left:5px">guest: </span>
-        <span style="color:blue">/home/ntu-admin/Documents/SS/Files</span><span style="color:black">$</span>
-        <!-- Fill in the inputted command after the prompt to show what the user inputted -->
-        <span style="color:black">ddd</span>
-        <!-- Break because <br> doesn't work for some reason, put this on the one after -->
-        <p></p>
-        <!-- Output -->
-        <span style="color:red;margin-left:5px">Error! Command 'ddd' does not exist!</span>
-        <p></p>
-        <!-- Prompt -->
-        <span style="color:green;margin-left:5px">guest: </span>
-        <span style="color:blue">/home/ntu-admin/Documents/SS/Files</span><span style="color:black">$</span>
-        <!-- Fill in the inputted command after the prompt to show what the user inputted -->
-        <span style="color:black">login</span>
-        <p></p>
-        <!-- Non-full prompt -->
-        <span style="color:black;margin-left:5px">Username$</span>
-        <!-- Fill in the inputted command after the prompt to show what the user inputted -->
-        <span style="color:black">admin</span>
-        <p></p>
-        <span style="color:black;margin-left:5px">Password$</span>
-        <!-- Fill in the inputted command after the prompt to show what the user inputted -->
-        <span style="color:black">*********</span>
-        <p></p>
-        <span style="color:black;margin-left:5px">Welcome admin</span>
-        <p></p>
-        <!-- Prompt -->
-        <span style="color:green;margin-left:5px">admin: </span>
-        <span style="color:blue">/home/ntu-admin/Documents/SS/Files</span><span style="color:black">$</span>
-    </p>
+    <main id="container">
+        <div id="terminal">
+            <section id="terminal_bar">
+                <p id="bar_user">User: admin</p>
+                <form name="input" method="post">
+                    <input class="terminal_input" type="text" name="user">
+                </form>
+            </section>
+            <section id="terminal_body">
+                <!-- "Full" type -->
+                <div class="terminal_prompt">
+                    <span class="terminal_prompt-path">/admin</span>
+                    <span class="terminal_prompt-end">:~$</span>
+                </div>
+                <!-- "Short" type -->
+                <div class="terminal_prompt">
+                    <span class="terminal_prompt-short">Username</span>
+                    <span class="terminal_prompt-end">:~$</span>
+                </div>
+                <!-- "Short" type -->
+                <div class="terminal_prompt">
+                    <span class="terminal_prompt-short">Password</span>
+                    <span class="terminal_prompt-end">:~$</span>
+                </div>
+                <!-- "Output" type -->
+                <div class="terminal_prompt">
+                    <span class="terminal_prompt-info">test1</span>
+                </div>
+            </section>
+        </div>
+    </main>
 </body>
-</html>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Ubuntu');
+    @import url('https://fonts.googleapis.com/css?family=Ubuntu+Mono');
+
+    body {
+      background: linear-gradient(45deg, #57003f 0%, #f57453 100%);
+      font-family: Ubuntu;
+      font-size: 28px;
+    }
+
+    #container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #terminal {
+      width: 90vw;
+      height: 85vh;
+      box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    #terminal_bar {
+      display: flex;
+      width: 100%;
+      height: 60px;
+      align-items: center;
+      padding: 0 8px;
+      box-sizing: border-box;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      background: linear-gradient(#504b45 0%, #3c3b37 100%);
+    }
+
+    #bar_user {
+      color: #d5d0ce;
+      margin-left: 5%;
+      font-size: 28px;
+      line-height: 30px;
+    }
+
+    #terminal_body {
+      background: rgba(56, 4, 40, 0.9);
+      font-family: 'Ubuntu Mono';
+      height: calc(100% - 60px);
+      padding-top: 2px;
+      margin-top: -1px;
+    }
+
+    form {
+      width: 50%
+    }
+
+    input[type=text] {
+      width: 100%;
+      border: 2px solid #7eda28;
+      border-radius: 4px;
+    }
+
+    .terminal_prompt {
+      display: flex;
+    }
+    .terminal_prompt-path {
+      color: #7eda28;
+    }
+    .terminal_prompt-short {
+      color: #dddddd;
+    }
+    .terminal_prompt-error {
+      color: #f74343;
+    }
+    .terminal_prompt-warning {
+      color: #f7a043;
+    }
+    .terminal_prompt-info {
+      color: #0099ff
+    }
+    .terminal_prompt-end {
+      color: #2899da;
+    }
+    .terminal_prompt-text {
+      margin-left: 5px;
+      color: #dddddd;
+    }
+    .terminal_input {
+      color: #dddddd;
+      background-color: transparent;
+      border: 1px solid;
+      border-color: #292623;
+      height: 30px;
+      margin-top: 30px;
+      padding-left: 10px;
+      margin-left: 20%;
+      font-size: 28px;
+    }
+</style>
+
+<!--    <p>-->
+<!--        &lt;!&ndash; Prompt &ndash;&gt;-->
+<!--        <span style="color:green;margin-left:5px">guest: </span>-->
+<!--        <span style="color:blue">/home/ntu-admin/Documents/SS/Files</span><span style="color:black">$</span>-->
+<!--        &lt;!&ndash; Fill in the inputted command after the prompt to show what the user inputted &ndash;&gt;-->
+<!--        <span style="color:black">ddd</span>-->
+<!--        &lt;!&ndash; Break because <br> doesn't work for some reason, put this on the one after &ndash;&gt;-->
+<!--        <p></p>-->
+<!--        &lt;!&ndash; Output &ndash;&gt;-->
+<!--        <span style="color:red;margin-left:5px">Error! Command 'ddd' does not exist!</span>-->
+<!--        <p></p>-->
+<!--        &lt;!&ndash; Prompt &ndash;&gt;-->
+<!--        <span style="color:green;margin-left:5px">guest: </span>-->
+<!--        <span style="color:blue">/home/ntu-admin/Documents/SS/Files</span><span style="color:black">$</span>-->
+<!--        &lt;!&ndash; Fill in the inputted command after the prompt to show what the user inputted &ndash;&gt;-->
+<!--        <span style="color:black">login</span>-->
+<!--        <p></p>-->
+<!--        &lt;!&ndash; Non-full prompt &ndash;&gt;-->
+<!--        <span style="color:black;margin-left:5px">Username$</span>-->
+<!--        &lt;!&ndash; Fill in the inputted command after the prompt to show what the user inputted &ndash;&gt;-->
+<!--        <span style="color:black">admin</span>-->
+<!--        <p></p>-->
+<!--        <span style="color:black;margin-left:5px">Password$</span>-->
+<!--        &lt;!&ndash; Fill in the inputted command after the prompt to show what the user inputted &ndash;&gt;-->
+<!--        <span style="color:black">*********</span>-->
+<!--        <p></p>-->
+<!--        <span style="color:black;margin-left:5px">Welcome admin</span>-->
+<!--        <p></p>-->
+<!--        &lt;!&ndash; Prompt &ndash;&gt;-->
+<!--        <span style="color:green;margin-left:5px">admin: </span>-->
+<!--        <span style="color:blue">/home/ntu-admin/Documents/SS/Files</span><span style="color:black">$</span>-->
+<!--    </p>-->

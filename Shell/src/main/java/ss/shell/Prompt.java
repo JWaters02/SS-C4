@@ -1,6 +1,7 @@
 package ss.shell;
 
 import ss.shell.utils.BuiltIns;
+import ss.shell.utils.BuiltIns.*;
 import ss.shell.utils.ConsoleColours;
 import ss.shell.utils.ShellUtils;
 import ss.shell.utils.Logs;
@@ -22,9 +23,10 @@ public class Prompt {
     /**
      * Create the event loop that produces a prompt for user input.
      * The prompt should be the current working directory followed by a '$ '.
+     * This is only used if the terminal is run locally for testing purposes.
      */
     public static void main(String[] args) {
-        BuiltInProcess bip = new BuiltInProcess();
+        BuiltInProcess bip = new BuiltInProcess(ShellType.LOCAL);
 
         // Main event loop
         while (true) {
@@ -39,6 +41,8 @@ public class Prompt {
                 Logs.printLine("No command entered.", LogLevel.ERROR);
                 continue;
             }
+
+            // TODO: Validate process builder commands before they get passed through, e.g. ls
 
             // Parse user input
             String[] command = input.split(" ");
@@ -55,21 +59,12 @@ public class Prompt {
                     Logs.logToFile(command);
                     ShellProcess process = new ShellProcess(bip.getCWD());
                     String output = process.execute(command);
-                    // TODO: Might want to store output depending on if it is error or not
                     Logs.printLine(output, Store.NO);
                 } else {
                     Logs.printLine("Command does not exist or is not allowed.", LogLevel.WARNING);
                 }
             }
         }
-    }
-
-    public String[] getFullPrompt() {
-        String[] ret = new String[3];
-        ret[0] = username;
-        ret[1] = cwd;
-        ret[2] = "$";
-        return ret;
     }
 
     /**
@@ -116,7 +111,7 @@ public class Prompt {
             return true;
         }
         if (isExit(command)) {
-            Logs.printLine("Exiting shell...");
+            Logs.printLine("Exiting shell...", Store.YES);
             ShellUtils.wait(1);
             System.exit(0);
         }

@@ -6,10 +6,12 @@ import java.time.*;
 import java.io.IOException;
 
 public class Logs {
+    private String outputTotal;
+
     public enum LogLevel {
         INFO,
         WARNING,
-        ERROR
+        ERROR;
     }
 
     public enum Store {
@@ -17,22 +19,63 @@ public class Logs {
         NO
     }
 
-    /**
-     * Prints a line (with \n) of text and stores output in the logs file.
-     * @param text Input text.
-     */
-    public static void printLine(String text) {
-        System.out.println(text);
-        logToFile(text);
+    public void outputPrompt(String prompt, Store store) {
+        if (store == Store.YES) {
+            logToFile(prompt);
+        }
+        this.outputTotal += getOuterTop();
+        this.outputTotal += "<span class=\"terminal_prompt-path\">" + prompt + "</span>\n" +
+                            "<span class=\"terminal_prompt-end\">:~$</span>";
+        this.outputTotal += getOuterBottom();
+    }
+
+    public void outputShort(String output, Store store) {
+        if (store == Store.YES) {
+            logToFile(output);
+        }
+        this.outputTotal += getOuterTop();
+        this.outputTotal += "<span class=\"terminal_prompt-short\">" + output + "</span>\n" +
+                            "<span class=\"terminal_prompt-end\">:~$</span>";
+        this.outputTotal += getOuterBottom();
+    }
+
+    public void outputInfo(String output, Store store, LogLevel level) {
+        if (store == Store.YES) {
+            logToFile(output);
+        }
+        this.outputTotal += getOuterTop();
+        if (level == LogLevel.ERROR) {
+            this.outputTotal += "<span class=\"terminal_prompt-error\">" + output + "</span>";
+        } else if (level == LogLevel.WARNING) {
+            this.outputTotal += "<span class=\"terminal_prompt-warning\">" + output + "</span>";
+        } else if (level == LogLevel.INFO) {
+            this.outputTotal += "<span class=\"terminal_prompt-info\">" + output + "</span>";
+        }
+        this.outputTotal += getOuterBottom();
+    }
+
+    private String getOuterTop() {
+        return "<div class=\"terminal_prompt\">\n";
+    }
+
+    private String getOuterBottom() {
+        return "\n</div>";
+    }
+
+    public String getOutputTotal() { return this.outputTotal; }
+
+    public void addToOutputTotal(String output) {
+        this.outputTotal += output;
     }
 
     /**
      * Prints a line (with \n) of text and stores output in the logs file.
      * @param text Input text.
-     * @param store An override param to not store output in logs file.
+     * @param store Tell it not to store output in logs file.
      */
     public static void printLine(String text, Store store) {
-        if (store == Store.NO) { System.out.println(text); }
+        System.out.println(text);
+        if (store == Store.YES) { logToFile(text); }
     }
 
     /**
@@ -81,7 +124,7 @@ public class Logs {
      * Stores text in the logs file with a date and time stamp.
      * @param text Input text.
      */
-    private static void logToFile(String text) {
+    public static void logToFile(String text) {
         final String fileName = BuiltIns.HOME_PATH + LocalDate.now() + "_log.txt";
         try {
             // We want logs file to be stored in the home directory

@@ -75,7 +75,7 @@ public class Filesystem {
      */
     public void deleteUser() {
         if (this.hasDirectory()) {
-            Logs.printLine("Deleting user " + this.username);
+            Logs.printLine("Deleting user " + this.username, Store.YES);
             try {
                 File userDir = new File(this.getUserDirPath());
                 // Empty directory first

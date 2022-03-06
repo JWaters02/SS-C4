@@ -1,0 +1,97 @@
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Ubuntu');
+    @import url('https://fonts.googleapis.com/css?family=Ubuntu+Mono');
+
+    body {
+      background: linear-gradient(45deg, #57003f 0%, #f57453 100%);
+      font-family: Ubuntu;
+      font-size: 28px;
+    }
+
+    #container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #terminal {
+      width: 90vw;
+      height: 85vh;
+      box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    #terminal_bar {
+      display: flex;
+      width: 100%;
+      height: 60px;
+      align-items: center;
+      padding: 0 8px;
+      box-sizing: border-box;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      background: linear-gradient(#504b45 0%, #3c3b37 100%);
+    }
+
+    #bar_user {
+      color: #d5d0ce;
+      margin-left: 5%;
+      font-size: 28px;
+      line-height: 30px;
+    }
+
+    #terminal_body {
+      background: rgba(56, 4, 40, 0.9);
+      font-family: 'Ubuntu Mono';
+      height: calc(100% - 60px);
+      padding-top: 2px;
+      margin-top: -1px;
+    }
+
+    form {
+      width: 50%
+    }
+
+    input[type=text] {
+      width: 100%;
+      border: 2px solid #7eda28;
+      border-radius: 4px;
+    }
+
+    .terminal_prompt {
+      display: flex;
+    }
+    .terminal_prompt-path {
+      color: #7eda28;
+    }
+    .terminal_prompt-short {
+      color: #dddddd;
+    }
+    .terminal_prompt-error {
+      color: #f74343;
+    }
+    .terminal_prompt-warning {
+      color: #f7a043;
+    }
+    .terminal_prompt-info {
+      color: #0099ff
+    }
+    .terminal_prompt-end {
+      color: #2899da;
+    }
+    .terminal_prompt-text {
+      margin-left: 5px;
+      color: #dddddd;
+    }
+    .terminal_input {
+      color: #dddddd;
+      background-color: transparent;
+      border: 1px solid;
+      border-color: #292623;
+      height: 30px;
+      margin-top: 30px;
+      padding-left: 10px;
+      margin-left: 20%;
+      font-size: 28px;
+    }
+</style>

@@ -118,7 +118,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>css.shell/ss.shell.Prompt</mainClass>
+                            <mainClass>ss.shell/ss.shell.Prompt</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

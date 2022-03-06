@@ -7,6 +7,8 @@ public class BuiltIns {
     public static final String SUPER = "super"; // Equivalent to sudo. Only valid for "super" users. A standard user cannot use this command.
     public static final String ADDUSER = "adduser"; // Add a new user to the system. Requires "super" privileges to run.
     public static final String DELUSER = "deluser"; // Delete a user from the system. Requires "super" privileges to run.
+    // TODO: Implement
+    public static final String LISTUSERS = "listusers"; // Lists all users on the system. Requires "super" privileges to run.
     public static final String CHPASS = "chpass"; // Change a user's password. Requires "super" privileges to run.
     public static final String CHUSERTYPE = "chusertype"; // Change a user's type. Requires "super" privileges to run.
     public static final String LOGIN = "login"; // Log into a user account. Default superuser with username and password is "admin", "pass".
@@ -17,24 +19,27 @@ public class BuiltIns {
     public static final String CD = "cd"; // Change the current directory.
     public static final String SHOWDIR = "showdir"; // Show current working directory.
     public static final String HELP = "help"; // Print a list of all available commands.
-    public static final String[] COMMANDS = {SUPER, ADDUSER, DELUSER, CHPASS, CHUSERTYPE, LOGIN, LOGOUT, WHOAMI, MOVE, COPY, CD, SHOWDIR, HELP};
+    // TODO: Implement
+    public static final String HISTORY = "history"; // Prints the logs
+    public static final String[] COMMANDS = {SUPER, ADDUSER, DELUSER, LISTUSERS, CHPASS, CHUSERTYPE, LOGIN, LOGOUT, WHOAMI, MOVE, COPY, CD, SHOWDIR, HELP, HISTORY};
+    public static final String[] SHORTS = {ADDUSER, CHPASS, CHUSERTYPE, DELUSER, LOGIN}; // The types of built-in commands that require extra user input under the prompt line
 
     private static final String SUPER_DESC = "Equivalent to sudo. Only valid for \"super\" users. A standard user cannot use this command.";
-    private static final String ADDUSER_DESC = "Add a new user to the system. Requires \"super\" privileges to run.";
-    private static final String DELUSER_DESC = "Delete a user from the system. Requires \"super\" privileges to run.";
-    private static final String CHPASS_DESC = "Change a user's password. Requires \"super\" privileges to run.";
+    private static final String ADDUSER_DESC = "Add a new user to the system. Requires \"super\" privileges to run. Usage: super adduser <username> <password> <confirm password> <type>";
+    private static final String DELUSER_DESC = "Delete a user from the system. Requires \"super\" privileges to run. Usage: super deluser <username>";
+    private static final String LISTUSERS_DESC = "Lists all users on the system. Requires \"super\" privileges to run.";
+    private static final String CHPASS_DESC = "Change a user's password. Requires \"super\" privileges to run. Usage: super chpass <username> <old password> <new password>";
     private static final String CHUSERTYPE_DESC = "Change a user's type. Requires \"super\" privileges to run.";
-    private static final String LOGIN_DESC = "Log into a user account.";
+    private static final String LOGIN_DESC = "Log into a user account. Usage: login <username> <password>";
     private static final String LOGOUT_DESC = "Log out of the current user account.";
     private static final String WHOAMI_DESC = "Print the current user's username.";
-    private static final String MOVE_DESC = "Move a file from source to target destination.";
-    private static final String COPY_DESC = "Copy a file from source to target destination.";
-    private static final String CD_DESC = "Change the current directory.";
+    private static final String MOVE_DESC = "Move a file from source to target destination. Usage: move <source> <destination>";
+    private static final String COPY_DESC = "Copy a file from source to target destination. Usage: copy <source> <destination>";
+    private static final String CD_DESC = "Change the current directory. Usage: cd <path> No preceding path will return to the home path.";
     private static final String SHOWDIR_DESC = "Show current working directory.";
     private static final String HELP_DESC = "Print a list of all available commands.";
-    public static final String[] DESCS = {SUPER_DESC, ADDUSER_DESC, DELUSER_DESC, CHPASS_DESC, CHUSERTYPE_DESC, LOGIN_DESC, LOGOUT_DESC, WHOAMI_DESC, MOVE_DESC, COPY_DESC, CD_DESC, SHOWDIR_DESC, HELP_DESC};
-
-    public static final String[] SHORTS = {ADDUSER, CHPASS, CHUSERTYPE, LOGIN}; // The types of built-in commands that require extra user input under the prompt line
+    private static final String HISTORY_DESC = "Prints the logs";
+    public static final String[] DESCS = {SUPER_DESC, ADDUSER_DESC, DELUSER_DESC, LISTUSERS_DESC, CHPASS_DESC, CHUSERTYPE_DESC, LOGIN_DESC, LOGOUT_DESC, WHOAMI_DESC, MOVE_DESC, COPY_DESC, CD_DESC, SHOWDIR_DESC, HELP_DESC, HISTORY_DESC};
 
     /**
      * Process builder allowed commands
@@ -73,9 +78,17 @@ public class BuiltIns {
      * The different types of prompts
      */
     public enum PromptType {
-        FULL,
+        PROMPT,
         SHORT,
-        OUTPUT,
+        INFO
+    }
+
+    /**
+     * The different types of shells that can be run on this program
+     */
+    public enum ShellType {
+        LOCAL,
+        REMOTE
     }
 
     public static final String HOME_PATH = "/home/ntu-admin/Documents/SS/Files/";
