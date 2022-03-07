@@ -189,7 +189,6 @@ public class Filesystem {
     public File[] getLogs(String filename) {
         File homeDir = new File(BuiltIns.HOME_PATH);
         FilenameFilter filter = (file, s) -> s.toLowerCase().endsWith(filename);
-        File[] files = homeDir.listFiles(filter);
         return homeDir.listFiles(filter);
     }
 
@@ -304,4 +303,10 @@ public class Filesystem {
         if (this.shellType == ShellType.LOCAL) Logs.printLine(output, level);
         else this.logs.outputInfo(output, Store.YES, level);
     }
+
+    /**
+     * Gets the output logs object.
+     * @return the output logs object.
+     */
+    public String getLogsOutput() { return this.logs.getOutputTotal(); }
 }

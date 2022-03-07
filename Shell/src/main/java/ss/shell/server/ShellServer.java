@@ -13,12 +13,30 @@ import java.util.Scanner;
  * @author Joshua
  */
 public class ShellServer extends Thread {
-    private static final int PORT = 2222;
+    private Thread thread;
+    private int PORT = 2222;
+    private final String threadName;
+    private static final int numServersToStart = 3;
+
+    public ShellServer(String name, int port) {
+        this.PORT = port;
+        this.threadName = name;
+    }
 
     public static void main(String[] args) {
         try {
-            ShellServer server = new ShellServer();
-            server.start();
+            for (int i = 0; i < numServersToStart; i++) {
+                new ShellServer("ShellServer" + i, 2223 + i).start();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void run() {
+        // Run start on each new thread
+        try {
+            start();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -28,9 +46,13 @@ public class ShellServer extends Thread {
      * Start the server.
      */
     public void start() {
+        if (thread == null) {
+            thread = new Thread(this, threadName);
+            thread.start();
+        }
         try {
             ServerSocket server = new ServerSocket(PORT);
-            System.out.println("Echo Server listening port: " + PORT);
+            System.out.println("Server " + threadName + " started on port " + PORT);
 
             boolean shutdown = false;
             boolean hasLoaded = false;

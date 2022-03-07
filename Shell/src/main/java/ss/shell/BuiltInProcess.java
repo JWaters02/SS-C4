@@ -193,7 +193,7 @@ public class BuiltInProcess {
         String username = scanner.nextLine();
 
         Logs.print("Enter password: ", Store.NO);
-        int password1 = scanner.nextLine().hashCode(); // TODO: Mask password input
+        int password1 = scanner.nextLine().hashCode();
         Logs.print("Retype password: ", Store.NO);
         int password2 = scanner.nextLine().hashCode();
         if (password1 != password2) {
@@ -246,6 +246,7 @@ public class BuiltInProcess {
         Filesystem fs = new Filesystem(username, String.valueOf(pass1),
                 BuiltIns.UserTypes.valueOf(type.toUpperCase()), shellType);
         fs.createUser();
+        this.logs.addToOutputTotal(fs.getLogsOutput());
     }
 
     /**
@@ -289,6 +290,7 @@ public class BuiltInProcess {
 
         Filesystem fs = new Filesystem(command[2], null, null, shellType);
         fs.deleteUser();
+        this.logs.addToOutputTotal(fs.getLogsOutput());
     }
 
     /**
@@ -377,6 +379,7 @@ public class BuiltInProcess {
             this.logs.outputInfo("User does not exist!", Store.YES, LogLevel.ERROR);
             return;
         }
+        this.logs.addToOutputTotal(fs.getLogsOutput());
 
         // Don't allow change password of current user
         // TODO: Maybe remove?
@@ -394,6 +397,7 @@ public class BuiltInProcess {
         if (fs2.changePassword(String.valueOf(newPassword))) {
             this.logs.outputInfo("Password changed successfully!", Store.YES, LogLevel.INFO);
         }
+        this.logs.addToOutputTotal(fs2.getLogsOutput());
     }
 
     /**
@@ -461,6 +465,7 @@ public class BuiltInProcess {
             this.logs.outputInfo("User does not exist!", Store.YES, LogLevel.ERROR);
             return;
         }
+        this.logs.addToOutputTotal(fs.getLogsOutput());
 
         this.logs.outputInfo("Current user type: " + fs.getUserType(), Store.NO, LogLevel.INFO);
         this.logs.outputInfo("Available user types: standard, superuser", Store.YES, LogLevel.INFO);
@@ -474,6 +479,7 @@ public class BuiltInProcess {
             this.userType = fs2.getUserType();
             this.logs.outputInfo("User type changed!", Store.YES, LogLevel.INFO);
         }
+        this.logs.addToOutputTotal(fs2.getLogsOutput());
     }
 
     /**
@@ -494,7 +500,6 @@ public class BuiltInProcess {
         Logs.print("Password$ ", Store.NO);
         int password = scanner.nextLine().hashCode();
 
-        // TODO: Fix bug where inputting empty login and password causes stack trace
         Filesystem fs = new Filesystem(username, String.valueOf(password), null, shellType);
         if (fs.login()) {
             Logs.printLine("Welcome " + username, Store.YES);
@@ -526,7 +531,6 @@ public class BuiltInProcess {
         String username = command[1];
         int password = command[2].hashCode();
 
-        // TODO: Fix bug where inputting empty login and password causes stack trace
         Filesystem fs = new Filesystem(username, String.valueOf(password), null, shellType);
         if (fs.login()) {
             this.logs.outputInfo("Welcome " + username, Store.YES, LogLevel.INFO);
@@ -535,6 +539,7 @@ public class BuiltInProcess {
             this.cwd = BuiltIns.HOME_PATH + this.username;
             this.isLoggedIn = true;
         }
+        this.logs.addToOutputTotal(fs.getLogsOutput());
     }
 
     /**
@@ -575,7 +580,6 @@ public class BuiltInProcess {
      */
     private void move() {
         // TODO: Need more outputs for edge cases (such as trying to move files outside of their user directory)
-        // TODO: Fix
         String source = command[1];
         String destination = command[2];
 
@@ -604,7 +608,6 @@ public class BuiltInProcess {
      */
     private void copy() {
         // TODO: Need more outputs for edge cases (such as trying to copy files outside of their user directory)
-        // TODO: Fix
         String source = command[1];
         String destination = command[2];
 

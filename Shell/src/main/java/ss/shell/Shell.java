@@ -63,21 +63,17 @@ public class Shell {
                     this.type = bip.getUserType();
                     this.isLoggedIn = bip.getIsLoggedIn();
                     this.logs.addToOutputTotal(bip.getLogsOutput());
-                } else {
-                    // If it's a process builder command
-                    if (isAllowedCommand(command[0])) {
-                        Logs.logToFile(command);
-                        // If the PB command is valid
-                        if (validatePBCommand(command)) {
-                            ShellProcess process = new ShellProcess(bip.getCWD());
-                            String output = process.execute(command);
-                            this.logs.outputShort(output, Store.NO);
-                        } else {
-                            this.logs.outputInfo("Invalid process builder command!", Store.NO, LogLevel.ERROR);
-                        }
+                } else if (isAllowedCommand(command[0])) {
+                    Logs.logToFile(command);
+                    // If the PB command is valid
+                    if (validatePBCommand(command)) {
+                        ShellProcess process = new ShellProcess(bip.getCWD());
+                        String output = process.execute(command);
+                        this.logs.outputShort(output, Store.NO);
                     } else {
-                        this.logs.outputInfo("Command does not exist or is not allowed.", Store.NO, LogLevel.WARNING);
+                        this.logs.outputInfo("Invalid process builder command!", Store.NO, LogLevel.ERROR);
                     }
+                    this.logs.outputInfo("Command does not exist or is not allowed.", Store.NO, LogLevel.WARNING);
                 }
                 // Add the new prompt to the output
                 this.logs.outputPrompt(this.cwd, Store.YES);
