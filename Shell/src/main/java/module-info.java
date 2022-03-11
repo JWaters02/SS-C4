@@ -13,6 +13,5 @@ module ss.shell {
 
     opens ss.shell to javafx.fxml;
     exports ss.shell.client;
-    exports ss.shell.examples;
     exports ss.shell.tests;
 }

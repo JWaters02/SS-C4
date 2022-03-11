@@ -41,7 +41,7 @@ public class Shell {
         bip = new BuiltInProcess(this.username, this.cwd, this.type, this.isLoggedIn, ShellType.REMOTE);
 
         if (this.input.length() == 0) {
-            this.logs.outputInfo("No command entered", Store.NO, LogLevel.ERROR);
+            this.logs.outputInfo("No command entered", Store.YES, LogLevel.ERROR);
         } else {
             // Output input to log for history purposes
             Logs.logToFile(this.input);
@@ -66,14 +66,15 @@ public class Shell {
                 } else if (isAllowedCommand(command[0])) {
                     Logs.logToFile(command);
                     // If the PB command is valid
-                    if (validatePBCommand(command)) {
+                    if (isValidPBCommand(command)) {
                         ShellProcess process = new ShellProcess(bip.getCWD());
                         String output = process.execute(command);
                         this.logs.outputShort(output, Store.NO);
                     } else {
-                        this.logs.outputInfo("Invalid process builder command!", Store.NO, LogLevel.ERROR);
+                        this.logs.outputInfo("Invalid process builder command!", Store.YES, LogLevel.ERROR);
                     }
-                    this.logs.outputInfo("Command does not exist or is not allowed.", Store.NO, LogLevel.WARNING);
+                } else {
+                    this.logs.outputInfo("Command does not exist or is not allowed.", Store.YES, LogLevel.ERROR);
                 }
                 // Add the new prompt to the output
                 this.logs.outputPrompt(this.cwd, Store.YES);
@@ -157,8 +158,45 @@ public class Shell {
      * @param command Process builder command.
      * @return True if the command is valid.
      */
-    private boolean validatePBCommand(String[] command) {
-        // TODO: Implement
+    private boolean isValidPBCommand(String[] command) {
+        switch (command[0]) {
+            case BuiltIns.PB_LS, BuiltIns.PB_MKDIR , BuiltIns.PB_RMDIR -> {
+                if (command.length == 2) {
+                    if (isOutsideCWD(command[1])) {
+                        this.logs.outputInfo(command[0] + " path is not allowed outside the current working directory.",
+                                Store.YES, LogLevel.ERROR);
+                        return false;
+                    }
+                }
+            }
+            case BuiltIns.PB_CP, BuiltIns.PB_MV -> {
+                if (command.length == 3) {
+                    if (isOutsideCWD(command[1]) || isOutsideCWD(command[2])) {
+                        this.logs.outputInfo(command[0] + " path is not allowed outside the current working directory.",
+                                Store.YES, LogLevel.ERROR);
+                        return false;
+                    }
+                }
+            }
+        }
         return true;
+    }
+
+    /**
+     * Checks if the command is to do with a file outside the current working directory.
+     * Also check if the path is a relative path, and if so, make it absolute, then check again
+     * @param path The path to check.
+     * @return True if the path is outside the current working directory.
+     */
+    private boolean isOutsideCWD(String path) {
+        if (!path.contains("..") && !path.contains("/")) {
+            return false;
+        }
+
+        // Convert relative path to absolute path for checking
+        if (path.startsWith("..")) {
+            path = this.cwd + "/" + path;
+        }
+        return !path.startsWith(this.cwd);
     }
 }

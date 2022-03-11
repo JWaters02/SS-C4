@@ -82,7 +82,7 @@ public class Logs {
      * Get the top of the HTML string.
      * @return The top of the HTML string.
      */
-    private String getOuterTop() {
+    public String getOuterTop() {
         return "<div class=\"terminal_prompt\">\n";
     }
 
@@ -90,7 +90,7 @@ public class Logs {
      * Get the bottom of the HTML string.
      * @return The bottom of the HTML string.
      */
-    private String getOuterBottom() {
+    public String getOuterBottom() {
         return "\n</div>";
     }
 
@@ -215,7 +215,7 @@ public class Logs {
      * @param input Input int.
      * @return Input string with 2 digits.
      */
-    private static String getTwoDigits(int input) {
+    public static String getTwoDigits(int input) {
         String inputString = Integer.toString(input);
         if (inputString.length() == 1) {
             return "0" + inputString;

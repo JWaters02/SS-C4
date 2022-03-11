@@ -25,6 +25,7 @@ public class ShellServer extends Thread {
 
     public static void main(String[] args) {
         try {
+            // TODO: Fix the race condition
             for (int i = 0; i < numServersToStart; i++) {
                 new ShellServer("ShellServer" + i, 2223 + i).start();
             }
@@ -33,6 +34,9 @@ public class ShellServer extends Thread {
         }
     }
 
+    /**
+     * Starts the server for each client.
+     */
     public void run() {
         // Run start on each new thread
         try {
@@ -90,7 +94,7 @@ public class ShellServer extends Thread {
                 userInputSanitised.replace(0, 5, "");
                 System.out.println("post data:" + userInputSanitised);
                 int index = userInputSanitised.toString().indexOf('+');
-                while(index > -1){
+                while(index > -1) {
                     userInputSanitised = new StringBuilder(userInputSanitised.substring(0, index) + ' ' +
                             userInputSanitised.substring(index + 1));
                     index = userInputSanitised.toString().indexOf('+');
@@ -119,7 +123,7 @@ public class ShellServer extends Thread {
                 out.println("HTTP/1.0 200 OK");
                 out.println("Content-Type: text/html; charset=utf-8");
                 out.println("Server: SS_SERVER");
-                // this blank line signals the end of the headers
+                // This blank line signals the end of the headers
                 out.println("");
                 // Send the HTML page
                 out.println("<body>\n" +
@@ -140,9 +144,9 @@ public class ShellServer extends Thread {
                         "    </main>\n" +
                         "</body>");
 
-                // Open CSS.txt file and read each line into the PrintWriter out
+                // Open CSS.css file and read each line into the PrintWriter out
                 try {
-                    File file = new File("src/main/java/ss/shell/server/CSS.txt");
+                    File file = new File("src/main/java/ss/shell/server/CSS.css");
                     Scanner scanner = new Scanner(file);
                     while (scanner.hasNextLine()) {
                         out.println(scanner.nextLine());
@@ -157,8 +161,20 @@ public class ShellServer extends Thread {
                 out.close();
                 socket.close();
             }
-            server.close();
+            stopServer(server);
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Stops the server.
+     * @param server The socket to close.
+     */
+    public void stopServer(ServerSocket server) {
+        try {
+            server.close();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

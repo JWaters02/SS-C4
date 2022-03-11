@@ -579,9 +579,14 @@ public class BuiltInProcess {
      * command[2] is destination
      */
     private void move() {
-        // TODO: Need more outputs for edge cases (such as trying to move files outside of their user directory)
         String source = command[1];
         String destination = command[2];
+
+        // If the source or destination paths are outside the user's home directory, don't let them
+        if (!source.startsWith(this.cwd) || !destination.startsWith(this.cwd) || source.contains("..")) {
+            print("You cannot copy files outside of your home directory!", LogLevel.ERROR);
+            return;
+        }
 
         try {
             File f = new File(source);
@@ -607,9 +612,14 @@ public class BuiltInProcess {
      * command[2] is destination
      */
     private void copy() {
-        // TODO: Need more outputs for edge cases (such as trying to copy files outside of their user directory)
         String source = command[1];
         String destination = command[2];
+
+        // If the source or destination paths are outside the user's home directory, don't let them
+        if (!source.startsWith(this.cwd) || !destination.startsWith(this.cwd) || source.contains("..")) {
+            print("You cannot copy files outside of your home directory!", LogLevel.ERROR);
+            return;
+        }
 
         try {
             File f = new File(source);
@@ -636,7 +646,12 @@ public class BuiltInProcess {
      * @param newPath New path
      */
     private void cd(String newPath) {
-        // TODO: Fix going backwards (..)
+        // If the user is trying to go backwards outside the user's home directory, don't let them
+        if (newPath.equals("..") && !this.cwd.equals(BuiltIns.HOME_PATH + this.username)) {
+            print("You cannot go backwards outside of your home directory!", LogLevel.ERROR);
+            return;
+        }
+
         // Must not go outside the user's directory
         if (!newPath.startsWith(this.cwd) || !newPath.startsWith("./")) {
             // Get all dirs inside of user dir

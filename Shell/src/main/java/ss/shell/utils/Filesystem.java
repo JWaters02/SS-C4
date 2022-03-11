@@ -215,6 +215,10 @@ public class Filesystem {
         return logOutput;
     }
 
+    /**
+     * Gets all the user files from the home directory.
+     * @return the user files.
+     */
     public File[] getUserFiles() {
         File homeDir = new File(BuiltIns.HOME_PATH);
         // Filter OUT the log files
@@ -222,6 +226,11 @@ public class Filesystem {
         return homeDir.listFiles(filter);
     }
 
+    /**
+     * Lists the users from the user files in the home directory.
+     * @param userFiles the user files to read.
+     * @return the users from the user files.
+     */
     public String[] listUsers(File[] userFiles) {
         String[] users = new String[userFiles.length];
         for (int i = 0; i < userFiles.length; i++) {

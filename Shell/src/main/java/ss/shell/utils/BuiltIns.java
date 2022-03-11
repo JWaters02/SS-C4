@@ -41,15 +41,15 @@ public class BuiltIns {
     /**
      * Process builder allowed commands
      */
-    private static final String PB_LS = "ls"; // List files in the current directory.
-    private static final String PB_CP = "cp"; // Copy a file from source to target destination.
-    private static final String PB_MV = "mv"; // Move a file from source to target destination.
-    private static final String PB_MKDIR = "mkdir"; // Create a new directory.
-    private static final String PB_RMDIR = "rmdir"; // Remove a directory.
-    private static final String PB_HELP = "help"; // Print a list of all available commands.
-    private static final String PB_PWD = "pwd"; // Print the current working directory.
-    private static final String PB_PS = "ps"; // List all running processes.
-    private static final String PB_WHICH = "which"; // Print the full path of a command.
+    public static final String PB_LS = "ls"; // List files in the current directory.
+    public static final String PB_CP = "cp"; // Copy a file from source to target destination.
+    public static final String PB_MV = "mv"; // Move a file from source to target destination.
+    public static final String PB_MKDIR = "mkdir"; // Create a new directory.
+    public static final String PB_RMDIR = "rmdir"; // Remove a directory.
+    public static final String PB_HELP = "help"; // Print a list of all available commands.
+    public static final String PB_PWD = "pwd"; // Print the current working directory.
+    public static final String PB_PS = "ps"; // List all running processes.
+    public static final String PB_WHICH = "which"; // Print the full path of a command.
     public static final String[] PB_COMMANDS = {PB_LS, PB_CP, PB_MV, PB_MKDIR, PB_RMDIR, PB_HELP, PB_PWD, PB_PS, PB_WHICH};
 
     private static final String PB_LS_DESC = "List files in the current directory.";
