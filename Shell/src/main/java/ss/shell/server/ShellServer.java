@@ -63,7 +63,8 @@ public class ShellServer extends Thread {
             boolean isLoggedIn = false;
             Shell shell;
             String username = "guest";
-            String cwd = BuiltIns.HOME_PATH;
+            String cwd = BuiltIns.HOME_PATH + username;
+            String prompt = "/home/" + username;
             BuiltIns.UserTypes userType = BuiltIns.UserTypes.STANDARD;
             String output = "";
 
@@ -103,7 +104,7 @@ public class ShellServer extends Thread {
                 // If it's the first time loading the shell, only output the prompt
                 if (!hasLoaded) {
                     output = "<div class=\"terminal_prompt\">\n" +
-                            "<span class=\"terminal_prompt-path\">" + cwd + "</span>\n" +
+                            "<span class=\"terminal_prompt-path\">" + prompt + "</span>\n" +
                             "<span class=\"terminal_prompt-end\">:~$</span>" +
                             "\n</div>";
                 } else {
@@ -117,6 +118,7 @@ public class ShellServer extends Thread {
                     output = shell.getOutput();
                     userType = shell.getUserType();
                     cwd = shell.getCWD();
+                    prompt = "/home/" + username;
                 }
 
                 // Output the top html

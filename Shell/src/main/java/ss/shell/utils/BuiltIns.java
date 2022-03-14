@@ -79,7 +79,7 @@ public class BuiltIns {
         REMOTE
     }
 
-    public static final String HOME_PATH = "/home/ntu-admin/Documents/SS/Files/";
+    public static final String HOME_PATH = System.getProperty("user.dir") + "/src/main/resources/home/";
 //    public static final String HOME_PATH = "D:\\University\\Year 2\\SS\\";
 
     /**

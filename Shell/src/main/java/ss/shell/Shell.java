@@ -77,7 +77,7 @@ public class Shell {
                     this.logs.outputInfo("Command does not exist or is not allowed.", Store.YES, LogLevel.ERROR);
                 }
                 // Add the new prompt to the output
-                this.logs.outputPrompt(this.cwd, Store.YES);
+                this.logs.outputPrompt("/home/" + this.username, Store.YES);
             }
         }
     }
@@ -119,7 +119,7 @@ public class Shell {
     public String getOutput() {
         if (this.logs.getOutputTotal().isEmpty()) {
             // Output a default prompt
-            this.logs.outputPrompt(this.cwd, Store.YES);
+            this.logs.outputPrompt("/home/" + this.username, Store.YES);
         }
         return this.logs.getOutputTotal();
     }

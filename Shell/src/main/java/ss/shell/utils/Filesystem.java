@@ -7,8 +7,6 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Filesystem {
-    // TODO: Add encryption of files/folders
-
     private final String username;
     private String password;
     private UserTypes type;
