@@ -97,6 +97,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5767f939a010c848c19fc918c734b4c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classss_1_1shell_1_1utils_1_1Logs.html#a5767f939a010c848c19fc918c734b4c4">outputInfo</a> (String output, <a class="el" href="enumss_1_1shell_1_1utils_1_1Logs_1_1Store.html">Store</a> store, <a class="el" href="enumss_1_1shell_1_1utils_1_1Logs_1_1LogLevel.html">LogLevel</a> level)</td></tr>
 <tr class="memdesc:a5767f939a010c848c19fc918c734b4c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add the HTML info to the total output.  <a href="classss_1_1shell_1_1utils_1_1Logs.html#a5767f939a010c848c19fc918c734b4c4">More...</a><br /></td></tr>
 <tr class="separator:a5767f939a010c848c19fc918c734b4c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3648633baaf93f79532a33cd921beead"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classss_1_1shell_1_1utils_1_1Logs.html#a3648633baaf93f79532a33cd921beead">getOuterTop</a> ()</td></tr>
+<tr class="memdesc:a3648633baaf93f79532a33cd921beead"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the top of the HTML string.  <a href="classss_1_1shell_1_1utils_1_1Logs.html#a3648633baaf93f79532a33cd921beead">More...</a><br /></td></tr>
+<tr class="separator:a3648633baaf93f79532a33cd921beead"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11ff8d9f88f5c9a3c15d6979f7da45f7"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classss_1_1shell_1_1utils_1_1Logs.html#a11ff8d9f88f5c9a3c15d6979f7da45f7">getOuterBottom</a> ()</td></tr>
+<tr class="memdesc:a11ff8d9f88f5c9a3c15d6979f7da45f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the bottom of the HTML string.  <a href="classss_1_1shell_1_1utils_1_1Logs.html#a11ff8d9f88f5c9a3c15d6979f7da45f7">More...</a><br /></td></tr>
+<tr class="separator:a11ff8d9f88f5c9a3c15d6979f7da45f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f03bcf733fd79953669c98bafcd7b01"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classss_1_1shell_1_1utils_1_1Logs.html#a5f03bcf733fd79953669c98bafcd7b01">getOutputTotal</a> ()</td></tr>
 <tr class="memdesc:a5f03bcf733fd79953669c98bafcd7b01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the total output HTML.  <a href="classss_1_1shell_1_1utils_1_1Logs.html#a5f03bcf733fd79953669c98bafcd7b01">More...</a><br /></td></tr>
 <tr class="separator:a5f03bcf733fd79953669c98bafcd7b01"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -123,6 +129,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a085329a03bbd4d6cabb066ae053ef965"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classss_1_1shell_1_1utils_1_1Logs.html#a085329a03bbd4d6cabb066ae053ef965">logToFile</a> (String[] text)</td></tr>
 <tr class="memdesc:a085329a03bbd4d6cabb066ae053ef965"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores text in the logs file with a date and time stamp.  <a href="classss_1_1shell_1_1utils_1_1Logs.html#a085329a03bbd4d6cabb066ae053ef965">More...</a><br /></td></tr>
 <tr class="separator:a085329a03bbd4d6cabb066ae053ef965"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac81c358868df85cc56eeb03ced2c6aeb"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classss_1_1shell_1_1utils_1_1Logs.html#ac81c358868df85cc56eeb03ced2c6aeb">getTwoDigits</a> (int input)</td></tr>
+<tr class="memdesc:ac81c358868df85cc56eeb03ced2c6aeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the full 2 digits of input string.  <a href="classss_1_1shell_1_1utils_1_1Logs.html#ac81c358868df85cc56eeb03ced2c6aeb">More...</a><br /></td></tr>
+<tr class="separator:ac81c358868df85cc56eeb03ced2c6aeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="aa5b5b2620f1dbc8adb9a45768e9023c3"></a>
@@ -151,6 +160,46 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a11ff8d9f88f5c9a3c15d6979f7da45f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11ff8d9f88f5c9a3c15d6979f7da45f7">&#9670;&nbsp;</a></span>getOuterBottom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String ss.shell.utils.Logs.getOuterBottom </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the bottom of the HTML string. </p>
+<dl class="section return"><dt>Returns</dt><dd>The bottom of the HTML string. </dd></dl>
+
+</div>
+</div>
+<a id="a3648633baaf93f79532a33cd921beead"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3648633baaf93f79532a33cd921beead">&#9670;&nbsp;</a></span>getOuterTop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String ss.shell.utils.Logs.getOuterTop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the top of the HTML string. </p>
+<dl class="section return"><dt>Returns</dt><dd>The top of the HTML string. </dd></dl>
+
+</div>
+</div>
 <a id="a5f03bcf733fd79953669c98bafcd7b01"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5f03bcf733fd79953669c98bafcd7b01">&#9670;&nbsp;</a></span>getOutputTotal()</h2>
 
@@ -168,6 +217,41 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Get the total output HTML. </p>
 <dl class="section return"><dt>Returns</dt><dd>The whole HTML string to output. </dd></dl>
+
+</div>
+</div>
+<a id="ac81c358868df85cc56eeb03ced2c6aeb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac81c358868df85cc56eeb03ced2c6aeb">&#9670;&nbsp;</a></span>getTwoDigits()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static String ss.shell.utils.Logs.getTwoDigits </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>input</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the full 2 digits of input string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input</td><td>Input int. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Input string with 2 digits. </dd></dl>
 
 </div>
 </div>
@@ -276,6 +360,7 @@ Static Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">output</td><td>Output. </td></tr>
     <tr><td class="paramname">store</td><td>Whether to store the output to logs. </td></tr>
+    <tr><td class="paramname">level</td><td>Log level. </td></tr>
   </table>
   </dd>
 </dl>

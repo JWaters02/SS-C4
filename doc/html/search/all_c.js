@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['shell_34',['Shell',['../classss_1_1shell_1_1Shell.html',1,'ss.shell.Shell'],['../classss_1_1shell_1_1Shell.html#a9e6df95514c97fe3acc365fbf593ea1c',1,'ss.shell.Shell.Shell()']]],
-  ['shellserver_35',['ShellServer',['../classss_1_1shell_1_1server_1_1ShellServer.html',1,'ss::shell::server']]],
-  ['shelltype_36',['ShellType',['../enumss_1_1shell_1_1utils_1_1BuiltIns_1_1ShellType.html',1,'ss::shell::utils::BuiltIns']]],
-  ['start_37',['start',['../classss_1_1shell_1_1server_1_1ShellServer.html#a3e3e71780ba593980434c73f8e3be2ca',1,'ss::shell::server::ShellServer']]],
-  ['store_38',['Store',['../enumss_1_1shell_1_1utils_1_1Logs_1_1Store.html',1,'ss::shell::utils::Logs']]],
-  ['super_39',['SUPER',['../classss_1_1shell_1_1utils_1_1BuiltIns.html#a694c60cf297046213e62401677277eca',1,'ss::shell::utils::BuiltIns']]]
+  ['pb_5fls_38',['PB_LS',['../classss_1_1shell_1_1utils_1_1BuiltIns.html#a8e962690edd3dd2edc92aa25e5c78310',1,'ss::shell::utils::BuiltIns']]],
+  ['print_39',['print',['../classss_1_1shell_1_1utils_1_1Logs.html#ad21860453ec896dd16ae601e2dd76be9',1,'ss::shell::utils::Logs']]],
+  ['printline_40',['printLine',['../classss_1_1shell_1_1utils_1_1Logs.html#a4d995a29a54285d8c36a105deaa8ecc7',1,'ss.shell.utils.Logs.printLine(String text, Store store)'],['../classss_1_1shell_1_1utils_1_1Logs.html#a27e3ddd565f48f0d8bb4d0f51dabe932',1,'ss.shell.utils.Logs.printLine(String text, LogLevel level)']]],
+  ['prompt_41',['prompt',['../classss_1_1shell_1_1Shell.html#a1f3afe812130b6e474e1d817f80a0b4c',1,'ss::shell::Shell']]]
 ];

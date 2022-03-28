@@ -96,22 +96,127 @@ Collaboration diagram for ss.shell.server.ShellServer:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3e3e71780ba593980434c73f8e3be2ca"><td class="memItemLeft" align="right" valign="top"><a id="a3e3e71780ba593980434c73f8e3be2ca"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classss_1_1shell_1_1server_1_1ShellServer.html#a3e3e71780ba593980434c73f8e3be2ca">start</a> ()</td></tr>
-<tr class="memdesc:a3e3e71780ba593980434c73f8e3be2ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the server. <br /></td></tr>
-<tr class="separator:a3e3e71780ba593980434c73f8e3be2ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d032a04a6101c1003dfdba897e6c79b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classss_1_1shell_1_1server_1_1ShellServer.html#a3d032a04a6101c1003dfdba897e6c79b">ShellServer</a> (String name, int port)</td></tr>
+<tr class="memdesc:a3d032a04a6101c1003dfdba897e6c79b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classss_1_1shell_1_1server_1_1ShellServer.html">ShellServer</a> constructor.  <a href="classss_1_1shell_1_1server_1_1ShellServer.html#a3d032a04a6101c1003dfdba897e6c79b">More...</a><br /></td></tr>
+<tr class="separator:a3d032a04a6101c1003dfdba897e6c79b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3d60e607c95825e30e31c04e87e22f5"><td class="memItemLeft" align="right" valign="top"><a id="aa3d60e607c95825e30e31c04e87e22f5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classss_1_1shell_1_1server_1_1ShellServer.html#aa3d60e607c95825e30e31c04e87e22f5">run</a> ()</td></tr>
+<tr class="memdesc:aa3d60e607c95825e30e31c04e87e22f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run the server (overrides thread runnable). <br /></td></tr>
+<tr class="separator:aa3d60e607c95825e30e31c04e87e22f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52ab9d38ec322d98fce6750d8e6787a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classss_1_1shell_1_1server_1_1ShellServer.html#a52ab9d38ec322d98fce6750d8e6787a7">stopServer</a> (ServerSocket server)</td></tr>
+<tr class="memdesc:a52ab9d38ec322d98fce6750d8e6787a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops the server.  <a href="classss_1_1shell_1_1server_1_1ShellServer.html#a52ab9d38ec322d98fce6750d8e6787a7">More...</a><br /></td></tr>
+<tr class="separator:a52ab9d38ec322d98fce6750d8e6787a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a5b2d4ddc4eab044bec9dd2c3f4176a8f"><td class="memItemLeft" align="right" valign="top"><a id="a5b2d4ddc4eab044bec9dd2c3f4176a8f"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (String[] args)</td></tr>
+<tr class="memitem:a5b2d4ddc4eab044bec9dd2c3f4176a8f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classss_1_1shell_1_1server_1_1ShellServer.html#a5b2d4ddc4eab044bec9dd2c3f4176a8f">main</a> (String[] args)</td></tr>
+<tr class="memdesc:a5b2d4ddc4eab044bec9dd2c3f4176a8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the servers.  <a href="classss_1_1shell_1_1server_1_1ShellServer.html#a5b2d4ddc4eab044bec9dd2c3f4176a8f">More...</a><br /></td></tr>
 <tr class="separator:a5b2d4ddc4eab044bec9dd2c3f4176a8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>pedro </dd>
 <dd>
 Joshua </dd></dl>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a3d032a04a6101c1003dfdba897e6c79b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d032a04a6101c1003dfdba897e6c79b">&#9670;&nbsp;</a></span>ShellServer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ss.shell.server.ShellServer.ShellServer </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classss_1_1shell_1_1server_1_1ShellServer.html">ShellServer</a> constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the server. </td></tr>
+    <tr><td class="paramname">port</td><td>The port to listen on. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a5b2d4ddc4eab044bec9dd2c3f4176a8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b2d4ddc4eab044bec9dd2c3f4176a8f">&#9670;&nbsp;</a></span>main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void ss.shell.server.ShellServer.main </td>
+          <td>(</td>
+          <td class="paramtype">String[]&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Starts the servers. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">args</td><td>Java main args. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a52ab9d38ec322d98fce6750d8e6787a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52ab9d38ec322d98fce6750d8e6787a7">&#9670;&nbsp;</a></span>stopServer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ss.shell.server.ShellServer.stopServer </td>
+          <td>(</td>
+          <td class="paramtype">ServerSocket&#160;</td>
+          <td class="paramname"><em>server</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Stops the server. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">server</td><td>The socket to close. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>Shell/src/main/java/ss/shell/server/ShellServer.java</li>
 </ul>
 </div><!-- contents -->

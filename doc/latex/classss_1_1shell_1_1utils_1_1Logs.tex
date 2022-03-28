@@ -16,6 +16,10 @@ void \textbf{ output\+Short} (String output, \textbf{ Store} store)
 \begin{DoxyCompactList}\small\item\em Add the H\+T\+ML short to the total output. \end{DoxyCompactList}\item 
 void \textbf{ output\+Info} (String output, \textbf{ Store} store, \textbf{ Log\+Level} level)
 \begin{DoxyCompactList}\small\item\em Add the H\+T\+ML info to the total output. \end{DoxyCompactList}\item 
+String \textbf{ get\+Outer\+Top} ()
+\begin{DoxyCompactList}\small\item\em Get the top of the H\+T\+ML string. \end{DoxyCompactList}\item 
+String \textbf{ get\+Outer\+Bottom} ()
+\begin{DoxyCompactList}\small\item\em Get the bottom of the H\+T\+ML string. \end{DoxyCompactList}\item 
 String \textbf{ get\+Output\+Total} ()
 \begin{DoxyCompactList}\small\item\em Get the total output H\+T\+ML. \end{DoxyCompactList}\item 
 void \textbf{ add\+To\+Output\+Total} (String output)
@@ -34,7 +38,9 @@ static void \textbf{ print} (String text, \textbf{ Store} store)
 static void \textbf{ log\+To\+File} (String text)
 \begin{DoxyCompactList}\small\item\em Stores text in the logs file with a date and time stamp. \end{DoxyCompactList}\item 
 static void \textbf{ log\+To\+File} (String[$\,$] text)
-\begin{DoxyCompactList}\small\item\em Stores text in the logs file with a date and time stamp. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Stores text in the logs file with a date and time stamp. \end{DoxyCompactList}\item 
+static String \textbf{ get\+Two\+Digits} (int input)
+\begin{DoxyCompactList}\small\item\em Returns the full 2 digits of input string. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Member Function Documentation}
@@ -53,6 +59,32 @@ Directly add extra text to the total output string.
 {\em output} & Text to add. \\
 \hline
 \end{DoxyParams}
+\mbox{\label{classss_1_1shell_1_1utils_1_1Logs_a11ff8d9f88f5c9a3c15d6979f7da45f7}} 
+\index{ss.shell.utils.Logs@{ss.shell.utils.Logs}!getOuterBottom@{getOuterBottom}}
+\index{getOuterBottom@{getOuterBottom}!ss.shell.utils.Logs@{ss.shell.utils.Logs}}
+\doxysubsubsection{getOuterBottom()}
+{\footnotesize\ttfamily String ss.\+shell.\+utils.\+Logs.\+get\+Outer\+Bottom (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the bottom of the H\+T\+ML string. 
+
+\begin{DoxyReturn}{Returns}
+The bottom of the H\+T\+ML string. 
+\end{DoxyReturn}
+\mbox{\label{classss_1_1shell_1_1utils_1_1Logs_a3648633baaf93f79532a33cd921beead}} 
+\index{ss.shell.utils.Logs@{ss.shell.utils.Logs}!getOuterTop@{getOuterTop}}
+\index{getOuterTop@{getOuterTop}!ss.shell.utils.Logs@{ss.shell.utils.Logs}}
+\doxysubsubsection{getOuterTop()}
+{\footnotesize\ttfamily String ss.\+shell.\+utils.\+Logs.\+get\+Outer\+Top (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the top of the H\+T\+ML string. 
+
+\begin{DoxyReturn}{Returns}
+The top of the H\+T\+ML string. 
+\end{DoxyReturn}
 \mbox{\label{classss_1_1shell_1_1utils_1_1Logs_a5f03bcf733fd79953669c98bafcd7b01}} 
 \index{ss.shell.utils.Logs@{ss.shell.utils.Logs}!getOutputTotal@{getOutputTotal}}
 \index{getOutputTotal@{getOutputTotal}!ss.shell.utils.Logs@{ss.shell.utils.Logs}}
@@ -65,6 +97,24 @@ Get the total output H\+T\+ML.
 
 \begin{DoxyReturn}{Returns}
 The whole H\+T\+ML string to output. 
+\end{DoxyReturn}
+\mbox{\label{classss_1_1shell_1_1utils_1_1Logs_ac81c358868df85cc56eeb03ced2c6aeb}} 
+\index{ss.shell.utils.Logs@{ss.shell.utils.Logs}!getTwoDigits@{getTwoDigits}}
+\index{getTwoDigits@{getTwoDigits}!ss.shell.utils.Logs@{ss.shell.utils.Logs}}
+\doxysubsubsection{getTwoDigits()}
+{\footnotesize\ttfamily static String ss.\+shell.\+utils.\+Logs.\+get\+Two\+Digits (\begin{DoxyParamCaption}\item[{int}]{input }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns the full 2 digits of input string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & Input int. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Input string with 2 digits. 
 \end{DoxyReturn}
 \mbox{\label{classss_1_1shell_1_1utils_1_1Logs_aa1c73a5febc5c0c768f3a37d48d0a5e1}} 
 \index{ss.shell.utils.Logs@{ss.shell.utils.Logs}!logToFile@{logToFile}}
@@ -111,6 +161,8 @@ Add the H\+T\+ML info to the total output.
 {\em output} & Output. \\
 \hline
 {\em store} & Whether to store the output to logs. \\
+\hline
+{\em level} & Log level. \\
 \hline
 \end{DoxyParams}
 \mbox{\label{classss_1_1shell_1_1utils_1_1Logs_ac091de105da7c7289e7ad4b707bac101}} 

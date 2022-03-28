@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['outputinfo_76',['outputInfo',['../classss_1_1shell_1_1utils_1_1Logs.html#a5767f939a010c848c19fc918c734b4c4',1,'ss::shell::utils::Logs']]],
-  ['outputprompt_77',['outputPrompt',['../classss_1_1shell_1_1utils_1_1Logs.html#ac091de105da7c7289e7ad4b707bac101',1,'ss::shell::utils::Logs']]],
-  ['outputshort_78',['outputShort',['../classss_1_1shell_1_1utils_1_1Logs.html#a4cd3ba8be222e7a8127eec7606bbf511',1,'ss::shell::utils::Logs']]]
+  ['main_91',['main',['../classss_1_1shell_1_1server_1_1ShellServer.html#a5b2d4ddc4eab044bec9dd2c3f4176a8f',1,'ss::shell::server::ShellServer']]]
 ];

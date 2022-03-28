@@ -17,11 +17,20 @@ public class ShellServer extends Thread {
     private final String threadName;
     private static final int NUM_SERVERS_TO_START = 3;
 
+    /**
+     * ShellServer constructor.
+     * @param name The name of the server.
+     * @param port The port to listen on.
+     */
     public ShellServer(String name, int port) {
         PORT = port;
         this.threadName = name;
     }
 
+    /**
+     * Starts the servers.
+     * @param args Java main args.
+     */
     public static void main(String[] args) {
         try {
             for (int i = 0; i < NUM_SERVERS_TO_START; i++) {
@@ -35,7 +44,7 @@ public class ShellServer extends Thread {
     }
 
     /**
-     * Start the server.
+     * Run the server (overrides thread runnable).
      */
     public void run() {
         try {

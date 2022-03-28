@@ -111,6 +111,21 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a778dda68f0049912240f7ba2ea9ec0b3"><td class="memItemLeft" align="right" valign="top">String[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classss_1_1shell_1_1utils_1_1Filesystem.html#a778dda68f0049912240f7ba2ea9ec0b3">getDirsInUserDir</a> ()</td></tr>
 <tr class="memdesc:a778dda68f0049912240f7ba2ea9ec0b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the directories in the user's directory.  <a href="classss_1_1shell_1_1utils_1_1Filesystem.html#a778dda68f0049912240f7ba2ea9ec0b3">More...</a><br /></td></tr>
 <tr class="separator:a778dda68f0049912240f7ba2ea9ec0b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82e9d5127c17862ce4e9ae9917df6fa0"><td class="memItemLeft" align="right" valign="top">File[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classss_1_1shell_1_1utils_1_1Filesystem.html#a82e9d5127c17862ce4e9ae9917df6fa0">getLogs</a> (String filename)</td></tr>
+<tr class="memdesc:a82e9d5127c17862ce4e9ae9917df6fa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the log files in the home directory (where they are stored).  <a href="classss_1_1shell_1_1utils_1_1Filesystem.html#a82e9d5127c17862ce4e9ae9917df6fa0">More...</a><br /></td></tr>
+<tr class="separator:a82e9d5127c17862ce4e9ae9917df6fa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b176a59665ff085b51597241192abd3"><td class="memItemLeft" align="right" valign="top">String[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classss_1_1shell_1_1utils_1_1Filesystem.html#a6b176a59665ff085b51597241192abd3">getLogOutput</a> (File[] logFiles)</td></tr>
+<tr class="memdesc:a6b176a59665ff085b51597241192abd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the lines inside the log files provided.  <a href="classss_1_1shell_1_1utils_1_1Filesystem.html#a6b176a59665ff085b51597241192abd3">More...</a><br /></td></tr>
+<tr class="separator:a6b176a59665ff085b51597241192abd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bfd77ee94d2cf4b5790a6c6b99f4000"><td class="memItemLeft" align="right" valign="top">File[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classss_1_1shell_1_1utils_1_1Filesystem.html#a5bfd77ee94d2cf4b5790a6c6b99f4000">getUserFiles</a> ()</td></tr>
+<tr class="memdesc:a5bfd77ee94d2cf4b5790a6c6b99f4000"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all the user files from the home directory.  <a href="classss_1_1shell_1_1utils_1_1Filesystem.html#a5bfd77ee94d2cf4b5790a6c6b99f4000">More...</a><br /></td></tr>
+<tr class="separator:a5bfd77ee94d2cf4b5790a6c6b99f4000"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94cac169adf65e22ecd0b8c362ada188"><td class="memItemLeft" align="right" valign="top">String[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classss_1_1shell_1_1utils_1_1Filesystem.html#a94cac169adf65e22ecd0b8c362ada188">listUsers</a> (File[] userFiles)</td></tr>
+<tr class="memdesc:a94cac169adf65e22ecd0b8c362ada188"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the users from the user files in the home directory.  <a href="classss_1_1shell_1_1utils_1_1Filesystem.html#a94cac169adf65e22ecd0b8c362ada188">More...</a><br /></td></tr>
+<tr class="separator:a94cac169adf65e22ecd0b8c362ada188"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60d486f93d6ed20bbd0fa13c5b2e6528"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classss_1_1shell_1_1utils_1_1Filesystem.html#a60d486f93d6ed20bbd0fa13c5b2e6528">getLogsOutput</a> ()</td></tr>
+<tr class="memdesc:a60d486f93d6ed20bbd0fa13c5b2e6528"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the output logs object.  <a href="classss_1_1shell_1_1utils_1_1Filesystem.html#a60d486f93d6ed20bbd0fa13c5b2e6528">More...</a><br /></td></tr>
+<tr class="separator:a60d486f93d6ed20bbd0fa13c5b2e6528"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="acf8b989033707fcaf721961a66b4f72e"></a>
@@ -285,6 +300,80 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
+<a id="a6b176a59665ff085b51597241192abd3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b176a59665ff085b51597241192abd3">&#9670;&nbsp;</a></span>getLogOutput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String [] ss.shell.utils.Filesystem.getLogOutput </td>
+          <td>(</td>
+          <td class="paramtype">File[]&#160;</td>
+          <td class="paramname"><em>logFiles</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the lines inside the log files provided. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">logFiles</td><td>the log files to read. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the lines inside the log files. </dd></dl>
+
+</div>
+</div>
+<a id="a82e9d5127c17862ce4e9ae9917df6fa0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82e9d5127c17862ce4e9ae9917df6fa0">&#9670;&nbsp;</a></span>getLogs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">File [] ss.shell.utils.Filesystem.getLogs </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the log files in the home directory (where they are stored). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>the name of the log file to find. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the log file if it exists. </dd></dl>
+
+</div>
+</div>
+<a id="a60d486f93d6ed20bbd0fa13c5b2e6528"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60d486f93d6ed20bbd0fa13c5b2e6528">&#9670;&nbsp;</a></span>getLogsOutput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String ss.shell.utils.Filesystem.getLogsOutput </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the output logs object. </p>
+<dl class="section return"><dt>Returns</dt><dd>the output logs object. </dd></dl>
+
+</div>
+</div>
 <a id="a10b11b3dbcba1bd8629825448f0e498d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a10b11b3dbcba1bd8629825448f0e498d">&#9670;&nbsp;</a></span>getPassword()</h2>
 
@@ -302,6 +391,26 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 <p>Gets the current password of the user. </p>
 <dl class="section return"><dt>Returns</dt><dd>the current password of the user. </dd></dl>
+
+</div>
+</div>
+<a id="a5bfd77ee94d2cf4b5790a6c6b99f4000"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bfd77ee94d2cf4b5790a6c6b99f4000">&#9670;&nbsp;</a></span>getUserFiles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">File [] ss.shell.utils.Filesystem.getUserFiles </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets all the user files from the home directory. </p>
+<dl class="section return"><dt>Returns</dt><dd>the user files. </dd></dl>
 
 </div>
 </div>
@@ -342,6 +451,33 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 <p>Check if the user has a directory already. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if the user has a directory. </dd></dl>
+
+</div>
+</div>
+<a id="a94cac169adf65e22ecd0b8c362ada188"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94cac169adf65e22ecd0b8c362ada188">&#9670;&nbsp;</a></span>listUsers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String [] ss.shell.utils.Filesystem.listUsers </td>
+          <td>(</td>
+          <td class="paramtype">File[]&#160;</td>
+          <td class="paramname"><em>userFiles</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Lists the users from the user files in the home directory. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">userFiles</td><td>the user files to read. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the users from the user files. </dd></dl>
 
 </div>
 </div>

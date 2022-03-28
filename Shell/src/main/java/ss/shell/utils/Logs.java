@@ -62,6 +62,7 @@ public class Logs {
      * Add the HTML info to the total output.
      * @param output Output.
      * @param store Whether to store the output to logs.
+     * @param level Log level.
      */
     public void outputInfo(String output, Store store, LogLevel level) {
         if (store == Store.YES) {

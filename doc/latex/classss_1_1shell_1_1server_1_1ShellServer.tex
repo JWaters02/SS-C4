@@ -2,8 +2,7 @@
 \label{classss_1_1shell_1_1server_1_1ShellServer}\index{ss.shell.server.ShellServer@{ss.shell.server.ShellServer}}
 
 
-Inheritance diagram for ss.\+shell.\+server.\+Shell\+Server\+:
-\nopagebreak
+Inheritance diagram for ss.\+shell.\+server.\+Shell\+Server\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,8 +11,7 @@ Inheritance diagram for ss.\+shell.\+server.\+Shell\+Server\+:
 \end{figure}
 
 
-Collaboration diagram for ss.\+shell.\+server.\+Shell\+Server\+:
-\nopagebreak
+Collaboration diagram for ss.\+shell.\+server.\+Shell\+Server\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -23,15 +21,18 @@ Collaboration diagram for ss.\+shell.\+server.\+Shell\+Server\+:
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\label{classss_1_1shell_1_1server_1_1ShellServer_a3e3e71780ba593980434c73f8e3be2ca}} 
-void \textbf{ start} ()
-\begin{DoxyCompactList}\small\item\em Start the server. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\textbf{ Shell\+Server} (String name, int port)
+\begin{DoxyCompactList}\small\item\em \doxyref{Shell\+Server}{p.}{classss_1_1shell_1_1server_1_1ShellServer} constructor. \end{DoxyCompactList}\item 
+\mbox{\label{classss_1_1shell_1_1server_1_1ShellServer_aa3d60e607c95825e30e31c04e87e22f5}} 
+void \textbf{ run} ()
+\begin{DoxyCompactList}\small\item\em Run the server (overrides thread runnable). \end{DoxyCompactList}\item 
+void \textbf{ stop\+Server} (Server\+Socket server)
+\begin{DoxyCompactList}\small\item\em Stops the server. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\label{classss_1_1shell_1_1server_1_1ShellServer_a5b2d4ddc4eab044bec9dd2c3f4176a8f}} 
-static void {\bfseries main} (String[$\,$] args)
-\end{DoxyCompactItemize}
+static void \textbf{ main} (String[$\,$] args)
+\begin{DoxyCompactList}\small\item\em Starts the servers. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -40,6 +41,59 @@ pedro
 
 Joshua 
 \end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{classss_1_1shell_1_1server_1_1ShellServer_a3d032a04a6101c1003dfdba897e6c79b}} 
+\index{ss.shell.server.ShellServer@{ss.shell.server.ShellServer}!ShellServer@{ShellServer}}
+\index{ShellServer@{ShellServer}!ss.shell.server.ShellServer@{ss.shell.server.ShellServer}}
+\doxysubsubsection{ShellServer()}
+{\footnotesize\ttfamily ss.\+shell.\+server.\+Shell\+Server.\+Shell\+Server (\begin{DoxyParamCaption}\item[{String}]{name,  }\item[{int}]{port }\end{DoxyParamCaption})}
+
+
+
+\doxyref{Shell\+Server}{p.}{classss_1_1shell_1_1server_1_1ShellServer} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the server. \\
+\hline
+{\em port} & The port to listen on. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{classss_1_1shell_1_1server_1_1ShellServer_a5b2d4ddc4eab044bec9dd2c3f4176a8f}} 
+\index{ss.shell.server.ShellServer@{ss.shell.server.ShellServer}!main@{main}}
+\index{main@{main}!ss.shell.server.ShellServer@{ss.shell.server.ShellServer}}
+\doxysubsubsection{main()}
+{\footnotesize\ttfamily static void ss.\+shell.\+server.\+Shell\+Server.\+main (\begin{DoxyParamCaption}\item[{String[$\,$]}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Starts the servers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Java main args. \\
+\hline
+\end{DoxyParams}
+\mbox{\label{classss_1_1shell_1_1server_1_1ShellServer_a52ab9d38ec322d98fce6750d8e6787a7}} 
+\index{ss.shell.server.ShellServer@{ss.shell.server.ShellServer}!stopServer@{stopServer}}
+\index{stopServer@{stopServer}!ss.shell.server.ShellServer@{ss.shell.server.ShellServer}}
+\doxysubsubsection{stopServer()}
+{\footnotesize\ttfamily void ss.\+shell.\+server.\+Shell\+Server.\+stop\+Server (\begin{DoxyParamCaption}\item[{Server\+Socket}]{server }\end{DoxyParamCaption})}
+
+
+
+Stops the server. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em server} & The socket to close. \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

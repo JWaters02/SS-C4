@@ -25,7 +25,17 @@ boolean \textbf{ change\+User\+Type} (Built\+Ins.\+User\+Types new\+Type)
 boolean \textbf{ has\+Directory} ()
 \begin{DoxyCompactList}\small\item\em Check if the user has a directory already. \end{DoxyCompactList}\item 
 String[$\,$] \textbf{ get\+Dirs\+In\+User\+Dir} ()
-\begin{DoxyCompactList}\small\item\em Gets the directories in the user\textquotesingle{}s directory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Gets the directories in the user\textquotesingle{}s directory. \end{DoxyCompactList}\item 
+File[$\,$] \textbf{ get\+Logs} (String filename)
+\begin{DoxyCompactList}\small\item\em Gets the log files in the home directory (where they are stored). \end{DoxyCompactList}\item 
+String[$\,$] \textbf{ get\+Log\+Output} (File[$\,$] log\+Files)
+\begin{DoxyCompactList}\small\item\em Returns the lines inside the log files provided. \end{DoxyCompactList}\item 
+File[$\,$] \textbf{ get\+User\+Files} ()
+\begin{DoxyCompactList}\small\item\em Gets all the user files from the home directory. \end{DoxyCompactList}\item 
+String[$\,$] \textbf{ list\+Users} (File[$\,$] user\+Files)
+\begin{DoxyCompactList}\small\item\em Lists the users from the user files in the home directory. \end{DoxyCompactList}\item 
+String \textbf{ get\+Logs\+Output} ()
+\begin{DoxyCompactList}\small\item\em Gets the output logs object. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
@@ -127,6 +137,55 @@ Gets the directories in the user\textquotesingle{}s directory.
 \begin{DoxyReturn}{Returns}
 list of directory names. 
 \end{DoxyReturn}
+\mbox{\label{classss_1_1shell_1_1utils_1_1Filesystem_a6b176a59665ff085b51597241192abd3}} 
+\index{ss.shell.utils.Filesystem@{ss.shell.utils.Filesystem}!getLogOutput@{getLogOutput}}
+\index{getLogOutput@{getLogOutput}!ss.shell.utils.Filesystem@{ss.shell.utils.Filesystem}}
+\doxysubsubsection{getLogOutput()}
+{\footnotesize\ttfamily String [$\,$] ss.\+shell.\+utils.\+Filesystem.\+get\+Log\+Output (\begin{DoxyParamCaption}\item[{File[$\,$]}]{log\+Files }\end{DoxyParamCaption})}
+
+
+
+Returns the lines inside the log files provided. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em log\+Files} & the log files to read. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the lines inside the log files. 
+\end{DoxyReturn}
+\mbox{\label{classss_1_1shell_1_1utils_1_1Filesystem_a82e9d5127c17862ce4e9ae9917df6fa0}} 
+\index{ss.shell.utils.Filesystem@{ss.shell.utils.Filesystem}!getLogs@{getLogs}}
+\index{getLogs@{getLogs}!ss.shell.utils.Filesystem@{ss.shell.utils.Filesystem}}
+\doxysubsubsection{getLogs()}
+{\footnotesize\ttfamily File [$\,$] ss.\+shell.\+utils.\+Filesystem.\+get\+Logs (\begin{DoxyParamCaption}\item[{String}]{filename }\end{DoxyParamCaption})}
+
+
+
+Gets the log files in the home directory (where they are stored). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & the name of the log file to find. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the log file if it exists. 
+\end{DoxyReturn}
+\mbox{\label{classss_1_1shell_1_1utils_1_1Filesystem_a60d486f93d6ed20bbd0fa13c5b2e6528}} 
+\index{ss.shell.utils.Filesystem@{ss.shell.utils.Filesystem}!getLogsOutput@{getLogsOutput}}
+\index{getLogsOutput@{getLogsOutput}!ss.shell.utils.Filesystem@{ss.shell.utils.Filesystem}}
+\doxysubsubsection{getLogsOutput()}
+{\footnotesize\ttfamily String ss.\+shell.\+utils.\+Filesystem.\+get\+Logs\+Output (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the output logs object. 
+
+\begin{DoxyReturn}{Returns}
+the output logs object. 
+\end{DoxyReturn}
 \mbox{\label{classss_1_1shell_1_1utils_1_1Filesystem_a10b11b3dbcba1bd8629825448f0e498d}} 
 \index{ss.shell.utils.Filesystem@{ss.shell.utils.Filesystem}!getPassword@{getPassword}}
 \index{getPassword@{getPassword}!ss.shell.utils.Filesystem@{ss.shell.utils.Filesystem}}
@@ -139,6 +198,19 @@ Gets the current password of the user.
 
 \begin{DoxyReturn}{Returns}
 the current password of the user. 
+\end{DoxyReturn}
+\mbox{\label{classss_1_1shell_1_1utils_1_1Filesystem_a5bfd77ee94d2cf4b5790a6c6b99f4000}} 
+\index{ss.shell.utils.Filesystem@{ss.shell.utils.Filesystem}!getUserFiles@{getUserFiles}}
+\index{getUserFiles@{getUserFiles}!ss.shell.utils.Filesystem@{ss.shell.utils.Filesystem}}
+\doxysubsubsection{getUserFiles()}
+{\footnotesize\ttfamily File [$\,$] ss.\+shell.\+utils.\+Filesystem.\+get\+User\+Files (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets all the user files from the home directory. 
+
+\begin{DoxyReturn}{Returns}
+the user files. 
 \end{DoxyReturn}
 \mbox{\label{classss_1_1shell_1_1utils_1_1Filesystem_aec6b5e6804370da005cb9d837a193064}} 
 \index{ss.shell.utils.Filesystem@{ss.shell.utils.Filesystem}!getUserType@{getUserType}}
@@ -165,6 +237,24 @@ Check if the user has a directory already.
 
 \begin{DoxyReturn}{Returns}
 true if the user has a directory. 
+\end{DoxyReturn}
+\mbox{\label{classss_1_1shell_1_1utils_1_1Filesystem_a94cac169adf65e22ecd0b8c362ada188}} 
+\index{ss.shell.utils.Filesystem@{ss.shell.utils.Filesystem}!listUsers@{listUsers}}
+\index{listUsers@{listUsers}!ss.shell.utils.Filesystem@{ss.shell.utils.Filesystem}}
+\doxysubsubsection{listUsers()}
+{\footnotesize\ttfamily String [$\,$] ss.\+shell.\+utils.\+Filesystem.\+list\+Users (\begin{DoxyParamCaption}\item[{File[$\,$]}]{user\+Files }\end{DoxyParamCaption})}
+
+
+
+Lists the users from the user files in the home directory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Files} & the user files to read. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the users from the user files. 
 \end{DoxyReturn}
 \mbox{\label{classss_1_1shell_1_1utils_1_1Filesystem_a80037fd54efac693238a1f99bebd37fd}} 
 \index{ss.shell.utils.Filesystem@{ss.shell.utils.Filesystem}!login@{login}}

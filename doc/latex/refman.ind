@@ -1,7 +1,7 @@
 \begin{theindex}
 
   \item {addToOutputTotal}
-    \subitem {ss.shell.utils.Logs}, 15
+    \subitem {ss.shell.utils.Logs}, 17
 
   \indexspace
 
@@ -29,71 +29,93 @@
 
   \item {getCWD}
     \subitem {ss.shell.BuiltInProcess}, 6
-    \subitem {ss.shell.Shell}, 20
+    \subitem {ss.shell.Shell}, 22
   \item {getDirsInUserDir}
     \subitem {ss.shell.utils.Filesystem}, 13
   \item {getDoExit}
-    \subitem {ss.shell.Shell}, 21
+    \subitem {ss.shell.Shell}, 22
   \item {getIsLoggedIn}
     \subitem {ss.shell.BuiltInProcess}, 6
-    \subitem {ss.shell.Shell}, 21
+    \subitem {ss.shell.Shell}, 22
+  \item {getLogOutput}
+    \subitem {ss.shell.utils.Filesystem}, 13
+  \item {getLogs}
+    \subitem {ss.shell.utils.Filesystem}, 13
   \item {getLogsOutput}
     \subitem {ss.shell.BuiltInProcess}, 7
+    \subitem {ss.shell.utils.Filesystem}, 14
+  \item {getOuterBottom}
+    \subitem {ss.shell.utils.Logs}, 17
+  \item {getOuterTop}
+    \subitem {ss.shell.utils.Logs}, 17
   \item {getOutput}
-    \subitem {ss.shell.Shell}, 21
+    \subitem {ss.shell.Shell}, 22
   \item {getOutputTotal}
-    \subitem {ss.shell.utils.Logs}, 16
+    \subitem {ss.shell.utils.Logs}, 18
   \item {getPassword}
-    \subitem {ss.shell.utils.Filesystem}, 13
+    \subitem {ss.shell.utils.Filesystem}, 14
+  \item {getTwoDigits}
+    \subitem {ss.shell.utils.Logs}, 18
+  \item {getUserFiles}
+    \subitem {ss.shell.utils.Filesystem}, 14
   \item {getUsername}
     \subitem {ss.shell.BuiltInProcess}, 7
-    \subitem {ss.shell.Shell}, 21
+    \subitem {ss.shell.Shell}, 23
   \item {getUserType}
     \subitem {ss.shell.BuiltInProcess}, 7
-    \subitem {ss.shell.Shell}, 21
-    \subitem {ss.shell.utils.Filesystem}, 13
+    \subitem {ss.shell.Shell}, 23
+    \subitem {ss.shell.utils.Filesystem}, 14
 
   \indexspace
 
   \item {hasDirectory}
-    \subitem {ss.shell.utils.Filesystem}, 13
+    \subitem {ss.shell.utils.Filesystem}, 15
 
   \indexspace
 
   \item {isBuiltIn}
-    \subitem {ss.shell.utils.BuiltIns}, 8
+    \subitem {ss.shell.utils.BuiltIns}, 9
   \item {isProcessBuilder}
     \subitem {ss.shell.utils.BuiltIns}, 9
 
   \indexspace
 
+  \item {listUsers}
+    \subitem {ss.shell.utils.Filesystem}, 15
   \item {login}
-    \subitem {ss.shell.utils.Filesystem}, 14
+    \subitem {ss.shell.utils.Filesystem}, 15
   \item {logToFile}
-    \subitem {ss.shell.utils.Logs}, 16
+    \subitem {ss.shell.utils.Logs}, 18, 19
+
+  \indexspace
+
+  \item {main}
+    \subitem {ss.shell.server.ShellServer}, 25
 
   \indexspace
 
   \item {outputInfo}
-    \subitem {ss.shell.utils.Logs}, 16
+    \subitem {ss.shell.utils.Logs}, 19
   \item {outputPrompt}
-    \subitem {ss.shell.utils.Logs}, 17
+    \subitem {ss.shell.utils.Logs}, 19
   \item {outputShort}
-    \subitem {ss.shell.utils.Logs}, 17
+    \subitem {ss.shell.utils.Logs}, 20
 
   \indexspace
 
   \item {print}
-    \subitem {ss.shell.utils.Logs}, 17
+    \subitem {ss.shell.utils.Logs}, 20
   \item {printLine}
-    \subitem {ss.shell.utils.Logs}, 19
+    \subitem {ss.shell.utils.Logs}, 20
   \item {prompt}
-    \subitem {ss.shell.Shell}, 22
+    \subitem {ss.shell.Shell}, 23
 
   \indexspace
 
   \item {Shell}
-    \subitem {ss.shell.Shell}, 20
+    \subitem {ss.shell.Shell}, 21
+  \item {ShellServer}
+    \subitem {ss.shell.server.ShellServer}, 25
   \item {ss.shell.BuiltInProcess}, 5
     \subitem {BuiltInProcess}, 5, 6
     \subitem {getCWD}, 6
@@ -101,43 +123,55 @@
     \subitem {getLogsOutput}, 7
     \subitem {getUsername}, 7
     \subitem {getUserType}, 7
-  \item {ss.shell.client.ClientApplication}, 9
-  \item {ss.shell.client.ClientApplicationController}, 10
-  \item {ss.shell.server.ShellServer}, 22
-  \item {ss.shell.Shell}, 19
-    \subitem {getCWD}, 20
-    \subitem {getDoExit}, 21
-    \subitem {getIsLoggedIn}, 21
-    \subitem {getOutput}, 21
-    \subitem {getUsername}, 21
-    \subitem {getUserType}, 21
-    \subitem {prompt}, 22
-    \subitem {Shell}, 20
+  \item {ss.shell.client.ClientApplication}, 10
+  \item {ss.shell.server.ShellServer}, 24
+    \subitem {main}, 25
+    \subitem {ShellServer}, 25
+    \subitem {stopServer}, 25
+  \item {ss.shell.Shell}, 21
+    \subitem {getCWD}, 22
+    \subitem {getDoExit}, 22
+    \subitem {getIsLoggedIn}, 22
+    \subitem {getOutput}, 22
+    \subitem {getUsername}, 23
+    \subitem {getUserType}, 23
+    \subitem {prompt}, 23
+    \subitem {Shell}, 21
   \item {ss.shell.utils.BuiltIns}, 8
-    \subitem {isBuiltIn}, 8
+    \subitem {isBuiltIn}, 9
     \subitem {isProcessBuilder}, 9
-  \item {ss.shell.utils.BuiltIns.ShellType}, 23
-  \item {ss.shell.utils.BuiltIns.UserTypes}, 24
+  \item {ss.shell.utils.BuiltIns.ShellType}, 26
+  \item {ss.shell.utils.BuiltIns.UserTypes}, 27
   \item {ss.shell.utils.Filesystem}, 11
     \subitem {changePassword}, 12
     \subitem {changeUserType}, 12
     \subitem {deleteUser}, 13
     \subitem {Filesystem}, 11, 12
     \subitem {getDirsInUserDir}, 13
-    \subitem {getPassword}, 13
-    \subitem {getUserType}, 13
-    \subitem {hasDirectory}, 13
-    \subitem {login}, 14
-  \item {ss.shell.utils.Logs}, 15
-    \subitem {addToOutputTotal}, 15
-    \subitem {getOutputTotal}, 16
-    \subitem {logToFile}, 16
-    \subitem {outputInfo}, 16
-    \subitem {outputPrompt}, 17
-    \subitem {outputShort}, 17
-    \subitem {print}, 17
-    \subitem {printLine}, 19
-  \item {ss.shell.utils.Logs.LogLevel}, 14
-  \item {ss.shell.utils.Logs.Store}, 23
+    \subitem {getLogOutput}, 13
+    \subitem {getLogs}, 13
+    \subitem {getLogsOutput}, 14
+    \subitem {getPassword}, 14
+    \subitem {getUserFiles}, 14
+    \subitem {getUserType}, 14
+    \subitem {hasDirectory}, 15
+    \subitem {listUsers}, 15
+    \subitem {login}, 15
+  \item {ss.shell.utils.Logs}, 16
+    \subitem {addToOutputTotal}, 17
+    \subitem {getOuterBottom}, 17
+    \subitem {getOuterTop}, 17
+    \subitem {getOutputTotal}, 18
+    \subitem {getTwoDigits}, 18
+    \subitem {logToFile}, 18, 19
+    \subitem {outputInfo}, 19
+    \subitem {outputPrompt}, 19
+    \subitem {outputShort}, 20
+    \subitem {print}, 20
+    \subitem {printLine}, 20
+  \item {ss.shell.utils.Logs.LogLevel}, 16
+  \item {ss.shell.utils.Logs.Store}, 26
+  \item {stopServer}
+    \subitem {ss.shell.server.ShellServer}, 25
 
 \end{theindex}

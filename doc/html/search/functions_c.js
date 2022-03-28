@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['shell_82',['Shell',['../classss_1_1shell_1_1Shell.html#a9e6df95514c97fe3acc365fbf593ea1c',1,'ss::shell::Shell']]],
-  ['start_83',['start',['../classss_1_1shell_1_1server_1_1ShellServer.html#a3e3e71780ba593980434c73f8e3be2ca',1,'ss::shell::server::ShellServer']]]
+  ['print_95',['print',['../classss_1_1shell_1_1utils_1_1Logs.html#ad21860453ec896dd16ae601e2dd76be9',1,'ss::shell::utils::Logs']]],
+  ['printline_96',['printLine',['../classss_1_1shell_1_1utils_1_1Logs.html#a4d995a29a54285d8c36a105deaa8ecc7',1,'ss.shell.utils.Logs.printLine(String text, Store store)'],['../classss_1_1shell_1_1utils_1_1Logs.html#a27e3ddd565f48f0d8bb4d0f51dabe932',1,'ss.shell.utils.Logs.printLine(String text, LogLevel level)']]],
+  ['prompt_97',['prompt',['../classss_1_1shell_1_1Shell.html#a1f3afe812130b6e474e1d817f80a0b4c',1,'ss::shell::Shell']]]
 ];
