@@ -3,7 +3,6 @@ package ss.shell;
 import ss.shell.utils.BuiltIns;
 import ss.shell.utils.BuiltIns.*;
 import ss.shell.utils.ConsoleColours;
-import ss.shell.utils.ShellUtils;
 import ss.shell.utils.Logs;
 import ss.shell.utils.Logs.*;
 
@@ -104,7 +103,6 @@ public class Prompt {
         }
         if (isExit(command)) {
             Logs.printLine("Exiting shell...", Store.YES);
-            ShellUtils.wait(1);
             System.exit(0);
         }
         return false;

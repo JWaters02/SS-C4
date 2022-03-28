@@ -77,7 +77,7 @@ public class Shell {
                     this.logs.outputInfo("Command does not exist or is not allowed.", Store.YES, LogLevel.ERROR);
                 }
                 // Add the new prompt to the output
-                this.logs.outputPrompt("/home/" + this.username, Store.YES);
+                this.logs.outputPrompt(this.cwd.replace(BuiltIns.HOME_PATH, "/home/"), Store.YES);
             }
         }
     }

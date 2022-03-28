@@ -13,34 +13,22 @@ import java.util.Scanner;
  * @author Joshua
  */
 public class ShellServer extends Thread {
-    private Thread thread;
-    private int PORT = 2222;
+    private static int PORT = 2223;
     private final String threadName;
-    private static final int numServersToStart = 3;
+    private static final int NUM_SERVERS_TO_START = 3;
 
     public ShellServer(String name, int port) {
-        this.PORT = port;
+        PORT = port;
         this.threadName = name;
     }
 
     public static void main(String[] args) {
         try {
-            // TODO: Fix the race condition
-            for (int i = 0; i < numServersToStart; i++) {
-                new ShellServer("ShellServer" + i, 2223 + i).start();
+            for (int i = 0; i < NUM_SERVERS_TO_START; i++) {
+                Thread.sleep(50L);
+                System.out.println("Starting next server on port " + (PORT + i));
+                new ShellServer("ShellServer " + i, PORT + i).start();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Starts the server for each client.
-     */
-    public void run() {
-        // Run start on each new thread
-        try {
-            start();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -49,11 +37,7 @@ public class ShellServer extends Thread {
     /**
      * Start the server.
      */
-    public void start() {
-        if (thread == null) {
-            thread = new Thread(this, threadName);
-            thread.start();
-        }
+    public void run() {
         try {
             ServerSocket server = new ServerSocket(PORT);
             System.out.println("Server " + threadName + " started on port " + PORT);
@@ -79,7 +63,6 @@ public class ShellServer extends Thread {
                 // looks for user input post data
                 int userInput = -1;
                 while ((line = in.readLine()) != null && (line.length() != 0)) {
-                    System.out.println(line);
                     if (line.contains("Content-Length:")) {
                         userInput = Integer.parseInt(line
                                 .substring(line.indexOf("Content-Length:") + 16));
@@ -92,14 +75,16 @@ public class ShellServer extends Thread {
                     int intParser = in.read();
                     userInputSanitised.append((char) intParser);
                 }
+
+                // Remove the new line chars
                 userInputSanitised.replace(0, 5, "");
-                System.out.println("post data:" + userInputSanitised);
-                int index = userInputSanitised.toString().indexOf('+');
-                while(index > -1) {
-                    userInputSanitised = new StringBuilder(userInputSanitised.substring(0, index) + ' ' +
-                            userInputSanitised.substring(index + 1));
-                    index = userInputSanitised.toString().indexOf('+');
-                }
+                // Replace any instances of "%2F" with "/"
+                userInputSanitised.replace(0, userInputSanitised.length(),
+                        userInputSanitised.toString().replace("%2F", "/"));
+                // Replace any instances of "+" with " "
+                userInputSanitised.replace(0, userInputSanitised.length(),
+                        userInputSanitised.toString().replace("+", " "));
+                System.out.println("post data: " + userInputSanitised);
 
                 // If it's the first time loading the shell, only output the prompt
                 if (!hasLoaded) {

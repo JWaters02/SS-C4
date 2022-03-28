@@ -155,15 +155,11 @@ public class BuiltInProcess {
                 copy();
             }
             case BuiltIns.CD -> {
-                if (Objects.equals(this.username, "guest")) {
-                    print("You are not logged in!", LogLevel.ERROR);
+                if (command.length > 2) {
+                    print("Please only provide a single path!", LogLevel.ERROR);
                     return;
                 }
-                if (command.length != 2) {
-                    print("Please provide a path!", LogLevel.ERROR);
-                    return;
-                }
-                cd(command[1]);
+                cd();
             }
             case BuiltIns.SHOWDIR -> showDir();
             case BuiltIns.HELP -> help();
@@ -382,7 +378,6 @@ public class BuiltInProcess {
         this.logs.addToOutputTotal(fs.getLogsOutput());
 
         // Don't allow change password of current user
-        // TODO: Maybe remove?
         if (Objects.equals(username, this.username)) {
             this.logs.outputInfo("You cannot change your own password!", Store.YES, LogLevel.ERROR);
             return;
@@ -583,7 +578,7 @@ public class BuiltInProcess {
         String destination = command[2];
 
         // If the source or destination paths are outside the user's home directory, don't let them
-        if (!source.startsWith(this.cwd) || !destination.startsWith(this.cwd) || source.contains("..")) {
+        if (source.contains("..") || source.startsWith("./")) {
             print("You cannot copy files outside of your home directory!", LogLevel.ERROR);
             return;
         }
@@ -616,7 +611,7 @@ public class BuiltInProcess {
         String destination = command[2];
 
         // If the source or destination paths are outside the user's home directory, don't let them
-        if (!source.startsWith(this.cwd) || !destination.startsWith(this.cwd) || source.contains("..")) {
+        if (source.contains("..") || source.startsWith("./")) {
             print("You cannot copy files outside of your home directory!", LogLevel.ERROR);
             return;
         }
@@ -643,33 +638,43 @@ public class BuiltInProcess {
      * Execute cd command.
      * command[0] is cd
      * command[1] is the new path
-     * @param newPath New path
      */
-    private void cd(String newPath) {
-        // If the user is trying to go backwards outside the user's home directory, don't let them
-        if (newPath.equals("..") && !this.cwd.equals(BuiltIns.HOME_PATH + this.username)) {
-            print("You cannot go backwards outside of your home directory!", LogLevel.ERROR);
-            return;
-        }
-
-        // Must not go outside the user's directory
-        if (!newPath.startsWith(this.cwd) || !newPath.startsWith("./")) {
-            // Get all dirs inside of user dir
-            Filesystem fs = new Filesystem(this.cwd);
-            String[] dirs = fs.getDirsInUserDir();
-            boolean dirExists = false;
-            for (String dir : dirs) {
-                if (Objects.equals(dir, newPath)) {
-                    dirExists = true;
-                    break;
+    private void cd() {
+        // If command is just cd, go back to root of folder
+        if (command.length == 1) {
+            this.cwd = BuiltIns.HOME_PATH + this.username;
+        } else {
+            if (command[1].equals("..")) {
+                // If user is trying to go back to parent folder, go back to root of folder
+                if (this.cwd.equals(BuiltIns.HOME_PATH + this.username)) {
+                    print("You are already in the root folder!", LogLevel.ERROR);
+                    return;
+                } else {
+                    String[] cwdSplit = this.cwd.split("/");
+                    String[] newCwdSplit = new String[cwdSplit.length - 1];
+                    System.arraycopy(cwdSplit, 0, newCwdSplit, 0, cwdSplit.length);
+                    this.cwd = String.join("/", newCwdSplit);
                 }
-            }
-            if (!dirExists) {
+            } else if (!command[1].startsWith("./")) {
+                // Get all dirs inside of user dir
+                Filesystem fs = new Filesystem(this.cwd);
+                String[] dirs = fs.getDirsInUserDir();
+                boolean dirExists = false;
+                for (String dir : dirs) {
+                    if (Objects.equals(dir, command[1])) {
+                        dirExists = true;
+                        break;
+                    }
+                }
+                if (!dirExists) {
+                    print("Please enter a valid path! You cannot exit your local area!", LogLevel.ERROR);
+                    return;
+                }
+                this.cwd += "/" + command[1];
+            } else {
                 print("Please enter a valid path! You cannot exit your local area!", LogLevel.ERROR);
-                return;
             }
         }
-        this.cwd += "/" + newPath;
     }
 
     /**
