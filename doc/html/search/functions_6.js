@@ -13,7 +13,7 @@ var searchData=
   ['getoutputtotal_79',['getOutputTotal',['../classss_1_1shell_1_1utils_1_1Logs.html#a5f03bcf733fd79953669c98bafcd7b01',1,'ss::shell::utils::Logs']]],
   ['getpassword_80',['getPassword',['../classss_1_1shell_1_1utils_1_1Filesystem.html#a10b11b3dbcba1bd8629825448f0e498d',1,'ss::shell::utils::Filesystem']]],
   ['gettwodigits_81',['getTwoDigits',['../classss_1_1shell_1_1utils_1_1Logs.html#ac81c358868df85cc56eeb03ced2c6aeb',1,'ss::shell::utils::Logs']]],
-  ['getuserfiles_82',['getUserFiles',['../classss_1_1shell_1_1utils_1_1Filesystem.html#a5bfd77ee94d2cf4b5790a6c6b99f4000',1,'ss::shell::utils::Filesystem']]],
+  ['getuserfiles_82',['getUserFiles',['../classss_1_1shell_1_1utils_1_1Filesystem.html#a199fef42526a72f6c76fb7ad69970787',1,'ss::shell::utils::Filesystem']]],
   ['getusername_83',['getUsername',['../classss_1_1shell_1_1BuiltInProcess.html#ae88aa77b39cd53a4b3be032e0ea5d9a9',1,'ss.shell.BuiltInProcess.getUsername()'],['../classss_1_1shell_1_1Shell.html#a190206db7d2dfacc6bb29b52ac21880c',1,'ss.shell.Shell.getUsername()']]],
   ['getusertype_84',['getUserType',['../classss_1_1shell_1_1BuiltInProcess.html#aead61d8c86da2c5d5c9ea465fdd43f12',1,'ss.shell.BuiltInProcess.getUserType()'],['../classss_1_1shell_1_1Shell.html#a06473497543311b800f39d351a16eecf',1,'ss.shell.Shell.getUserType()'],['../classss_1_1shell_1_1utils_1_1Filesystem.html#aec6b5e6804370da005cb9d837a193064',1,'ss.shell.utils.Filesystem.getUserType()']]]
 ];

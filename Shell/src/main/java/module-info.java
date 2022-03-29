@@ -9,9 +9,9 @@ module ss.shell {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
-    requires org.junit.jupiter.api;
+    requires junit;
 
-    opens ss.shell to javafx.fxml;
+    opens ss.shell.tests to junit;
     exports ss.shell.client;
     exports ss.shell.tests;
 }

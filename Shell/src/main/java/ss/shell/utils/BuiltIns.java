@@ -79,7 +79,7 @@ public class BuiltIns {
         REMOTE
     }
 
-    public static final String HOME_PATH = System.getProperty("user.dir") + "/src/main/resources/home/";
+    public static String HOME_PATH = System.getProperty("user.dir") + "/src/main/resources/home/";
 
     /**
      * Check if a command is a built-in command.

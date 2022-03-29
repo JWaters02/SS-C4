@@ -1,36 +1,39 @@
 package ss.shell.tests;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
+import static junit.framework.Assert.assertEquals;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class ShellTest {
-
+public class ShellTest {
+    public ShellTest() {
+    }
+    
     @Test
-    void prompt() {
+    public void prompt() {
     }
 
     @Test
-    void getDoExit() {
+    public void getDoExit() {
     }
 
     @Test
-    void getUsername() {
+    public void getUsername() {
     }
 
     @Test
-    void getCWD() {
+    public void getCWD() {
     }
 
     @Test
-    void getUserType() {
+    public void getUserType() {
     }
 
     @Test
-    void getIsLoggedIn() {
+    public void getIsLoggedIn() {
     }
 
     @Test
-    void getOutput() {
+    public void getOutput() {
     }
 }

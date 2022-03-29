@@ -1,15 +1,17 @@
 package ss.shell.tests;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import ss.shell.utils.BuiltIns;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
 
-class BuiltInsTest {
+public class BuiltInsTest {
+    public BuiltInsTest() {
+    }
+
     @Test
-    void isBuiltIn() {
-        System.out.println("isBuiltIn");
+    public void isBuiltIn() {
         assertFalse(BuiltIns.isBuiltIn("not a real command"));
         assertFalse(BuiltIns.isBuiltIn("exit"));
         assertFalse(BuiltIns.isBuiltIn("pwd"));
@@ -21,8 +23,7 @@ class BuiltInsTest {
     }
 
     @Test
-    void isProcessBuilder() {
-        System.out.println("isProcessBuilder");
+    public void isProcessBuilder() {
         assertFalse(BuiltIns.isProcessBuilder("not a real command"));
         assertFalse(BuiltIns.isProcessBuilder("exit"));
         assertFalse(BuiltIns.isProcessBuilder("super"));

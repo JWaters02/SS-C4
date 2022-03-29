@@ -61,7 +61,6 @@ public class Filesystem {
      */
     public void createUser() {
         if (!this.hasDirectory()) {
-            print("User " + this.username + " does not have a directory, creating user directory.", LogLevel.INFO);
             this.createUserDir();
             this.writeUserDetails();
         } else {
@@ -217,7 +216,7 @@ public class Filesystem {
      * Gets all the user files from the home directory.
      * @return the user files.
      */
-    public File[] getUserFiles() {
+    public static File[] getUserFiles() {
         File homeDir = new File(BuiltIns.HOME_PATH);
         // Filter OUT the log files
         FilenameFilter filter = (file, s) -> !s.toLowerCase().endsWith(".txt");
@@ -230,9 +229,14 @@ public class Filesystem {
      * @return the users from the user files.
      */
     public String[] listUsers(File[] userFiles) {
-        String[] users = new String[userFiles.length];
-        for (int i = 0; i < userFiles.length; i++) {
-            users[i] = userFiles[i].getName();
+        String[] users = new String[0];
+        try {
+            users = new String[userFiles.length];
+            for (int i = 0; i < userFiles.length; i++) {
+                users[i] = userFiles[i].getName();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return users;
     }

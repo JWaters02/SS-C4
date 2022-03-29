@@ -1,20 +1,16 @@
 package ss.shell.tests;
 
-import org.junit.jupiter.api.Test;
-import ss.shell.utils.BuiltIns;
 import ss.shell.utils.Logs;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.time.LocalDate;
+import org.junit.Test;
+import static junit.framework.Assert.assertEquals;
 
-import static org.junit.jupiter.api.Assertions.*;
+public class LogsTest {
+    public LogsTest() {
+    }
 
-class LogsTest {
     @Test
-    void outputPrompt() {
-        System.out.println("Output Prompt");
+    public void outputPrompt() {
         Logs logs = new Logs();
         logs.outputPrompt("test prompt", Logs.Store.NO);
         String output = logs.getOuterTop() + "<span class=\"terminal_prompt-path\">test prompt</span>\n" +
@@ -23,8 +19,7 @@ class LogsTest {
     }
 
     @Test
-    void outputShort() {
-        System.out.println("Output Short");
+    public void outputShort() {
         Logs logs = new Logs();
         logs.outputShort("some output!", Logs.Store.NO);
         String output = "\n" + logs.getOuterTop() + "<span class=\"terminal_prompt-short\">some output!</span>" +
@@ -33,8 +28,7 @@ class LogsTest {
     }
 
     @Test
-    void outputInfo_Error() {
-        System.out.println("Output Info Error");
+    public void outputInfo_Error() {
         Logs logs = new Logs();
         logs.outputInfo("this is an error!", Logs.Store.NO, Logs.LogLevel.ERROR);
         String output = logs.getOuterTop() + "<span class=\"terminal_prompt-error\"> Error: this is an error!" +
@@ -42,10 +36,8 @@ class LogsTest {
         assertEquals(output, logs.getOutputTotal());
     }
 
-
     @Test
-    void outputInfo_Warning() {
-        System.out.println("Output Info Warning");
+    public void outputInfo_Warning() {
         Logs logs = new Logs();
         logs.outputInfo("this is a warning!", Logs.Store.NO, Logs.LogLevel.WARNING);
         String output = logs.getOuterTop() + "<span class=\"terminal_prompt-warning\"> Warning: this is a warning!" +
@@ -53,47 +45,39 @@ class LogsTest {
         assertEquals(output, logs.getOutputTotal());
     }
 
-
     @Test
-    void outputInfo_Info() {
-        System.out.println("Output Info Info");
+    public void outputInfo_Info() {
         Logs logs = new Logs();
-        logs.outputInfo("this is info!", Logs.Store.NO, Logs.LogLevel.WARNING);
+        logs.outputInfo("this is info!", Logs.Store.NO, Logs.LogLevel.INFO);
         String output = logs.getOuterTop() + "<span class=\"terminal_prompt-info\"> Info: this is info!" +
                 "</span>" + logs.getOuterBottom();
         assertEquals(output, logs.getOutputTotal());
     }
 
-
     @Test
-    void getOuterTop() {
-        System.out.println("Outer Top");
+    public void getOuterTop() {
         Logs logs = new Logs();
         assertEquals("<div class=\"terminal_prompt\">\n", logs.getOuterTop());
     }
 
-
     @Test
-    void getOuterBottom() {
-        System.out.println("Outer Bottom");
+    public void getOuterBottom() {
         Logs logs = new Logs();
-        assertEquals("\n</div>", logs.getOuterTop());
+        assertEquals("\n</div>", logs.getOuterBottom());
     }
 
     @Test
-    void addToOutputTotal() {
-        System.out.println("Add To Output Total");
+    public void addToOutputTotal() {
         Logs logs = new Logs();
         logs.addToOutputTotal("test");
         assertEquals("test", logs.getOutputTotal());
 
-        logs.addToOutputTotal("tests 2 and 3");
+        logs.addToOutputTotal(" tests 2 and 3");
         assertEquals("test tests 2 and 3", logs.getOutputTotal());
     }
 
     @Test
-    void getTwoDigits() {
-        System.out.print("Get Two Digits");
+    public void getTwoDigits() {
         assertEquals("00", Logs.getTwoDigits(0));
         assertEquals("01", Logs.getTwoDigits(1));
         assertEquals("10", Logs.getTwoDigits(10));

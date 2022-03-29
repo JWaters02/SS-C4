@@ -105,6 +105,13 @@ public class BuiltInProcess {
                         case BuiltIns.CHPASS -> chPass();
                         case BuiltIns.CHUSERTYPE -> chUserType();
                         case BuiltIns.LISTUSERS -> listUsers();
+                        case BuiltIns.HISTORY -> {
+                            if (command.length != 3) {
+                                print("Please provide a date in the format YYYY-mm-dd!", LogLevel.ERROR);
+                                return;
+                            }
+                            history(command[1]);
+                        }
                         default -> Logs.printLine("Cannot execute command as super: " + command[1], LogLevel.ERROR);
                     }
                 } else {
@@ -114,14 +121,20 @@ public class BuiltInProcess {
                         case BuiltIns.CHPASS -> chPass(command);
                         case BuiltIns.CHUSERTYPE -> chUserType(command);
                         case BuiltIns.LISTUSERS -> listUsers();
+                        case BuiltIns.HISTORY -> {
+                            if (command.length != 3) {
+                                print("Please provide a date in the format YYYY-mm-dd!", LogLevel.ERROR);
+                                return;
+                            }
+                            history(command[1]);
+                        }
                         default -> this.logs.outputInfo("Cannot execute command as super: " + command[1],
                                 Store.YES, LogLevel.ERROR);
                     }
                 }
             }
-            case BuiltIns.ADDUSER, BuiltIns.CHUSERTYPE, BuiltIns.CHPASS, BuiltIns.DELUSER, BuiltIns.LISTUSERS -> {
-                print("You must execute this command as super.", LogLevel.ERROR);
-            }
+            case BuiltIns.ADDUSER, BuiltIns.CHUSERTYPE, BuiltIns.CHPASS, BuiltIns.DELUSER, BuiltIns.LISTUSERS,
+                    BuiltIns.HISTORY -> print("You must execute this command as super.", LogLevel.ERROR);
             case BuiltIns.LOGIN -> {
                 if (shellType == ShellType.LOCAL) login();
                 else login(command);
@@ -163,17 +176,6 @@ public class BuiltInProcess {
             }
             case BuiltIns.SHOWDIR -> showDir();
             case BuiltIns.HELP -> help();
-            case BuiltIns.HISTORY -> {
-                if (!Objects.equals(this.userType, BuiltIns.UserTypes.SUPERUSER)) {
-                    print("You are not a super user!", LogLevel.ERROR);
-                    return;
-                }
-                if (command.length != 2) {
-                    print("Please provide a date in the format YYYY-mm-dd!", LogLevel.ERROR);
-                    return;
-                }
-                history(command[1]);
-            }
             default -> print("Unknown command: " + command[0], LogLevel.ERROR);
         }
     }
@@ -296,7 +298,7 @@ public class BuiltInProcess {
      */
     private void listUsers() {
         Filesystem fs = new Filesystem(this.cwd);
-        File[] users = fs.getUserFiles();
+        File[] users = Filesystem.getUserFiles();
         if (users.length == 0) {
             print("No users found!", LogLevel.WARNING);
             return;

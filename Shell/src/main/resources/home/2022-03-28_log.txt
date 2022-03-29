@@ -137,3 +137,15 @@
 [2022-03-28 17:01:20]: folder/2
 [2022-03-28 17:01:20]: Please enter a valid path! You cannot exit your local area!
 [2022-03-28 17:01:20]: /home/guest
+[2022-03-28 23:07:00]: Please specify a command.
+[2022-03-28 23:19:19]: No command entered
+[2022-03-28 23:19:22]: login admin admin
+[2022-03-28 23:19:22]: login
+[2022-03-28 23:19:22]: admin
+[2022-03-28 23:19:22]: admin
+[2022-03-28 23:19:22]: Welcome admin
+[2022-03-28 23:19:22]: /home/admin
+[2022-03-28 23:19:33]: No command entered
+[2022-03-28 23:19:36]: ls
+[2022-03-28 23:19:36]: ls
+[2022-03-28 23:19:36]: /home/admin
