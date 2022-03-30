@@ -550,7 +550,7 @@ public class BuiltInProcess {
         print("Logged out " + this.username, LogLevel.INFO);
         this.username = "guest";
         this.userType = BuiltIns.UserTypes.STANDARD;
-        this.cwd = BuiltIns.HOME_PATH;
+        this.cwd = BuiltIns.HOME_PATH + this.username;
         this.isLoggedIn = false;
     }
 

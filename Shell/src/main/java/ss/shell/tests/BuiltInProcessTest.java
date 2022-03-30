@@ -169,16 +169,14 @@ public class BuiltInProcessTest {
         // Valid command
         String[] command = {"super", "adduser", "someUser", "password", "password", "standard"};
         builtInProcess.execute(command);
-        // Delete user
-        command = new String[]{"super", "deluser", "someUser"};
-        builtInProcess.execute(command);
+
         // Now check for correct output
         assertTrue(builtInProcess.getLogsOutput().contains("Creating directory for someUser"));
 
         // User already exists
-        command = new String[]{"super", "adduser", this.username, "password", "password", "standard"};
+        command = new String[]{"super", "adduser", "someUser", "password", "password", "standard"};
         builtInProcess.execute(command);
-        assertTrue(builtInProcess.getLogsOutput().contains("User " + this.username + " already exists!"));
+        assertTrue(builtInProcess.getLogsOutput().contains("User someUser already exists!"));
 
         // Invalid number of parameters
         command = new String[]{"super", "adduser", this.username, "password"};
@@ -194,6 +192,10 @@ public class BuiltInProcessTest {
         command = new String[]{"super", "adduser", this.username, "password", "password", "random"};
         builtInProcess.execute(command);
         assertTrue(builtInProcess.getLogsOutput().contains("Invalid user type"));
+
+        // Delete user
+        command = new String[]{"super", "deluser", "someUser"};
+        builtInProcess.execute(command);
     }
 
     @Test
@@ -556,7 +558,7 @@ public class BuiltInProcessTest {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localDate = LocalDate.now();
         String date = dtf.format(localDate);
-        command = new String[]{"super", "history", date + "_log.txt"};
+        command = new String[]{"super", "history", date};
         builtInProcess.execute(command);
         assertTrue(builtInProcess.getLogsOutput().contains("History for " + date + ":"));
     }

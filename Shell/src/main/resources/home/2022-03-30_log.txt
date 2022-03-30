@@ -1,364 +1,117 @@
-[2022-03-30 00:43:26]: You are not a super user!
-[2022-03-30 00:48:53]: You are not a super user!
-[2022-03-30 00:50:13]: Creating directory for newUser
-[2022-03-30 00:50:13]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/newUser.txt
-[2022-03-30 00:52:42]: Creating directory for newUser
-[2022-03-30 00:52:42]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/newUser.txt
-[2022-03-30 00:53:29]: User newUser already exists!
-[2022-03-30 00:53:59]: Creating directory for newUser
-[2022-03-30 00:53:59]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/newUser.txt
-[2022-03-30 00:55:12]: Creating directory for newUser
-[2022-03-30 00:55:12]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/newUser.txt
-[2022-03-30 00:55:40]: Deleting user newUser
-[2022-03-30 01:02:22]: You are not a super user!
-[2022-03-30 01:02:22]: You are not a super user!
-[2022-03-30 01:02:49]: You are not a super user!
-[2022-03-30 01:03:08]: You are not a super user!
-[2022-03-30 01:03:59]: Creating directory for someUser
-[2022-03-30 01:03:59]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:03:59]: Please enter all parameters correctly!
-[2022-03-30 01:03:59]: You cannot delete yourself!
-[2022-03-30 01:03:59]: Deleting user someUser
-[2022-03-30 01:04:23]: Creating directory for someUser
-[2022-03-30 01:04:23]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:04:23]: Please enter all parameters correctly!
-[2022-03-30 01:04:23]: You cannot delete yourself!
-[2022-03-30 01:04:25]: Deleting user someUser
-[2022-03-30 01:05:02]: Creating directory for someUser
-[2022-03-30 01:05:02]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:05:02]: Please enter all parameters correctly!
-[2022-03-30 01:05:02]: You cannot delete yourself!
-[2022-03-30 01:05:02]: Deleting user someUser
-[2022-03-30 01:11:01]: Creating directory for someUser
-[2022-03-30 01:11:01]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:11:01]: Creating directory for someOtherUser
-[2022-03-30 01:11:01]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someOtherUser.txt
-[2022-03-30 01:11:01]: Deleting user someUser
-[2022-03-30 01:11:01]: Deleting user someOtherUser
-[2022-03-30 01:11:35]: User guest already exists!
-[2022-03-30 01:11:35]: You cannot delete yourself!
-[2022-03-30 01:11:54]: User guest already exists!
-[2022-03-30 01:11:54]: You cannot delete yourself!
-[2022-03-30 01:13:12]: Creating directory for someUser
-[2022-03-30 01:13:12]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:13:12]: Deleting user someUser
-[2022-03-30 01:13:12]: User guest already exists!
-[2022-03-30 01:13:24]: Creating directory for someUser
-[2022-03-30 01:13:24]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:13:24]: Deleting user someUser
-[2022-03-30 01:13:24]: User guest already exists!
-[2022-03-30 01:14:05]: Creating directory for someUser
-[2022-03-30 01:14:05]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:14:05]: Deleting user someUser
-[2022-03-30 01:14:05]: User guest already exists!
-[2022-03-30 01:14:05]: Please enter all parameters correctly!
-[2022-03-30 01:14:05]: Passwords do not match!
-[2022-03-30 01:14:05]: Invalid user type!
-[2022-03-30 01:18:18]: Creating directory for someUser
-[2022-03-30 01:18:18]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:18:18]: Please enter all parameters correctly!
-[2022-03-30 01:18:18]: User does not exist!
-[2022-03-30 01:18:26]: User someUser already exists!
-[2022-03-30 01:18:26]: Creating directory for someOtherUser
-[2022-03-30 01:18:26]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someOtherUser.txt
-[2022-03-30 01:18:26]: Deleting user someUser
-[2022-03-30 01:18:26]: Deleting user someOtherUser
-[2022-03-30 01:22:56]: Creating directory for someUser
-[2022-03-30 01:22:56]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:22:56]: Please enter all parameters correctly!
-[2022-03-30 01:22:56]: User does not exist!
-[2022-03-30 01:22:56]: User does not exist!
-[2022-03-30 01:23:23]: User someUser already exists!
-[2022-03-30 01:23:23]: Please enter all parameters correctly!
-[2022-03-30 01:23:23]: User does not exist!
-[2022-03-30 01:23:23]: User does not exist!
-[2022-03-30 01:25:17]: User someUser already exists!
-[2022-03-30 01:25:17]: Creating directory for someSuperUser
-[2022-03-30 01:25:17]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someSuperUser.txt
-[2022-03-30 01:25:17]: Please enter all parameters correctly!
-[2022-03-30 01:25:17]: User does not exist!
-[2022-03-30 01:25:17]: You cannot change your own password!
-[2022-03-30 01:25:17]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:25:17]: Password changed successfully!
-[2022-03-30 01:25:17]: Deleting user someUser
-[2022-03-30 01:25:17]: You cannot delete yourself!
-[2022-03-30 01:25:29]: Creating directory for someUser
-[2022-03-30 01:25:29]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:25:29]: User someSuperUser already exists!
-[2022-03-30 01:25:29]: Please enter all parameters correctly!
-[2022-03-30 01:25:29]: User does not exist!
-[2022-03-30 01:25:29]: You cannot change your own password!
-[2022-03-30 01:25:29]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:25:29]: Password changed successfully!
-[2022-03-30 01:25:29]: Deleting user someUser
-[2022-03-30 01:25:29]: You cannot delete yourself!
-[2022-03-30 01:25:41]: Creating directory for someUser
-[2022-03-30 01:25:41]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:25:41]: Creating directory for someSuperUser
-[2022-03-30 01:25:41]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someSuperUser.txt
-[2022-03-30 01:25:41]: Please enter all parameters correctly!
-[2022-03-30 01:25:41]: User does not exist!
-[2022-03-30 01:25:41]: You cannot change your own password!
-[2022-03-30 01:25:41]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:25:41]: Password changed successfully!
-[2022-03-30 01:25:41]: Deleting user someUser
-[2022-03-30 01:25:41]: You cannot delete yourself!
-[2022-03-30 01:26:58]: Creating directory for someUser
-[2022-03-30 01:26:58]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:26:58]: Creating directory for someSuperUser
-[2022-03-30 01:26:58]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someSuperUser.txt
-[2022-03-30 01:26:58]: Please enter all parameters correctly!
-[2022-03-30 01:26:58]: User does not exist!
-[2022-03-30 01:26:58]: You cannot change your own password!
-[2022-03-30 01:26:58]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:26:58]: Password changed successfully!
-[2022-03-30 01:26:58]: Deleting user someUser
-[2022-03-30 01:26:58]: Deleting user someSuperUser
-[2022-03-30 01:29:37]: Creating directory for someUser
-[2022-03-30 01:29:37]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:29:37]: Creating directory for someSuperUser
-[2022-03-30 01:29:37]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someSuperUser.txt
-[2022-03-30 01:29:37]: Please enter all parameters correctly!
-[2022-03-30 01:29:37]: Available user types: standard, superuser
-[2022-03-30 01:29:37]: Invalid user type!
-[2022-03-30 01:29:37]: User does not exist!
-[2022-03-30 01:29:37]: You cannot change your own user type!
-[2022-03-30 01:29:37]: Available user types: standard, superuser
-[2022-03-30 01:29:37]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:29:37]: User type changed!
-[2022-03-30 01:30:18]: Creating directory for someUser
-[2022-03-30 01:30:18]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:30:18]: Creating directory for someSuperUser
-[2022-03-30 01:30:18]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someSuperUser.txt
-[2022-03-30 01:30:18]: Please enter all parameters correctly!
-[2022-03-30 01:30:18]: Available user types: standard, superuser
-[2022-03-30 01:30:18]: Invalid user type!
-[2022-03-30 01:30:18]: User does not exist!
-[2022-03-30 01:30:18]: You cannot change your own user type!
-[2022-03-30 01:30:18]: Available user types: standard, superuser
-[2022-03-30 01:30:18]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:30:18]: User type changed!
-[2022-03-30 01:30:18]: Deleting user someUser
-[2022-03-30 01:30:18]: Deleting user someSuperUser
-[2022-03-30 01:31:24]: You are not logged in!
-[2022-03-30 01:31:24]: You are not logged in!
-[2022-03-30 01:31:24]: Creating directory for someUser
-[2022-03-30 01:31:24]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:31:24]: Creating directory for someSuperUser
-[2022-03-30 01:31:24]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someSuperUser.txt
-[2022-03-30 01:31:24]: Please enter all parameters correctly!
-[2022-03-30 01:31:24]: Available user types: standard, superuser
-[2022-03-30 01:31:24]: Invalid user type!
-[2022-03-30 01:31:24]: User does not exist!
-[2022-03-30 01:31:24]: You cannot change your own user type!
-[2022-03-30 01:31:24]: Available user types: standard, superuser
-[2022-03-30 01:31:24]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:31:24]: User type changed!
-[2022-03-30 01:31:24]: Deleting user someUser
-[2022-03-30 01:31:24]: Deleting user someSuperUser
-[2022-03-30 01:31:24]: You must execute this command as super.
-[2022-03-30 01:31:24]: Creating directory for someUser
-[2022-03-30 01:31:24]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:31:24]: Creating directory for someSuperUser
-[2022-03-30 01:31:24]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someSuperUser.txt
-[2022-03-30 01:31:24]: Please enter all parameters correctly!
-[2022-03-30 01:31:24]: User does not exist!
-[2022-03-30 01:31:24]: You cannot change your own password!
-[2022-03-30 01:31:24]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:31:24]: Password changed successfully!
-[2022-03-30 01:31:24]: Deleting user someUser
-[2022-03-30 01:31:24]: Deleting user someSuperUser
-[2022-03-30 01:31:24]: Please specify a command.
-[2022-03-30 01:31:24]: Creating directory for someUser
-[2022-03-30 01:31:24]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:31:24]: Creating directory for someOtherUser
-[2022-03-30 01:31:24]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someOtherUser.txt
-[2022-03-30 01:31:24]: Deleting user someUser
-[2022-03-30 01:31:24]: Deleting user someOtherUser
-[2022-03-30 01:31:24]: Creating directory for someUser
-[2022-03-30 01:31:24]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:31:24]: Deleting user someUser
-[2022-03-30 01:31:24]: User guest already exists!
-[2022-03-30 01:31:24]: Please enter all parameters correctly!
-[2022-03-30 01:31:24]: Passwords do not match!
-[2022-03-30 01:31:24]: Invalid user type!
-[2022-03-30 01:31:24]: Please provide two arguments!
-[2022-03-30 01:31:24]: Please provide two arguments!
-[2022-03-30 01:31:24]: Please provide two arguments!
-[2022-03-30 01:31:24]: Please only provide a single path!
-[2022-03-30 01:31:24]: You are not a super user!
-[2022-03-30 01:31:24]: Unknown command: random
-[2022-03-30 01:31:24]: Please provide a date in the format YYYY-mm-dd!
-[2022-03-30 01:31:24]: Creating directory for someUser
-[2022-03-30 01:31:24]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:31:24]: Please enter all parameters correctly!
-[2022-03-30 01:31:24]: Deleting user guest
-[2022-03-30 01:31:24]: Cannot execute command as super: whoami
-[2022-03-30 01:31:55]: User someUser already exists!
-[2022-03-30 01:31:55]: Please enter all parameters correctly!
-[2022-03-30 01:31:55]: You cannot delete yourself!
-[2022-03-30 01:31:55]: Deleting user someUser
-[2022-03-30 01:42:45]: Creating directory for someUser
-[2022-03-30 01:42:45]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:42:45]: Cannot execute command as super: login
-[2022-03-30 01:43:57]: User someUser already exists!
-[2022-03-30 01:43:57]: Cannot execute command as super: login
-[2022-03-30 01:45:21]: Creating directory for someUser
-[2022-03-30 01:45:21]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:45:21]: Cannot execute command as super: login
-[2022-03-30 01:46:22]: User someUser already exists!
-[2022-03-30 01:46:22]: You are already logged in!
-[2022-03-30 01:46:22]: Please enter all parameters correctly!
-[2022-03-30 01:46:22]: User someUser2 does not exist!
-[2022-03-30 01:46:22]: Invalid password.
-[2022-03-30 01:46:22]: Welcome someUser
-[2022-03-30 01:46:22]: Deleting user someUser
-[2022-03-30 01:49:33]: Creating directory for someUser
-[2022-03-30 01:49:33]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:49:33]: Logged out someSuperUser
-[2022-03-30 01:49:55]: User someUser already exists!
-[2022-03-30 01:49:55]: You are not logged in!
-[2022-03-30 01:49:55]: Welcome someUser
-[2022-03-30 01:49:55]: Logged out someUser
-[2022-03-30 01:49:55]: Deleting user someUser
-[2022-03-30 01:51:52]: Creating directory for someUser
-[2022-03-30 01:51:52]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someUser.txt
-[2022-03-30 01:51:52]: You are not logged in!
-[2022-03-30 01:51:52]: Welcome someUser
-[2022-03-30 01:51:52]: Username: someUser
+[2022-03-30 17:07:40]: ls
+[2022-03-30 17:07:40]: /home/guest
+[2022-03-30 17:07:43]: cd
+[2022-03-30 17:07:43]: folder
+[2022-03-30 17:07:43]: /home/guest/folder
+[2022-03-30 17:08:01]: Welcome admin
+[2022-03-30 17:08:01]: /home/admin
+[2022-03-30 17:08:09]: help
+[2022-03-30 17:08:09]: /home/admin
+[2022-03-30 17:08:38]: whoami
+[2022-03-30 17:08:38]: Username: admin
+User type: SUPERUSER
+[2022-03-30 17:08:38]: /home/admin
+[2022-03-30 17:08:49]: super
+[2022-03-30 17:08:49]: history
+[2022-03-30 17:08:49]: 2022-03-30
+[2022-03-30 17:08:49]: /home/admin
+[2022-03-30 17:09:35]: adduser
+[2022-03-30 17:09:35]: someuser
+[2022-03-30 17:09:35]: pass1
+[2022-03-30 17:09:35]: pass1
+[2022-03-30 17:09:35]: standard
+[2022-03-30 17:09:35]: You must execute this command as super.
+[2022-03-30 17:09:35]: /home/admin
+[2022-03-30 17:09:43]: super
+[2022-03-30 17:09:43]: adduser
+[2022-03-30 17:09:43]: someuser
+[2022-03-30 17:09:43]: pass1
+[2022-03-30 17:09:43]: pass1
+[2022-03-30 17:09:43]: standard
+[2022-03-30 17:09:43]: Creating directory for someuser
+[2022-03-30 17:09:43]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/someuser.txt
+[2022-03-30 17:09:43]: /home/admin
+[2022-03-30 17:09:59]: listusers
+[2022-03-30 17:09:59]: You must execute this command as super.
+[2022-03-30 17:09:59]: /home/admin
+[2022-03-30 17:10:04]: super
+[2022-03-30 17:10:04]: listusers
+[2022-03-30 17:10:04]: /home/admin
+[2022-03-30 17:10:09]: logout
+[2022-03-30 17:10:09]: Logged out admin
+[2022-03-30 17:10:09]: /home/guest
+[2022-03-30 17:10:15]: Welcome someuser
+[2022-03-30 17:10:15]: /home/someuser
+[2022-03-30 17:10:20]: whoami
+[2022-03-30 17:10:20]: Username: someuser
 User type: STANDARD
-[2022-03-30 01:52:04]: User someUser already exists!
-[2022-03-30 01:52:04]: You are not logged in!
-[2022-03-30 01:52:04]: Welcome someUser
-[2022-03-30 01:52:04]: Username: someUser
-User type: STANDARD
-[2022-03-30 01:52:25]: User someUser already exists!
-[2022-03-30 01:52:25]: You are not logged in!
-[2022-03-30 01:52:25]: Welcome someUser
-[2022-03-30 01:52:25]: Username: someUser
-User type: STANDARD
-[2022-03-30 01:52:25]: Deleting user someUser
-[2022-03-30 02:02:28]: You cannot copy files outside of your home directory!
-[2022-03-30 02:02:28]: You cannot copy files outside of your home directory!
-[2022-03-30 02:02:28]: You cannot copy files outside of your home directory!
-[2022-03-30 02:02:28]: File does not exist!
-[2022-03-30 02:02:28]: File does not exist!
-[2022-03-30 02:02:43]: You cannot copy files outside of your home directory!
-[2022-03-30 02:02:43]: You cannot copy files outside of your home directory!
-[2022-03-30 02:02:43]: You cannot copy files outside of your home directory!
-[2022-03-30 02:02:43]: File does not exist!
-[2022-03-30 02:02:43]: File does not exist!
-[2022-03-30 02:03:38]: You cannot copy files outside of your home directory!
-[2022-03-30 02:03:38]: You cannot copy files outside of your home directory!
-[2022-03-30 02:03:38]: You cannot copy files outside of your home directory!
-[2022-03-30 02:03:38]: File does not exist!
-[2022-03-30 02:03:38]: File does not exist!
-[2022-03-30 02:03:46]: You cannot copy files outside of your home directory!
-[2022-03-30 02:03:46]: You cannot copy files outside of your home directory!
-[2022-03-30 02:03:46]: You cannot copy files outside of your home directory!
-[2022-03-30 02:03:46]: File does not exist!
-[2022-03-30 02:03:46]: File does not exist!
-[2022-03-30 02:04:49]: You cannot copy files outside of your home directory!
-[2022-03-30 02:04:49]: You cannot copy files outside of your home directory!
-[2022-03-30 02:04:49]: You cannot copy files outside of your home directory!
-[2022-03-30 02:04:49]: File does not exist!
-[2022-03-30 02:04:49]: File does not exist!
-[2022-03-30 02:05:00]: You cannot copy files outside of your home directory!
-[2022-03-30 02:05:00]: You cannot copy files outside of your home directory!
-[2022-03-30 02:05:00]: You cannot copy files outside of your home directory!
-[2022-03-30 02:05:00]: File does not exist!
-[2022-03-30 02:06:30]: You cannot copy files outside of your home directory!
-[2022-03-30 02:06:30]: You cannot copy files outside of your home directory!
-[2022-03-30 02:06:30]: You cannot copy files outside of your home directory!
-[2022-03-30 02:06:30]: File does not exist!
-[2022-03-30 12:53:32]: login admin admin
-[2022-03-30 12:53:32]: login
-[2022-03-30 12:53:32]: admin
-[2022-03-30 12:53:32]: admin
-[2022-03-30 12:53:32]: Welcome admin
-[2022-03-30 12:53:32]: /home/admin
-[2022-03-30 12:53:36]: ls
-[2022-03-30 12:53:36]: ls
-[2022-03-30 12:53:36]: /home/admin
-[2022-03-30 12:53:41]: cd folder
-[2022-03-30 12:53:41]: cd
-[2022-03-30 12:53:41]: folder
-[2022-03-30 12:53:41]: /home/admin/folder
-[2022-03-30 12:53:43]: ls
-[2022-03-30 12:53:43]: ls
-[2022-03-30 12:53:43]: /home/admin/folder
-[2022-03-30 12:58:51]: login admin admin
-[2022-03-30 12:58:51]: login
-[2022-03-30 12:58:51]: admin
-[2022-03-30 12:58:51]: admin
-[2022-03-30 12:58:51]: Welcome admin
-[2022-03-30 12:58:51]: /home/admin
-[2022-03-30 12:58:54]: ls
-[2022-03-30 12:58:54]: ls
-[2022-03-30 12:58:54]: /home/admin
-[2022-03-30 12:58:57]: cd folder
-[2022-03-30 12:58:57]: cd
-[2022-03-30 12:58:57]: folder
-[2022-03-30 12:58:57]: /home/admin/folder
-[2022-03-30 12:58:59]: ls
-[2022-03-30 12:58:59]: ls
-[2022-03-30 12:58:59]: /home/admin/folder
-[2022-03-30 12:59:01]: cd
-[2022-03-30 12:59:01]: cd
-[2022-03-30 12:59:01]: /home/admin
-[2022-03-30 12:59:05]: cd
-[2022-03-30 12:59:05]: cd
-[2022-03-30 12:59:05]: /home/admin
-[2022-03-30 13:12:10]: login admin admin
-[2022-03-30 13:12:10]: login
-[2022-03-30 13:12:10]: admin
-[2022-03-30 13:12:10]: admin
-[2022-03-30 13:12:10]: Welcome admin
-[2022-03-30 13:12:10]: /home/admin
-[2022-03-30 13:12:20]: super history 2022-22-22
-[2022-03-30 13:12:20]: super
-[2022-03-30 13:12:20]: history
-[2022-03-30 13:12:20]: 2022-22-22
-[2022-03-30 13:12:20]: Please input a valid date!
-[2022-03-30 13:12:20]: /home/admin
-[2022-03-30 13:12:34]: super history 2022-03-30
-[2022-03-30 13:12:34]: super
-[2022-03-30 13:12:34]: history
-[2022-03-30 13:12:34]: 2022-03-30
-[2022-03-30 13:12:34]: Please input a valid date!
-[2022-03-30 13:12:34]: /home/admin
-[2022-03-30 13:13:59]: history 2022-03-06
-[2022-03-30 13:13:59]: history
-[2022-03-30 13:13:59]: 2022-03-06
-[2022-03-30 13:13:59]: You must execute this command as super.
-[2022-03-30 13:13:59]: /home/guest
-[2022-03-30 13:14:04]: login admin admin
-[2022-03-30 13:14:04]: login
-[2022-03-30 13:14:04]: admin
-[2022-03-30 13:14:04]: admin
-[2022-03-30 13:14:04]: Welcome admin
-[2022-03-30 13:14:04]: /home/admin
-[2022-03-30 13:14:09]: super history 2022-03-30
-[2022-03-30 13:14:09]: super
-[2022-03-30 13:14:09]: history
-[2022-03-30 13:14:09]: 2022-03-30
-[2022-03-30 13:14:09]: Please input a valid date!
-[2022-03-30 13:14:09]: /home/admin
-[2022-03-30 13:14:26]: login admin admin
-[2022-03-30 13:14:26]: login
-[2022-03-30 13:14:26]: admin
-[2022-03-30 13:14:26]: admin
-[2022-03-30 13:14:26]: Welcome admin
-[2022-03-30 13:14:26]: /home/admin
-[2022-03-30 13:14:34]: super history 2022-03-30
-[2022-03-30 13:14:34]: super
-[2022-03-30 13:14:34]: history
-[2022-03-30 13:14:34]: 2022-03-30
-[2022-03-30 13:14:42]: Please input a valid date!
-[2022-03-30 13:14:42]: /home/admin
-[2022-03-30 13:33:47]: login admin admin
-[2022-03-30 13:33:47]: login
-[2022-03-30 13:33:47]: admin
-[2022-03-30 13:33:47]: admin
-[2022-03-30 13:33:47]: Welcome admin
-[2022-03-30 13:33:47]: /home/admin
+[2022-03-30 17:10:20]: /home/someuser
+[2022-03-30 17:10:22]: ls
+[2022-03-30 17:10:22]: /home/someuser
+[2022-03-30 17:10:27]: mkdir
+[2022-03-30 17:10:27]: folder
+[2022-03-30 17:10:27]: /home/someuser
+[2022-03-30 17:10:29]: ls
+[2022-03-30 17:10:29]: /home/someuser
+[2022-03-30 17:10:32]: cd
+[2022-03-30 17:10:32]: folder
+[2022-03-30 17:10:32]: /home/someuser/folder
+[2022-03-30 17:10:35]: ls
+[2022-03-30 17:10:35]: /home/someuser/folder
+[2022-03-30 17:10:40]: cd
+[2022-03-30 17:10:40]: /home/someuser
+[2022-03-30 17:10:44]: cd
+[2022-03-30 17:10:44]: ..
+[2022-03-30 17:10:44]: You are already in the root folder!
+[2022-03-30 17:10:44]: /home/someuser
+[2022-03-30 17:10:50]: cd
+[2022-03-30 17:10:50]: ./folder
+[2022-03-30 17:10:50]: Please enter a valid path! You cannot exit your local area!
+[2022-03-30 17:10:50]: /home/someuser
+[2022-03-30 17:11:05]: help
+[2022-03-30 17:11:05]: /home/someuser
+[2022-03-30 17:11:12]: showdir
+[2022-03-30 17:11:12]: /someuser
+[2022-03-30 17:11:12]: /home/someuser
+[2022-03-30 17:11:18]: ps
+[2022-03-30 17:11:18]: /home/someuser
+[2022-03-30 17:11:47]: No command entered
+[2022-03-30 17:11:54]: Welcome admin
+[2022-03-30 17:11:54]: /home/admin
+[2022-03-30 17:12:00]: cd
+[2022-03-30 17:12:00]: /home/someuser
+[2022-03-30 17:12:30]: No command entered
+[2022-03-30 17:17:57]: Creating directory for new_user
+[2022-03-30 17:17:57]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/new_user.txt
+[2022-03-30 17:17:57]: Deleting user new_user
+[2022-03-30 17:17:57]: Creating directory for new_user
+[2022-03-30 17:17:57]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/new_user.txt
+[2022-03-30 17:17:57]: Deleting user new_user
+[2022-03-30 17:17:57]: Creating directory for new_user
+[2022-03-30 17:17:57]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/new_user.txt
+[2022-03-30 17:17:57]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/new_user.txt
+[2022-03-30 17:17:57]: Deleting user new_user
+[2022-03-30 17:17:57]: User new_user does not exist!
+[2022-03-30 17:17:57]: Creating directory for new_user
+[2022-03-30 17:17:57]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/new_user.txt
+[2022-03-30 17:17:57]: Invalid password.
+[2022-03-30 17:17:57]: Deleting user new_user
+[2022-03-30 17:17:57]: User new_user does not exist!
+[2022-03-30 17:17:57]: Creating directory for new_user
+[2022-03-30 17:17:57]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/new_user.txt
+[2022-03-30 17:17:57]: Deleting user new_user
+[2022-03-30 17:17:57]: Creating directory for new_user
+[2022-03-30 17:17:57]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/new_user.txt
+[2022-03-30 17:17:57]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/new_user.txt
+[2022-03-30 17:17:57]: Deleting user new_user
+[2022-03-30 17:17:57]: User new_user does not exist!
+[2022-03-30 17:17:57]: Creating directory for new_user
+[2022-03-30 17:17:57]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/new_user.txt
+[2022-03-30 17:17:57]: Deleting user new_user
+[2022-03-30 17:17:57]: Creating directory for new_user
+[2022-03-30 17:17:57]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/new_user.txt
+[2022-03-30 17:17:57]: Deleting user new_user
+[2022-03-30 17:17:57]: User new_user does not exist!
+[2022-03-30 17:17:57]: Creating directory for new_user
+[2022-03-30 17:17:57]: Wrote user details to /home/ntu-admin/Documents/SS/SS-C4/Shell/src/main/resources/home/new_user.txt
+[2022-03-30 17:17:57]: Deleting user new_user

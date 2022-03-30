@@ -43,9 +43,6 @@ public class Shell {
         if (this.input.length() == 0) {
             this.logs.outputInfo("No command entered", Store.YES, LogLevel.ERROR);
         } else {
-            // Output input to log for history purposes
-            Logs.logToFile(this.input);
-
             // Parse user input
             String[] command = this.input.split(" ");
             if (isExit(command)) {
@@ -54,7 +51,10 @@ public class Shell {
             } else {
                 // If the command is a built-in command, run it
                 if (isBuiltInCommand(command[0])) {
-                    Logs.logToFile(command);
+                    // Don't log the login command
+                    if (!command[0].equals("login")) {
+                        Logs.logToFile(command);
+                    }
                     bip.execute(command);
 
                     // Get all the info again
