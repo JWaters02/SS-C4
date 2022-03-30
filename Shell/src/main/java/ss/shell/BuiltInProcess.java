@@ -315,7 +315,6 @@ public class BuiltInProcess {
                 this.logs.outputInfo("\n" + user, Store.NO, LogLevel.INFO);
             }
         }
-
     }
 
     /**
@@ -520,7 +519,7 @@ public class BuiltInProcess {
         }
 
         // If already logged in, ignore
-        if (!Objects.equals(this.username, "guest")) {
+        if (this.isLoggedIn) {
             this.logs.outputInfo("You are already logged in!", Store.YES, LogLevel.WARNING);
             return;
         }
@@ -544,6 +543,10 @@ public class BuiltInProcess {
      * command[0] is logout
      */
     private void logout() {
+        if (!this.isLoggedIn) {
+            print("You are not logged in!", LogLevel.ERROR);
+            return;
+        }
         print("Logged out " + this.username, LogLevel.INFO);
         this.username = "guest";
         this.userType = BuiltIns.UserTypes.STANDARD;
@@ -557,7 +560,7 @@ public class BuiltInProcess {
      */
     private void whoami() {
         // If user is not logged in
-        if (Objects.equals(this.username, "guest")) {
+        if (!this.isLoggedIn) {
             print("You are not logged in!", LogLevel.ERROR);
             return;
         }
@@ -580,7 +583,8 @@ public class BuiltInProcess {
         String destination = command[2];
 
         // If the source or destination paths are outside the user's home directory, don't let them
-        if (source.contains("..") || source.startsWith("./")) {
+        if (source.contains("..") || source.startsWith("./") ||
+                destination.contains("..") || destination.startsWith("./")) {
             print("You cannot copy files outside of your home directory!", LogLevel.ERROR);
             return;
         }
@@ -590,12 +594,15 @@ public class BuiltInProcess {
             // Check if source file exists in directory
             if (f.exists()) {
                 // Check if destination name does not contain any illegal characters (i.e. any punctuation)
-                if (!destination.matches("[a-zA-Z0-9]+")) {
+                if (!destination.matches("[a-zA-Z\\d]+")) {
                     print("Invalid destination name!", LogLevel.ERROR);
                 }
 
                 // Move file to destination
                 f.renameTo(new File(destination));
+                print("Moved " + source + " to " + destination, LogLevel.INFO);
+            } else {
+                print("File does not exist!", LogLevel.ERROR);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -613,7 +620,8 @@ public class BuiltInProcess {
         String destination = command[2];
 
         // If the source or destination paths are outside the user's home directory, don't let them
-        if (source.contains("..") || source.startsWith("./")) {
+        if (source.contains("..") || source.startsWith("./") ||
+                destination.contains("..") || destination.startsWith("./")) {
             print("You cannot copy files outside of your home directory!", LogLevel.ERROR);
             return;
         }
@@ -623,13 +631,16 @@ public class BuiltInProcess {
             // Check if source file exists in directory
             if (f.exists()) {
                 // Check if destination name does not contain any illegal characters (i.e. any punctuation)
-                if (!destination.matches("[a-zA-Z0-9]+")) {
+                if (!destination.matches("[a-zA-Z\\d]+")) {
                     print("Invalid destination name!", LogLevel.ERROR);
                     return;
                 }
 
                 // Copy source file to destination
                 Files.copy(f.toPath(), (new File(destination)).toPath(), StandardCopyOption.REPLACE_EXISTING);
+                print("Copied " + source + " to " + destination, LogLevel.INFO);
+            } else {
+                print("File does not exist!", LogLevel.ERROR);
             }
         } catch (Exception e) {
             e.printStackTrace();

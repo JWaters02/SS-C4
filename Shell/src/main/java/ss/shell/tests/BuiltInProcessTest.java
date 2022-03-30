@@ -1,13 +1,14 @@
 package ss.shell.tests;
 
 import org.junit.Before;
+import org.junit.Test;
 import ss.shell.BuiltInProcess;
 import ss.shell.utils.BuiltIns;
 
-import org.junit.Test;
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertTrue;
+import java.io.File;
+
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertTrue;
 
 public class BuiltInProcessTest {
     private String username;
@@ -22,7 +23,7 @@ public class BuiltInProcessTest {
     @Before
     public void setUp() {
         this.username = "guest";
-        this.cwd = BuiltIns.HOME_PATH;
+        this.cwd = System.getProperty("user.dir") + "/src/main/resources/tests/";;
         this.userType = BuiltIns.UserTypes.STANDARD;
         this.isLoggedIn = false;
         this.shellType = BuiltIns.ShellType.REMOTE;
@@ -155,5 +156,326 @@ public class BuiltInProcessTest {
         String[] command = {"super", "history"};
         builtInProcess.execute(command);
         assertTrue(builtInProcess.getLogsOutput().contains("Please provide a date in the format YYYY-mm-dd!"));
+    }
+
+    @Test
+    public void addUser() {
+        BuiltInProcess builtInProcess = new BuiltInProcess("someSuperUser", this.cwd,
+                BuiltIns.UserTypes.SUPERUSER, true, this.shellType);
+
+        // Valid command
+        String[] command = {"super", "adduser", "someUser", "password", "password", "standard"};
+        builtInProcess.execute(command);
+        // Delete user
+        command = new String[]{"super", "deluser", "someUser"};
+        builtInProcess.execute(command);
+        // Now check for correct output
+        assertTrue(builtInProcess.getLogsOutput().contains("Creating directory for someUser"));
+
+        // User already exists
+        command = new String[]{"super", "adduser", this.username, "password", "password", "standard"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("User " + this.username + " already exists!"));
+
+        // Invalid number of parameters
+        command = new String[]{"super", "adduser", this.username, "password"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("Please enter all parameters correctly!"));
+
+        // Passwords don't match
+        command = new String[]{"super", "adduser", this.username, "password", "password2", "standard"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("Passwords do not match!"));
+
+        // Invalid user type
+        command = new String[]{"super", "adduser", this.username, "password", "password", "random"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("Invalid user type"));
+    }
+
+    @Test
+    public void deleteUser() {
+        BuiltInProcess builtInProcess = new BuiltInProcess("someSuperUser", this.cwd,
+                BuiltIns.UserTypes.SUPERUSER, true, this.shellType);
+        // Create user to delete
+        String[] command = {"super", "adduser", "someUser", "password", "password", "standard"};
+        builtInProcess.execute(command);
+
+        // Invalid number of parameters
+        command = new String[]{"super", "deluser"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("Please enter all parameters correctly!"));
+
+        // Deleting current user
+        command = new String[]{"super", "deluser", "someSuperUser"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("You cannot delete yourself!"));
+
+        // Valid command
+        command = new String[]{"super", "deluser", "someUser"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("Deleting user someUser"));
+    }
+
+    @Test
+    public void listUsers() {
+        BuiltInProcess builtInProcess = new BuiltInProcess("someSuperUser", this.cwd,
+                BuiltIns.UserTypes.SUPERUSER, true, this.shellType);
+        // Create two users to have listed
+        String[] command = {"super", "adduser", "someUser", "password", "password", "standard"};
+        builtInProcess.execute(command);
+        command = new String[]{"super", "adduser", "someOtherUser", "password", "password", "standard"};
+        builtInProcess.execute(command);
+
+        // Valid command
+        command = new String[]{"super", "listusers"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("someUser"));
+        assertTrue(builtInProcess.getLogsOutput().contains("someOtherUser"));
+
+        // Delete the two new users
+        command = new String[]{"super", "deluser", "someUser"};
+        builtInProcess.execute(command);
+        command = new String[]{"super", "deluser", "someOtherUser"};
+        builtInProcess.execute(command);
+    }
+
+    @Test
+    public void chPass() {
+        BuiltInProcess builtInProcess = new BuiltInProcess("someSuperUser", this.cwd,
+                BuiltIns.UserTypes.SUPERUSER, true, this.shellType);
+        // Create user to change password
+        String[] command = {"super", "adduser", "someUser", "password", "password", "standard"};
+        builtInProcess.execute(command);
+        // Create another user
+        command = new String[]{"super", "adduser", "someSuperUser", "password", "password", "standard"};
+        builtInProcess.execute(command);
+
+        // Invalid number of parameters
+        command = new String[]{"super", "chpass"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("Please enter all parameters correctly!"));
+
+        // Invalid user
+        command = new String[]{"super", "chpass", "someUser2", "password", "password"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("User does not exist!"));
+
+        // Changing password of current user
+        command = new String[]{"super", "chpass", "someSuperUser", "password", "password"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("You cannot change your own password!"));
+
+        // Valid command
+        command = new String[]{"super", "chpass", "someUser", "password", "newPassword"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("Password changed successfully!"));
+
+        // Delete users
+        BuiltInProcess builtInProcess2 = new BuiltInProcess(this.username, this.cwd,
+                BuiltIns.UserTypes.SUPERUSER, true, this.shellType);
+        command = new String[]{"super", "deluser", "someUser"};
+        builtInProcess2.execute(command);
+        command = new String[]{"super", "deluser", "someSuperUser"};
+        builtInProcess2.execute(command);
+    }
+
+    @Test
+    public void chUserType() {
+        BuiltInProcess builtInProcess = new BuiltInProcess("someSuperUser", this.cwd,
+                BuiltIns.UserTypes.SUPERUSER, true, this.shellType);
+        // Create user to change user type
+        String[] command = {"super", "adduser", "someUser", "password", "password", "standard"};
+        builtInProcess.execute(command);
+        // Create another user
+        command = new String[]{"super", "adduser", "someSuperUser", "password", "password", "standard"};
+        builtInProcess.execute(command);
+
+        // Invalid number of parameters
+        command = new String[]{"super", "chusertype"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("Please enter all parameters correctly!"));
+
+        // Invalid user type
+        command = new String[]{"super", "chusertype", "someUser", "blah"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("Invalid user type!"));
+
+        // Invalid user
+        command = new String[]{"super", "chusertype", "someUser2", "standard"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("User does not exist!"));
+
+        // Changing user type of current user
+        command = new String[]{"super", "chusertype", "someSuperUser", "standard"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("You cannot change your own user type!"));
+
+        // Valid command
+        command = new String[]{"super", "chusertype", "someUser", "standard"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("User type changed!"));
+
+        // Delete users
+        BuiltInProcess builtInProcess2 = new BuiltInProcess(this.username, this.cwd,
+                BuiltIns.UserTypes.SUPERUSER, true, this.shellType);
+        command = new String[]{"super", "deluser", "someUser"};
+        builtInProcess2.execute(command);
+        command = new String[]{"super", "deluser", "someSuperUser"};
+        builtInProcess2.execute(command);
+    }
+
+    @Test
+    public void login() {
+        BuiltInProcess builtInProcess = new BuiltInProcess("someSuperUser", this.cwd,
+                BuiltIns.UserTypes.SUPERUSER, true, this.shellType);
+        // Create user to login
+        String[] command = {"super", "adduser", "someUser", "password", "password", "standard"};
+        builtInProcess.execute(command);
+
+        // Already logged in
+        command = new String[]{"login", "someUser", "password"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("You are already logged in!"));
+
+        // Invalid number of parameters
+        command = new String[]{"login"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("Please enter all parameters correctly!"));
+
+        BuiltInProcess builtInProcess2 = new BuiltInProcess("someUser", this.cwd,
+                BuiltIns.UserTypes.SUPERUSER, false, this.shellType);
+
+        // Invalid user
+        command = new String[]{"login", "someUser2", "password"};
+        builtInProcess2.execute(command);
+        assertTrue(builtInProcess2.getLogsOutput().contains("User someUser2 does not exist!"));
+
+        // Invalid password
+        command = new String[]{"login", "someUser", "password2"};
+        builtInProcess2.execute(command);
+        assertTrue(builtInProcess2.getLogsOutput().contains("Invalid password."));
+
+        // Valid command
+        command = new String[]{"login", "someUser", "password"};
+        builtInProcess2.execute(command);
+        assertTrue(builtInProcess2.getLogsOutput().contains("Welcome someUser"));
+
+        // Delete users
+        BuiltInProcess builtInProcess3 = new BuiltInProcess(this.username, this.cwd,
+                BuiltIns.UserTypes.SUPERUSER, true, this.shellType);
+        command = new String[]{"super", "deluser", "someUser"};
+        builtInProcess3.execute(command);
+    }
+
+    @Test
+    public void logout() {
+        BuiltInProcess builtInProcess = new BuiltInProcess("someSuperUser", this.cwd,
+                BuiltIns.UserTypes.SUPERUSER, false, this.shellType);
+        // Create user to login
+        String[] command = {"super", "adduser", "someUser", "password", "password", "standard"};
+        builtInProcess.execute(command);
+
+        // Not logged in
+        command = new String[]{"logout"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("You are not logged in!"));
+
+        // Valid command
+        command = new String[]{"login", "someUser", "password"};
+        builtInProcess.execute(command);
+        command = new String[]{"logout"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("Logged out someUser"));
+
+        // Delete users
+        BuiltInProcess builtInProcess2 = new BuiltInProcess(this.username, this.cwd,
+                BuiltIns.UserTypes.SUPERUSER, true, this.shellType);
+        command = new String[]{"super", "deluser", "someUser"};
+        builtInProcess2.execute(command);
+    }
+
+    @Test
+    public void whoami() {
+        BuiltInProcess builtInProcess = new BuiltInProcess("someSuperUser", this.cwd,
+                BuiltIns.UserTypes.SUPERUSER, false, this.shellType);
+        // Create user to login
+        String[] command = {"super", "adduser", "someUser", "password", "password", "standard"};
+        builtInProcess.execute(command);
+
+        // Not logged in
+        command = new String[]{"whoami"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("You are not logged in!"));
+
+        // Valid command
+        command = new String[]{"login", "someUser", "password"};
+        builtInProcess.execute(command);
+        command = new String[]{"whoami"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("Username: someUser\nUser type: STANDARD"));
+
+        // Delete users
+        BuiltInProcess builtInProcess2 = new BuiltInProcess(this.username, this.cwd,
+                BuiltIns.UserTypes.SUPERUSER, true, this.shellType);
+        command = new String[]{"super", "deluser", "someUser"};
+        builtInProcess2.execute(command);
+    }
+
+    @Test
+    public void move() {
+        BuiltInProcess builtInProcess = new BuiltInProcess(this.username, this.cwd,
+                this.userType, false, this.shellType);
+        // Paths are outside user's home directory
+        String[] command = {"move", "..", ".."};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("You cannot copy files outside of your home directory!"));
+        command = new String[]{"move", "./", "somedir"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("You cannot copy files outside of your home directory!"));
+        command = new String[]{"move", "somedir", "../somedir"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("You cannot copy files outside of your home directory!"));
+
+        // Source file does not exist
+        command = new String[]{"move", "somedir", "somedir2"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("File does not exist!"));
+    }
+
+    @Test
+    public void copy() {
+        BuiltInProcess builtInProcess = new BuiltInProcess(this.username, this.cwd,
+                this.userType, false, this.shellType);
+        // Paths are outside user's home directory
+        String[] command = {"copy", "..", ".."};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("You cannot copy files outside of your home directory!"));
+        command = new String[]{"copy", "./", "somedir"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("You cannot copy files outside of your home directory!"));
+        command = new String[]{"copy", "somedir", "../somedir"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("You cannot copy files outside of your home directory!"));
+
+        // Source file does not exist
+        command = new String[]{"copy", "somedir", "somedir2"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("File does not exist!"));
+    }
+
+    @Test
+    public void cd() {
+        BuiltInProcess builtInProcess = new BuiltInProcess(this.username, this.cwd,
+                this.userType, false, this.shellType);
+        // Just cd command on its own
+        String[] command = {"cd"};
+        builtInProcess.execute(command);
+        assertEquals(builtInProcess.getCWD(), this.cwd);
+
+        // cd command with invalid path
+        command = new String[]{"cd", "somedir"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("Path does not exist!"));
     }
 }
