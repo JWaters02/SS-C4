@@ -6,6 +6,8 @@ import ss.shell.BuiltInProcess;
 import ss.shell.utils.BuiltIns;
 
 import java.io.File;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
@@ -23,7 +25,8 @@ public class BuiltInProcessTest {
     @Before
     public void setUp() {
         this.username = "guest";
-        this.cwd = System.getProperty("user.dir") + "/src/main/resources/tests/";;
+        BuiltIns.HOME_PATH = System.getProperty("user.dir") + "/src/main/resources/tests/";
+        this.cwd = BuiltIns.HOME_PATH;
         this.userType = BuiltIns.UserTypes.STANDARD;
         this.isLoggedIn = false;
         this.shellType = BuiltIns.ShellType.REMOTE;
@@ -467,15 +470,94 @@ public class BuiltInProcessTest {
     @Test
     public void cd() {
         BuiltInProcess builtInProcess = new BuiltInProcess(this.username, this.cwd,
-                this.userType, false, this.shellType);
-        // Just cd command on its own
-        String[] command = {"cd"};
+                BuiltIns.UserTypes.SUPERUSER, false, this.shellType);
+        // Create user to login
+        String[] command = {"super", "adduser", "someUser", "password", "password", "standard"};
         builtInProcess.execute(command);
-        assertEquals(builtInProcess.getCWD(), this.cwd);
+
+        // Log in as user
+        command = new String[]{"login", "someUser", "password"};
+        builtInProcess.execute(command);
+
+        // Make a new directory inside user's home directory
+        File newDir = new File(this.cwd + "/someUser/somedir");
+        newDir.mkdir();
 
         // cd command with invalid path
+        command = new String[]{"cd", "dirdoesntexist"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("Please enter a valid path! You cannot exit your local area!"));
+
+        // cd command with valid path
         command = new String[]{"cd", "somedir"};
         builtInProcess.execute(command);
-        assertTrue(builtInProcess.getLogsOutput().contains("Path does not exist!"));
+        assertEquals(builtInProcess.getCWD(), this.cwd + "someUser/somedir");
+
+        // Just cd command on its own
+        command = new String[]{"cd"};
+        builtInProcess.execute(command);
+        assertEquals(builtInProcess.getCWD(), this.cwd + "someUser");
+
+        // Log out
+        command = new String[]{"logout"};
+        builtInProcess.execute(command);
+
+        // Delete user
+        BuiltInProcess builtInProcess2 = new BuiltInProcess(this.username, this.cwd,
+                BuiltIns.UserTypes.SUPERUSER, true, this.shellType);
+        command = new String[]{"super", "deluser", "someUser"};
+        builtInProcess2.execute(command);
+    }
+
+    @Test
+    public void showDir() {
+        BuiltInProcess builtInProcess = new BuiltInProcess(this.username, this.cwd,
+                BuiltIns.UserTypes.SUPERUSER, false, this.shellType);
+        // Create user to login
+        String[] command = {"super", "adduser", "someUser", "password", "password", "standard"};
+        builtInProcess.execute(command);
+
+        // Log in as user
+        command = new String[]{"login", "someUser", "password"};
+        builtInProcess.execute(command);
+
+        // Valid command
+        command = new String[]{"showdir"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("someUser"));
+
+        // Log out
+        command = new String[]{"logout"};
+        builtInProcess.execute(command);
+
+        // Delete user
+        BuiltInProcess builtInProcess2 = new BuiltInProcess(this.username, this.cwd,
+                BuiltIns.UserTypes.SUPERUSER, true, this.shellType);
+        command = new String[]{"super", "deluser", "someUser"};
+        builtInProcess2.execute(command);
+    }
+
+    @Test
+    public void history() {
+        BuiltInProcess builtInProcess = new BuiltInProcess("admin", this.cwd,
+                BuiltIns.UserTypes.SUPERUSER, true, this.shellType);
+        // Input invalid date
+        String[] command = {"super", "history", "invalid"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("Please input a valid date!"));
+
+        // Input valid date format but has no file
+        command = new String[]{"super", "history", "2019-01-01"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("There are no log files with this date!"));
+
+        // Input valid date format and has a file
+        // Get current YYYY-MM-DD
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.now();
+        String date = dtf.format(localDate);
+        command = new String[]{"super", "history", date + "_log.txt"};
+        builtInProcess.execute(command);
+        assertTrue(builtInProcess.getLogsOutput().contains("History for " + date + ":"));
     }
 }

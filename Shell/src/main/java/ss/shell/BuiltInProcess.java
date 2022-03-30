@@ -110,7 +110,7 @@ public class BuiltInProcess {
                                 print("Please provide a date in the format YYYY-mm-dd!", LogLevel.ERROR);
                                 return;
                             }
-                            history(command[1]);
+                            history(command[2]);
                         }
                         default -> Logs.printLine("Cannot execute command as super: " + command[1], LogLevel.ERROR);
                     }
@@ -126,7 +126,7 @@ public class BuiltInProcess {
                                 print("Please provide a date in the format YYYY-mm-dd!", LogLevel.ERROR);
                                 return;
                             }
-                            history(command[1]);
+                            history(command[2]);
                         }
                         default -> this.logs.outputInfo("Cannot execute command as super: " + command[1],
                                 Store.YES, LogLevel.ERROR);

@@ -50,6 +50,13 @@ public class ShellServer extends Thread {
         try {
             ServerSocket server = new ServerSocket(PORT);
             System.out.println("Server " + threadName + " started on port " + PORT);
+            String cssLocation = "src/main/java/ss/shell/server/CSS.css";
+
+            // Fix getProperty("user.dir") sometimes not getting the consistent path depending on PC
+            if (!System.getProperty("user.dir").contains("Shell")) {
+                BuiltIns.HOME_PATH = System.getProperty("user.dir") + "/Shell/src/main/resources/home/";
+                cssLocation = "Shell/src/main/java/ss/shell/server/CSS.css";
+            }
 
             boolean shutdown = false;
             boolean hasLoaded = false;
@@ -142,7 +149,7 @@ public class ShellServer extends Thread {
 
                 // Open CSS.css file and read each line into the PrintWriter out
                 try {
-                    File file = new File("src/main/java/ss/shell/server/CSS.css");
+                    File file = new File(cssLocation);
                     Scanner scanner = new Scanner(file);
                     while (scanner.hasNextLine()) {
                         out.println(scanner.nextLine());
