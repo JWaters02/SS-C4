@@ -1,0 +1,48 @@
+[2022-03-31 11:49:22]: No command entered
+[2022-03-31 11:49:27]: Command does not exist or is not allowed.
+[2022-03-31 11:49:27]: /home/guest
+[2022-03-31 11:49:27]: No command entered
+[2022-03-31 11:49:51]: No command entered
+[2022-03-31 22:13:47]: No command entered
+[2022-03-31 22:22:29]: No command entered
+[2022-03-31 22:22:34]: listusers
+[2022-03-31 22:22:34]: You must execute this command as super.
+[2022-03-31 22:22:34]: /home/guest
+[2022-03-31 22:22:34]: No command entered
+[2022-03-31 22:22:38]: Welcome admin
+[2022-03-31 22:22:38]: /home/admin
+[2022-03-31 22:22:38]: No command entered
+[2022-03-31 22:22:42]: listusers
+[2022-03-31 22:22:42]: You must execute this command as super.
+[2022-03-31 22:22:42]: /home/admin
+[2022-03-31 22:22:42]: No command entered
+[2022-03-31 22:22:46]: super
+[2022-03-31 22:22:46]: listusers
+[2022-03-31 22:22:46]: /home/admin
+[2022-03-31 22:22:46]: No command entered
+[2022-03-31 23:35:29]: No command entered
+[2022-03-31 23:35:36]: Welcome admin
+[2022-03-31 23:35:36]: /home/admin
+[2022-03-31 23:35:36]: No command entered
+[2022-03-31 23:35:42]: ps
+[2022-03-31 23:35:42]: /home/admin
+[2022-03-31 23:35:43]: No command entered
+[2022-03-31 23:35:58]: listusers
+[2022-03-31 23:35:58]: You must execute this command as super.
+[2022-03-31 23:35:58]: /home/admin
+[2022-03-31 23:35:58]: No command entered
+[2022-03-31 23:36:00]: ls
+[2022-03-31 23:36:00]: /home/admin
+[2022-03-31 23:36:00]: No command entered
+[2022-03-31 23:36:06]: Command does not exist or is not allowed.
+[2022-03-31 23:36:06]: /home/admin
+[2022-03-31 23:36:06]: No command entered
+[2022-03-31 23:36:28]: super
+[2022-03-31 23:36:28]: history
+[2022-03-31 23:36:28]: 2022-03-31
+[2022-03-31 23:36:28]: /home/admin
+[2022-03-31 23:36:28]: No command entered
+[2022-03-31 23:36:40]: logout
+[2022-03-31 23:36:40]: Logged out admin
+[2022-03-31 23:36:40]: /home/guest
+[2022-03-31 23:36:40]: No command entered
